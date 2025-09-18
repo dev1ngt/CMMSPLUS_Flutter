@@ -2,6 +2,7 @@ import 'dart:ffi';
 import 'dart:io';
 
 //import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
+import 'package:cmms/src/helpers/utils/appcolors.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -60,8 +61,7 @@ class PPMDetailsState extends StatefulWidget {
 }
 
 class _PPMDetailsStateState extends State<PPMDetailsState> {
-  Color customColor1 = Color(0xFFCBD4F4); // Replace with your custom color
-  Color customColor2 = Color(0xFFF7D9E3); // Replace with your custom color
+
   String userid = "";
   bool isShowRequestHistory = false;
   bool _isAPICalled = true;
@@ -539,8 +539,8 @@ class _PPMDetailsStateState extends State<PPMDetailsState> {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      customColor1,
-                      customColor2,
+                      AppColors.customColor1,
+                      AppColors.customColor2,
                     ],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
@@ -1596,7 +1596,8 @@ class _PPMDetailsStateState extends State<PPMDetailsState> {
                         child: Ink(
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
-                              colors: [customColor2, customColor1],
+                              colors: [AppColors.customColor2,
+                                AppColors.customColor1,],
                             ),
                             borderRadius: BorderRadius.circular(10.0),
                           ),

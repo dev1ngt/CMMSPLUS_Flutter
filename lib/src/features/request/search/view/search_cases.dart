@@ -1,3 +1,4 @@
+import 'package:cmms/src/helpers/utils/appcolors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,8 +31,7 @@ class SearchCases extends StatefulWidget {
 }
 
 class _RequestListWidgetContentState extends State<SearchCases> {
-  Color customColor1 = Color(0xFFCBD4F4);
-  Color customColor2 = Color(0xFFF7D9E3);
+
   late SearchCasesBloc searchBloc;
   List<RequestIdItem> requestIdList = [];
   int propertyId = 0;
@@ -118,7 +118,8 @@ class _RequestListWidgetContentState extends State<SearchCases> {
           flexibleSpace: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [customColor1, customColor2],
+                colors: [AppColors.customColor1,
+                  AppColors.customColor2,],
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
               ),

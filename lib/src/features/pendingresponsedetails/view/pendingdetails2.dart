@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:cmms/src/features/pendingresponse/view/pendinglist.dart';
 import 'package:cmms/src/features/pendingresponsedetails/model/TechnicianInitiateRequestModel.dart';
 import 'package:cmms/src/features/pendingresponsedetails/view/pendingdetails.dart';
+import 'package:cmms/src/helpers/utils/appcolors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -35,8 +36,7 @@ class PendingDetails_2 extends StatefulWidget {
 class PendingDetails_State2 extends State<PendingDetails_2> {
   late DetailsPart2Bloc _bloc;
 
-  Color customColor1 = Color(0xFFCBD4F4); // Replace with your custom color
-  Color customColor2 = Color(0xFFF7D9E3); // Replace with your custom color
+
   String selectedStatus = ''; // Add this line
 
   String CaseIDName = "",
@@ -322,8 +322,8 @@ class PendingDetails_State2 extends State<PendingDetails_2> {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        customColor1,
-                        customColor2
+                        AppColors.customColor1,
+                        AppColors.customColor2,
                       ], // Replace with your gradient colors
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
@@ -454,7 +454,8 @@ class PendingDetails_State2 extends State<PendingDetails_2> {
                               height: 57,
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
-                                  colors: [customColor2, customColor1],
+                                  colors: [AppColors.customColor2,
+                                    AppColors.customColor1,],
                                 ),
 
                                 border: Border.all(
@@ -579,7 +580,8 @@ class PendingDetails_State2 extends State<PendingDetails_2> {
                               height: 57,
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
-                                  colors: [customColor2, customColor1],
+                                  colors: [AppColors.customColor2,
+                                    AppColors.customColor1,],
                                 ),
 
                                 border: Border.all(
@@ -644,7 +646,8 @@ class PendingDetails_State2 extends State<PendingDetails_2> {
                               height: 57,
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
-                                  colors: [customColor2, customColor1],
+                                  colors: [AppColors.customColor2,
+                                    AppColors.customColor1,],
                                 ),
 
                                 border: Border.all(
@@ -708,7 +711,8 @@ class PendingDetails_State2 extends State<PendingDetails_2> {
                               height: 57,
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
-                                  colors: [customColor2, customColor1],
+                                  colors: [AppColors.customColor2,
+                                    AppColors.customColor1,],
                                 ),
 
                                 border: Border.all(
@@ -1046,8 +1050,8 @@ class PendingDetails_State2 extends State<PendingDetails_2> {
                                 decoration: BoxDecoration(
                                   gradient: LinearGradient(
                                     colors: [
-                                      customColor2,
-                                      customColor1
+                                      AppColors.customColor2,
+                                      AppColors.customColor1,
                                     ], // Replace with your gradient colors
                                   ),
                                   borderRadius: BorderRadius.circular(10.0),
@@ -1142,7 +1146,7 @@ class PendingDetails_State2 extends State<PendingDetails_2> {
                                 }
                               },
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: isSubmitting ? customColor1 : null,
+                                backgroundColor: isSubmitting ? AppColors.customColor1 : null,
                                 padding: EdgeInsets.zero,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10.0),
@@ -1151,7 +1155,8 @@ class PendingDetails_State2 extends State<PendingDetails_2> {
                               child: Ink(
                                 decoration: BoxDecoration(
                                   gradient: LinearGradient(
-                                    colors: [customColor2, customColor1],
+                                    colors: [AppColors.customColor2,
+                                      AppColors.customColor1,],
                                   ),
                                   borderRadius: BorderRadius.circular(10.0),
                                 ),

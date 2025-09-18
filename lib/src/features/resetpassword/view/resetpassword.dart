@@ -1,6 +1,7 @@
 import 'package:cmms/src/features/login/View/login.dart';
 import 'package:cmms/src/features/resetpassword/bloc/resetpass_bloc.dart';
 import 'package:cmms/src/features/resetpassword/bloc/resetpass_state.dart';
+import 'package:cmms/src/helpers/utils/appcolors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -44,10 +45,7 @@ class _ResetPasswordView extends State<ResetPasswordView> {
 
   TextEditingController _confirmPasswordController = TextEditingController();
 
-  Color customColor1 = Color(0xFFCBD4F4);
 
-  // Replace with your custom color
-  Color customColor2 = Color(0xFFF7D9E3);
 
   String username = '';
 
@@ -145,8 +143,8 @@ class _ResetPasswordView extends State<ResetPasswordView> {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    customColor1,
-                    customColor2,
+                    AppColors.customColor1,
+                    AppColors.customColor2,
                   ],
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
@@ -386,8 +384,8 @@ class _ResetPasswordView extends State<ResetPasswordView> {
                                         decoration: BoxDecoration(
                                           gradient: LinearGradient(
                                             colors: [
-                                              customColor2,
-                                              customColor1
+                                              AppColors.customColor2,
+                                              AppColors.customColor1,
                                             ], // Replace with your gradient colors
                                           ),
                                           borderRadius:

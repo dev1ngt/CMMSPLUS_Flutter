@@ -1,6 +1,7 @@
 
 import 'dart:math';
 
+import 'package:cmms/src/helpers/utils/appcolors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
@@ -40,8 +41,7 @@ class PurchaseRequestScreen extends StatefulWidget {
 }
 
 class _PurchaseRequestScreen extends State<PurchaseRequestScreen> {
-  Color customColor1 = Color(0xFFCBD4F4);
-  Color customColor2 = Color(0xFFF7D9E3);
+
   late AdhocAddNewViewBloc addNewViewBloc;
   bool isDataLoading = true;
   String? regionName = "";
@@ -172,8 +172,8 @@ class _PurchaseRequestScreen extends State<PurchaseRequestScreen> {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                customColor1,
-                customColor2,
+                AppColors.customColor1,
+                AppColors.customColor2,
               ],
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
@@ -665,8 +665,8 @@ class _PurchaseRequestScreen extends State<PurchaseRequestScreen> {
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           colors: [
-                            customColor2,
-                            customColor1
+                            AppColors.customColor2,
+                            AppColors.customColor1,
                           ],
                         ),
                         borderRadius: BorderRadius.circular(10.0),

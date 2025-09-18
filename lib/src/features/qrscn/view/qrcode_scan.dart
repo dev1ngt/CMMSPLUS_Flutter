@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:cmms/src/helpers/utils/appcolors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geocoding/geocoding.dart';
@@ -34,8 +35,7 @@ class QRViewExample extends StatefulWidget {
 }
 
 class _QRViewExampleState extends State<QRViewExample> {
-  Color customColor1 = const Color(0xFFCBD4F4);
-  Color customColor2 = const Color(0xFFF7D9E3);
+
 
   Barcode? result;
   MobileScannerController controller = MobileScannerController();
@@ -129,7 +129,8 @@ class _QRViewExampleState extends State<QRViewExample> {
             flexibleSpace: Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [customColor1, customColor2],
+                  colors: [AppColors.customColor1,
+                    AppColors.customColor2],
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                 ),
@@ -317,37 +318,80 @@ class _QRViewExampleState extends State<QRViewExample> {
   Widget _buildQrView(BuildContext context) {
     double scanArea = (MediaQuery.of(context).size.width < 400 ||
         MediaQuery.of(context).size.height < 400)
-        ? 200.0
-        : 400.0;
+        ? 220.0
+        : 250.0;
 
-    return MobileScanner(
-      controller: controller,
-      onDetect: (barcodeCapture) {
-        final List<Barcode> barcodes = barcodeCapture.barcodes;
-        if (barcodes.isEmpty) {
-          log('Failed to scan Barcode');
-          return;
-        }
+    return Stack(
+      children: [
+        MobileScanner(
+          controller: controller,
+          fit: BoxFit.cover,
+          onDetect: (barcodeCapture) {
+            final List<Barcode> barcodes = barcodeCapture.barcodes;
+            if (barcodes.isEmpty) {
+              log('Failed to scan Barcode');
+              return;
+            }
 
-        final barcode = barcodes.first;
-        if (mounted) {
-          setState(() {
-            result = barcode;
-            controller.stop();
-          });
-        }
-      },
-      scanWindow: Rect.fromCenter(
-        center: Offset(
-          MediaQuery.of(context).size.width / 2,
-          MediaQuery.of(context).size.height / 2,
+            final barcode = barcodes.first;
+            if (mounted) {
+              setState(() {
+                result = barcode;
+                controller.stop(); // stop once scanned
+              });
+            }
+          },
+          scanWindow: Rect.fromCenter(
+            center: Offset(
+              MediaQuery.of(context).size.width / 2,
+              MediaQuery.of(context).size.height / 2,
+            ),
+            width: scanArea,
+            height: scanArea,
+          ),
         ),
-        width: scanArea,
-        height: scanArea,
-      ),
-      // No overlay by default, build your own if needed
+
+        /// Scanner overlay
+       /* Center(
+          child: Container(
+            width: scanArea,
+            height: scanArea,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.greenAccent, width: 3),
+              borderRadius: BorderRadius.circular(12),
+            ),
+          ),
+        ),*/
+
+        /// Optional: Add an animated red line (like real scanners)
+        Positioned.fill(
+          child: Align(
+            alignment: Alignment.center,
+            child: TweenAnimationBuilder<double>(
+              tween: Tween(begin: -scanArea / 2, end: scanArea / 2),
+              duration: const Duration(seconds: 2),
+              curve: Curves.easeInOut,
+              builder: (context, value, child) {
+                return Transform.translate(
+                  offset: Offset(0, value),
+                  child: Container(
+                    width: scanArea,
+                    height: 2,
+                    color: Colors.redAccent,
+                  ),
+                );
+              },
+              onEnd: () {
+                // restart animation
+              },
+            ),
+          ),
+        ),
+      ],
     );
   }
+
+
 
   Future<void> _makeApiCall(BuildContext context, String propertyId) async {
     print('$userId, $propertyId, $latitude, $longitude');

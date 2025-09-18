@@ -1,3 +1,4 @@
+import 'package:cmms/src/helpers/utils/appcolors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -51,8 +52,7 @@ class AllRequestListWidgetContent extends StatefulWidget {
 
 class _AllRequestListWidgetContentState
     extends State<AllRequestListWidgetContent> {
-  Color customColor1 = Color(0xFFCBD4F4);
-  Color customColor2 = Color(0xFFF7D9E3);
+
   String latitude = '';
   String longitude = '' , requestedID = "",propertyID = "";
    int page = 0;
@@ -314,7 +314,8 @@ class _AllRequestListWidgetContentState
           flexibleSpace: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [customColor1, customColor2],
+                colors: [AppColors.customColor1,
+                  AppColors.customColor2,],
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
               ),

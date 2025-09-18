@@ -2,6 +2,7 @@
 
 import 'package:cmms/src/features/closed/list/model/closed_list_model.dart';
 import 'package:cmms/src/features/closed/view/view/closed_details.dart';
+import 'package:cmms/src/helpers/utils/appcolors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -45,8 +46,7 @@ class ClosedWidgetContent extends StatefulWidget {
 }
 
 class _ClosedWidgetContentState extends State<ClosedWidgetContent> {
-  Color customColor1 = Color(0xFFCBD4F4);
-  Color customColor2 = Color(0xFFF7D9E3);
+
   int page = 0; // Initial page number
   ScrollController _scrollController = ScrollController();
   late ClosedListBloc closedListBloc;
@@ -144,8 +144,8 @@ class _ClosedWidgetContentState extends State<ClosedWidgetContent> {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    customColor1,
-                    customColor2,
+                    AppColors.customColor1,
+                    AppColors.customColor2,
                   ],
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,

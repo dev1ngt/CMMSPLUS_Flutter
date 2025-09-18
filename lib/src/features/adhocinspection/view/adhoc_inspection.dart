@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:cmms/src/helpers/utils/appcolors.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
@@ -112,8 +113,7 @@ class _AdhocInspectionState extends State<AdhocInspectionView> {
 
   @override
   Widget build(BuildContext context) {
-    Color customColor1 = Color(0xFFCBD4F4);
-    Color customColor2 = Color(0xFFF7D9E3);
+
 
     return BlocProvider(
       create: (context) => adhocDetailsViewBloc,
@@ -166,7 +166,8 @@ class _AdhocInspectionState extends State<AdhocInspectionView> {
             flexibleSpace: Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [customColor1, customColor2],
+                  colors: [AppColors.customColor1,
+                    AppColors.customColor2,],
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                 ),

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cmms/src/api/api_service.dart';
 import 'package:cmms/src/features/closed/view/bloc/closed_view_bloc.dart';
 import 'package:cmms/src/features/closed/view/model/closed_response_model.dart';
+import 'package:cmms/src/helpers/utils/appcolors.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as path;
@@ -42,8 +43,7 @@ class ClosedDetails extends StatefulWidget {
 }
 
 class _InProgressDetailsWidgetState extends State<ClosedDetails> {
-  Color customColor1 = Color(0xFFCBD4F4); // Replace with your custom color
-  Color customColor2 = Color(0xFFF7D9E3); // Replace with your custom color
+
   String userid = "";
   bool isShowRequestHistory = false;
   bool _isAPICalled = true;
@@ -199,8 +199,8 @@ class _InProgressDetailsWidgetState extends State<ClosedDetails> {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      customColor1,
-                      customColor2,
+                      AppColors.customColor1,
+                      AppColors.customColor2,
                     ],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,

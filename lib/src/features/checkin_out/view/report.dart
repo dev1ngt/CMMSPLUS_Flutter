@@ -1,5 +1,6 @@
 import 'package:cmms/src/constants/app_sizes.dart';
 import 'package:cmms/src/features/checkin_out/bloc/report/report_event.dart';
+import 'package:cmms/src/helpers/utils/appcolors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -109,8 +110,7 @@ class _ReportScreenState extends State<ReportScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Color customColor1 = Color(0xFFCBD4F4);
-    Color customColor2 = Color(0xFFF7D9E3);
+
 
     String formattedMonth = DateFormat('MMMM').format(selectedDate);
     String formattedYear = DateFormat('yyyy').format(selectedDate);
@@ -168,7 +168,8 @@ class _ReportScreenState extends State<ReportScreen> {
             flexibleSpace: Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  colors: [customColor1, customColor2],
+                  colors: [AppColors.customColor1,
+                    AppColors.customColor2,],
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                 ),

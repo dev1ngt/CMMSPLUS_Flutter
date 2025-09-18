@@ -1,4 +1,5 @@
 import 'package:cmms/src/features/faultreport/submit/model/fault_report_save_model.dart';
+import 'package:cmms/src/helpers/utils/appcolors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -38,8 +39,7 @@ class MyFaultlistWidgetContent extends StatefulWidget {
 }
 
 class _MyFaultlistWidgetContentState extends State<MyFaultlistWidgetContent> {
-  Color customColor1 = const Color(0xFFCBD4F4);
-  Color customColor2 = const Color(0xFFF7D9E3);
+
   int page = 0;
   ScrollController _scrollController = ScrollController();
   late MyFaultlistBloc requestListBloc;
@@ -130,7 +130,8 @@ class _MyFaultlistWidgetContentState extends State<MyFaultlistWidgetContent> {
           flexibleSpace: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [customColor1, customColor2],
+                colors: [AppColors.customColor1,
+                  AppColors.customColor2,],
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
               ),
@@ -224,7 +225,8 @@ class _MyFaultlistWidgetContentState extends State<MyFaultlistWidgetContent> {
             borderRadius: BorderRadius.circular(10),
             gradient: isSelected
                 ? LinearGradient(
-              colors: [customColor1, customColor2],
+              colors: [AppColors.customColor1,
+                AppColors.customColor2,],
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
             )

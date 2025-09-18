@@ -2,6 +2,7 @@ import 'package:cmms/src/features/faultreport/fourthlocation/view/fourth_locatio
 import 'package:cmms/src/features/faultreport/secondpriority/view/second_priority.dart';
 import 'package:cmms/src/features/faultreport/submit/model/fault_report_save_model_old.dart';
 import 'package:cmms/src/features/faultreport/thirdremarks/bloc/remarks_event.dart';
+import 'package:cmms/src/helpers/utils/appcolors.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -34,8 +35,7 @@ class FRThirdRemarksStf extends StatefulWidget {
 }
 
 class _FRThirdRemarksStf extends State<FRThirdRemarksStf> {
-  Color customColor1 = Color(0xFFCBD4F4); // Replace with your custom color
-  Color customColor2 = Color(0xFFF7D9E3); // Replace with your custom color
+
   UploadViewModel viewModel = UploadViewModel();
   String ProjectName = "",
       username = "",
@@ -158,8 +158,8 @@ class _FRThirdRemarksStf extends State<FRThirdRemarksStf> {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    customColor1,
-                    customColor2,
+                    AppColors.customColor1,
+                    AppColors.customColor2,
                   ],
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
@@ -334,8 +334,8 @@ class _FRThirdRemarksStf extends State<FRThirdRemarksStf> {
                                         decoration: BoxDecoration(
                                           gradient: LinearGradient(
                                             colors: [
-                                              customColor2,
-                                              customColor1,
+                                              AppColors.customColor2,
+                                              AppColors.customColor1,
                                             ], // Replace with your gradient colors
                                           ),
                                           borderRadius: BorderRadius.circular(20.0),
@@ -393,8 +393,8 @@ class _FRThirdRemarksStf extends State<FRThirdRemarksStf> {
                                         decoration: BoxDecoration(
                                           gradient: LinearGradient(
                                             colors: [
-                                              customColor2,
-                                              customColor1,
+                                              AppColors.customColor2,
+                                              AppColors.customColor1,
                                             ], // Replace with your gradient colors
                                           ),
                                           borderRadius: BorderRadius.circular(20.0),

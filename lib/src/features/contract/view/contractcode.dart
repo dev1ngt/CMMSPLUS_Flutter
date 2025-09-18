@@ -1,4 +1,5 @@
 import 'package:cmms/src/features/contract/bloc/contractcode_bloc.dart';
+import 'package:cmms/src/helpers/utils/appcolors.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,8 +35,7 @@ class _ContractCodeState extends State<ContractCode> {
   TextEditingController _contractCodeController = TextEditingController();
 
   late ContractCodeBloc contractCodeBloc;
-  Color customColor1 = Color(0xFFCBD4F4); // Replace with your custom color
-  Color customColor2 = Color(0xFFF7D9E3); // Replace with your custom color
+
 
   bool isLoading = false; // Track loading state
 
@@ -79,8 +79,8 @@ class _ContractCodeState extends State<ContractCode> {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                customColor1,
-                customColor2,
+                AppColors.customColor1,
+                AppColors.customColor2,
               ],
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
@@ -156,7 +156,7 @@ class _ContractCodeState extends State<ContractCode> {
                           child: Ink(
                             decoration: BoxDecoration(
                               gradient: LinearGradient(
-                                colors: [customColor2, customColor1],
+                                colors: [AppColors.customColor2, AppColors.customColor1],
                               ),
                               borderRadius: BorderRadius.circular(10.0),
                             ),

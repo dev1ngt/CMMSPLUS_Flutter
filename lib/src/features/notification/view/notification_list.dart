@@ -1,6 +1,7 @@
 import 'package:cmms/src/features/notification/bloc/update/notification_update_bloc.dart';
 import 'package:cmms/src/features/notification/bloc/update/notification_update_event.dart';
 import 'package:cmms/src/features/pendingresponsedetails/model/SubmitResponseModel.dart';
+import 'package:cmms/src/helpers/utils/appcolors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,8 +43,7 @@ class NotificationListWidgetContent extends StatefulWidget {
 
 class _NotificationListWidgetContentState
     extends State<NotificationListWidgetContent> {
-  Color customColor1 = Color(0xFFCBD4F4);
-  Color customColor2 = Color(0xFFF7D9E3);
+
   late NotificationListBloc notificationListBloc;
   late NotificationUpdateBloc notificationUpdateBloc;
   List<NotificationItem> allListData = [];
@@ -269,7 +269,8 @@ class _NotificationListWidgetContentState
           flexibleSpace: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [customColor1, customColor2],
+                colors: [AppColors.customColor1,
+                  AppColors.customColor2,],
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
               ),
@@ -535,7 +536,7 @@ class _NotificationListWidgetContentState
                         child: Container(
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
-                              colors: [customColor2, customColor1],
+                              colors: [AppColors.customColor2, AppColors.customColor1,],
                             ),
                             borderRadius: BorderRadius.circular(12),
                             boxShadow: [

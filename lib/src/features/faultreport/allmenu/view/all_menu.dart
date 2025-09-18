@@ -1,4 +1,5 @@
 import 'package:cmms/src/features/faultreport/firstmenu/view/first_menu.dart';
+import 'package:cmms/src/helpers/utils/appcolors.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -31,8 +32,7 @@ class FRAllMenuStf extends StatefulWidget {
 }
 
 class _FRAllMenuStf extends State<FRAllMenuStf> {
-  Color customColor1 = Color(0xFFCBD4F4); // Replace with your custom color
-  Color customColor2 = Color(0xFFF7D9E3); // Replace with your custom color
+
 
   String ProjectName = "", username = "";
   late FRFirstMenuBloc firstMenuBloc;
@@ -142,8 +142,8 @@ class _FRAllMenuStf extends State<FRAllMenuStf> {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  customColor1,
-                  customColor2,
+                  AppColors.customColor1,
+                  AppColors.customColor2,
                 ],
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
@@ -394,8 +394,8 @@ class _FRAllMenuStf extends State<FRAllMenuStf> {
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
                             colors: [
-                              customColor2,
-                              customColor1,
+                              AppColors.customColor2,
+                              AppColors.customColor1,
                             ], // Replace with your gradient colors
                           ),
                           borderRadius: BorderRadius.circular(20.0),

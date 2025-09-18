@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:cmms/src/features/faultreport/fifthroom/view/fifth_room.dart';
+import 'package:cmms/src/helpers/utils/appcolors.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
@@ -51,8 +52,7 @@ class FRSubmitStf extends StatefulWidget {
 }
 
 class _FRSubmitStf extends State<FRSubmitStf> {
-  Color customColor1 = Color(0xFFCBD4F4); // Replace with your custom color
-  Color customColor2 = Color(0xFFF7D9E3); // Replace with your custom color
+
   UploadViewModel viewModel = UploadViewModel();
   bool isButtonVisible = true;
   bool isSubmitting = false;
@@ -472,8 +472,8 @@ class _FRSubmitStf extends State<FRSubmitStf> {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    customColor1,
-                    customColor2,
+                    AppColors.customColor1,
+                    AppColors.customColor2,
                   ],
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
@@ -959,8 +959,8 @@ class _FRSubmitStf extends State<FRSubmitStf> {
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
                                   colors: [
-                                    customColor2,
-                                    customColor1,
+                                    AppColors.customColor2,
+                                    AppColors.customColor1,
                                   ],
                                 ),
                                 borderRadius: BorderRadius.circular(20.0),
@@ -1034,7 +1034,7 @@ class _FRSubmitStf extends State<FRSubmitStf> {
                               },
                               style: ElevatedButton.styleFrom(
                                 padding: EdgeInsets.zero,
-                                backgroundColor: isSubmitting ? customColor1 : null,
+                                backgroundColor: isSubmitting ? AppColors.customColor1 : null,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20.0),
                                 ),
@@ -1045,11 +1045,11 @@ class _FRSubmitStf extends State<FRSubmitStf> {
                                       ? null
                                       : LinearGradient(
                                     colors: [
-                                      customColor2,
-                                      customColor1,
+                                    AppColors.customColor2,
+                                    AppColors.customColor1,
                                     ],
                                   ),
-                                  color: isSubmitting ? customColor1 : null,
+                                  color: isSubmitting ? AppColors.customColor1 : null,
                                   borderRadius: BorderRadius.circular(20.0),
                                 ),
                                 child: Container(

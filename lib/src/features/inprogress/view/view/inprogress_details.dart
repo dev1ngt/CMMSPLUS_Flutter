@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:cmms/src/api/api_service.dart';
 import 'package:cmms/src/features/inprogress/list/view/inprogress_list.dart';
+import 'package:cmms/src/helpers/utils/appcolors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -61,8 +62,7 @@ class InprogressDetails extends StatefulWidget {
 }
 
 class _InProgressDetailsWidgetState extends State<InprogressDetails> {
-  Color customColor1 = Color(0xFFCBD4F4); // Replace with your custom color
-  Color customColor2 = Color(0xFFF7D9E3); // Replace with your custom color
+
   TextEditingController textCommentsController = TextEditingController();
   TextEditingController textCauseOfFault = TextEditingController();
   TextEditingController textActionTaken = TextEditingController();
@@ -413,8 +413,8 @@ class _InProgressDetailsWidgetState extends State<InprogressDetails> {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    customColor1,
-                    customColor2
+                    AppColors.customColor1,
+                    AppColors.customColor2,
                   ], // Replace with your gradient colors
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
@@ -1883,7 +1883,7 @@ class _InProgressDetailsWidgetState extends State<InprogressDetails> {
                               }
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: isSubmitting ? customColor1 : null,
+                              backgroundColor: isSubmitting ? AppColors.customColor1 : null,
                               padding: EdgeInsets.zero,
                               // Remove padding to allow the Container to take the entire button space
                               shape: RoundedRectangleBorder(
@@ -1894,8 +1894,8 @@ class _InProgressDetailsWidgetState extends State<InprogressDetails> {
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
                                   colors: [
-                                    customColor2,
-                                    customColor1
+                                    AppColors.customColor2,
+                                    AppColors.customColor1,
                                   ], // Replace with your gradient colors
                                 ),
                                 borderRadius: BorderRadius.circular(10.0),

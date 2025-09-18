@@ -5,6 +5,7 @@ import 'package:cmms/src/features/dashboard/View/dashboard.dart';
 import 'package:cmms/src/features/login/bloc/login_bloc.dart';
 import 'package:cmms/src/features/login/model/login_model.dart';
 import 'package:cmms/src/helpers/utils/app_shared_preference.dart';
+import 'package:cmms/src/helpers/utils/appcolors.dart';
 import 'package:cmms/src/helpers/utils/utils.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
@@ -41,10 +42,7 @@ class _LoginScreenState extends State<Login> {
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
   String ContractCode = "";
-  Color customColor1 = Color(0xFFCBD4F4);
 
-  // Replace with your custom color
-  Color customColor2 = Color(0xFFF7D9E3);
   late ConnectivityResult _connectivityResult;
 
   // Replace with your custom color
@@ -116,8 +114,8 @@ class _LoginScreenState extends State<Login> {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      customColor1,
-                      customColor2,
+                      AppColors.customColor1,
+                      AppColors.customColor2,
                     ],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
@@ -299,8 +297,8 @@ class _LoginScreenState extends State<Login> {
                                           decoration: BoxDecoration(
                                             gradient: LinearGradient(
                                               colors: [
-                                                customColor2,
-                                                customColor1
+                                                AppColors.customColor2,
+                                                AppColors.customColor1,
                                               ], // Replace with your gradient colors
                                             ),
                                             borderRadius:

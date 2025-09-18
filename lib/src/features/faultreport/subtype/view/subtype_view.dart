@@ -1,5 +1,6 @@
 import 'package:cmms/src/features/faultreport/firstmenu/view/first_menu.dart';
 import 'package:cmms/src/features/faultreport/submit/model/fault_report_save_model_old.dart';
+import 'package:cmms/src/helpers/utils/appcolors.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -38,8 +39,6 @@ class SubtypeViewStf extends StatefulWidget {
 }
 
 class _SubtypeViewStf extends State<SubtypeViewStf> {
-  Color customColor1 = Color(0xFFCBD4F4); // Replace with your custom color
-  Color customColor2 = Color(0xFFF7D9E3); // Replace with your custom color
 
   String ProjectName = "", username = "";
   late SubtypeBloc subtypeBloc;
@@ -167,8 +166,8 @@ class _SubtypeViewStf extends State<SubtypeViewStf> {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  customColor1,
-                  customColor2,
+                  AppColors.customColor1,
+                  AppColors.customColor2,
                 ],
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
@@ -420,8 +419,8 @@ class _SubtypeViewStf extends State<SubtypeViewStf> {
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
                             colors: [
-                              customColor2,
-                              customColor1,
+                              AppColors.customColor2,
+                              AppColors.customColor1,
                             ], // Replace with your gradient colors
                           ),
                           borderRadius: BorderRadius.circular(20.0),

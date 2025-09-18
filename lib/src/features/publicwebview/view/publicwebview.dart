@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:cmms/src/api/api_service.dart';
 import 'package:cmms/src/features/inprogress/list/view/inprogress_list.dart';
+import 'package:cmms/src/helpers/utils/appcolors.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -42,8 +43,7 @@ class PublicWebViewShow extends StatefulWidget {
 }
 
 class _PublicWebViewShowState extends State<PublicWebViewShow> {
-  Color customColor1 = Color(0xFFCBD4F4); // Replace with your custom color
-  Color customColor2 = Color(0xFFF7D9E3); // Replace with your custom color
+
   late PublicWebviewBloc publicWebviewBloc;
 
   //late WebViewController controller;
@@ -138,8 +138,8 @@ class _PublicWebViewShowState extends State<PublicWebViewShow> {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    customColor1,
-                    customColor2
+                    AppColors.customColor1,
+                    AppColors.customColor2,
                   ], // Replace with your gradient colors
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,

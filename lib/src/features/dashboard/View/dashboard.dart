@@ -1,6 +1,7 @@
 import 'dart:io' show Platform;
 import 'package:cmms/src/constants/app_sizes.dart';
 import 'package:cmms/src/features/checkin_out/bloc/location_event.dart';
+import 'package:cmms/src/helpers/utils/appcolors.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -137,8 +138,6 @@ class _DashBoardState extends State<DashBoard> {
 
   @override
   Widget build(BuildContext context) {
-    Color customColor1 = Color(0xFFCBD4F4); // Replace with your custom color
-    Color customColor2 = Color(0xFFF7D9E3); // Replace with your custom color
 
     return BlocProvider(
       create: (context) => dashboardBloc,
@@ -247,8 +246,8 @@ class _DashBoardState extends State<DashBoard> {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    customColor1,
-                    customColor2,
+                    AppColors.customColor1,
+                    AppColors.customColor2,
                   ],
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,

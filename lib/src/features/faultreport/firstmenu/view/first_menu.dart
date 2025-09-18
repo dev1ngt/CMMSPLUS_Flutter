@@ -1,5 +1,6 @@
 import 'package:cmms/src/features/faultreport/firstmenu/bloc/first_menu_event.dart';
 import 'package:cmms/src/features/myfaultreport/view/bloc/request_view_bloc_my_fault.dart';
+import 'package:cmms/src/helpers/utils/appcolors.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -38,8 +39,7 @@ class FRFirstMenuStf extends StatefulWidget {
 }
 
 class _FRFirstMenuStf extends State<FRFirstMenuStf> {
-  Color customColor1 = Color(0xFFCBD4F4); // Replace with your custom color
-  Color customColor2 = Color(0xFFF7D9E3); // Replace with your custom color
+
   String ProjectName = "";
   late FRFirstMenuBloc firstMenuBloc;
   UploadViewModel viewModel = UploadViewModel();
@@ -195,8 +195,8 @@ class _FRFirstMenuStf extends State<FRFirstMenuStf> {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  customColor1,
-                  customColor2,
+                  AppColors.customColor1,
+                  AppColors.customColor2,
                 ],
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,

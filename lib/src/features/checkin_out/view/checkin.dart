@@ -1,4 +1,5 @@
 import 'package:cmms/src/constants/app_sizes.dart';
+import 'package:cmms/src/helpers/utils/appcolors.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -84,8 +85,7 @@ class _CheckInViewState extends State<CheckInView> {
 
   @override
   Widget build(BuildContext context) {
-    Color customColor1 = Color(0xFFCBD4F4);
-    Color customColor2 = Color(0xFFF7D9E3);
+
 
     return WillPopScope(
       onWillPop: () async {
@@ -138,7 +138,8 @@ class _CheckInViewState extends State<CheckInView> {
           flexibleSpace: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [customColor1, customColor2],
+                colors: [AppColors.customColor1,
+                  AppColors.customColor2,],
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
               ),
@@ -191,8 +192,8 @@ class _CheckInViewState extends State<CheckInView> {
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
                                   colors: [
-                                    customColor2,
-                                    customColor1
+                                    AppColors.customColor2,
+                                    AppColors.customColor1,
                                   ], // Replace with your gradient colors
                                 ),
                                 borderRadius: BorderRadius.circular(10.0),
@@ -229,8 +230,8 @@ class _CheckInViewState extends State<CheckInView> {
                               decoration: BoxDecoration(
                                 gradient: LinearGradient(
                                   colors: [
-                                    customColor2,
-                                    customColor1
+                                    AppColors.customColor2,
+                                    AppColors.customColor1,
                                   ], // Replace with your gradient colors
                                 ),
                                 borderRadius: BorderRadius.circular(10.0),

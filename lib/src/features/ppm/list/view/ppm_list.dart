@@ -1,5 +1,6 @@
 import 'package:cmms/src/features/dashboard/View/dashboard.dart';
 import 'package:cmms/src/features/ppm/view/view/ppm_details.dart';
+import 'package:cmms/src/helpers/utils/appcolors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,8 +31,7 @@ class PPMListState extends StatefulWidget {
 
 class _PPMListStateState extends State<PPMListState>
     with SingleTickerProviderStateMixin {
-  Color customColor1 = Color(0xFFCBD4F4); // Replace with your custom color
-  Color customColor2 = Color(0xFFF7D9E3); // Replace with your custom color
+
   ApiService apiService = ApiService();
   late TabController _tabController;
   late PPMListBloc ppmListBloc;
@@ -115,8 +115,8 @@ class _PPMListStateState extends State<PPMListState>
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    customColor1,
-                    customColor2,
+                    AppColors.customColor1,
+                    AppColors.customColor2,
                   ],
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,

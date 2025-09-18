@@ -8,6 +8,7 @@ import 'package:cmms/src/features/ppm/view/bloc/asset/asset_state.dart';
 import 'package:cmms/src/features/ppm/view/bloc/ppm_details_bloc.dart';
 import 'package:cmms/src/features/ppm/view/model/asset/AssetResponse.dart';
 import 'package:cmms/src/features/ppm/view/model/ppm_details_temp_singleton.dart';
+import 'package:cmms/src/helpers/utils/appcolors.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -90,8 +91,7 @@ class PPMDetailsState extends StatefulWidget {
 }
 
 class _PPMDetailsStateState extends State<PPMDetailsState> {
-  Color customColor1 = Color(0xFFCBD4F4); // Replace with your custom color
-  Color customColor2 = Color(0xFFF7D9E3); // Replace with your custom color
+
   List<String> assetname_list = []; // Initial chip data
   List<int> assetid_List = [];
   PPMDetailsTempSingletonModel ppmDetailsTempSingletonModel =
@@ -542,8 +542,8 @@ class _PPMDetailsStateState extends State<PPMDetailsState> {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      customColor1,
-                      customColor2,
+                      AppColors.customColor1,
+                      AppColors.customColor2,
                     ],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
@@ -1786,7 +1786,7 @@ class _PPMDetailsStateState extends State<PPMDetailsState> {
                           }
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: isSubmitting ? customColor1 : null,
+                          backgroundColor: isSubmitting ? AppColors.customColor1 : null,
                           padding: EdgeInsets.zero,
                           // Remove padding to allow the Container to take the entire button space
                           shape: RoundedRectangleBorder(
@@ -1797,8 +1797,8 @@ class _PPMDetailsStateState extends State<PPMDetailsState> {
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
                               colors: [
-                                customColor2,
-                                customColor1
+                                AppColors.customColor2,
+                                AppColors.customColor1,
                               ], // Replace with your gradient colors
                             ),
                             borderRadius: BorderRadius.circular(10.0),
