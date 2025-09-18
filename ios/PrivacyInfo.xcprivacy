@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   PrivacyInfo.xcprivacy
+   Runner
+
+   Created by Rajan on 15/05/24.
+   Copyright (c) 2024 . All rights reserved.
+-->
+<plist version="1.0">
+    <dict>
+    <key>NSPrivacyTracking</key>
+    <false/>
+    <key>NSPrivacyTrackingDomains</key>
+    <array/>
+    <key>NSPrivacyCollectedDataTypes</key>
+    <array/>
+    <key>NSPrivacyAccessedAPITypes</key>
+    <array>
+     <dict>
+      <key>NSPrivacyAccessedAPIType</key>
+      <string>NSPrivacyAccessedAPICategoryFileTimestamp</string>
+      <key>NSPrivacyAccessedAPITypeReasons</key>
+      <array>
+       <string>3B52.1</string>
+      </array>
+     </dict>
+     <dict>
+      <key>NSPrivacyAccessedAPIType</key>
+      <string>Disk space</string>
+      <key>NSPrivacyAccessedAPITypeReasons</key>
+      <array>
+       <string>7D9E.1</string>
+      </array>
+     </dict>
+     <dict>
+      <key>NSPrivacyAccessedAPIType</key>
+      <string>System boot time</string>
+      <key>NSPrivacyAccessedAPITypeReasons</key>
+      <array>
+       <string>35F9.1</string>
+      </array>
+     </dict>
+     <dict>
+      <key>NSPrivacyAccessedAPIType</key>
+      <string>User defaults</string>
+      <key>NSPrivacyAccessedAPITypeReasons</key>
+      <array>
+       <string>CA92.1</string>
+      </array>
+     </dict>
+    </array>
+   </dict>
+</plist>

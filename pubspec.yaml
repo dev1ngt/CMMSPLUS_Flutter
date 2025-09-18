@@ -1,0 +1,98 @@
+name: cmms
+description: "A new cmms flutter app."
+publish_to: "none"
+version: 1.0.27
+
+environment:
+  sdk: ">=3.2.6 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  shared_preferences: ^2.2.2
+  http: ^1.2.0
+  bloc:
+  flutter_bloc: ^8.0.0
+  provider: ^6.1.1
+  logger: ^1.0.0
+  equatable:
+  cupertino_icons: ^1.0.2
+  geolocator: ^11.0.0
+  permission_handler: ^11.3.0
+  intl: ^0.17.0
+  camera: ^0.10.5+8
+  image_picker: ^1.0.7
+  mobile_scanner: ^6.0.0
+  signature: ^5.4.1
+  path_provider: ^2.1.2
+
+  connectivity_plus: ^5.0.2
+  google_fonts: ^6.2.0
+  rename: ^2.1.1
+  image_watermark: ^0.1.0
+  cached_network_image: ^3.3.1
+  firebase_messaging: 16.0.1
+  firebase_core: 4.1.0
+  flutter_local_notifications: ^17.1.0
+  device_info_plus: ^10.1.2
+  location: 5.0.0
+  geocoding: ^3.0.0
+  flutter_foreground_task: ^8.13.0
+  background_task: ^0.2.0+2
+  file_picker: ^8.0.7
+  flutter_inappwebview: ^6.1.5
+  open_file_plus: 3.4.1+1
+  path: ^1.8.3
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  flutter_launcher_icons: "^0.13.1"
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/applogonew.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  web:
+    generate: true
+    image_path: "path/to/image.png"
+    background_color: "#hexcode"
+    theme_color: "#hexcode"
+  windows:
+    generate: true
+    image_path: "path/to/image.png"
+    icon_size: 48 # min:48, max:256, default: 48
+  macos:
+    generate: true
+    image_path: "path/to/image.png"
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/fonts/
+#    - assets/images/bottom_building.png
+#    - assets/images/client_logo.png
+#    - assets/images/ecms_logo.png
+#    - assets/images/ic_back.png
+#    - assets/images/ic_home.png
+#    - assets/images/acknowledgement.png
+#    - assets/images/fmmapproval.png
+#    - assets/images/inprogress.png
+#    - assets/images/pendingresponse.png
+#    - assets/images/ppm.png
+#    - assets/images/qrscan.png
+#    - assets/images/closed.png
+#    - assets/images/dateimg.png
+#    - assets/images/action_taken.png
+#    - assets/images/cause_of_fault.png
+#    - assets/images/photo.png
+#    - assets/images/photo_man.png
+#    - assets/images/part_replacement.png
+#    - assets/images/signature.png
+#    - assets/images/status.png
+# The following section is specific to Flutter packages.
+
