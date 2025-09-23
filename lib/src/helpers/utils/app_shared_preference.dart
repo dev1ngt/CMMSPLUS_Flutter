@@ -92,6 +92,14 @@ class AppSharedPrefs {
     return await AppSharedPrefs.get().getValue(PreferenceKeys.username) ?? '';
   }
 
+  Future<void> setToken(String token) async {
+    await AppSharedPrefs.get().addValue(PreferenceKeys.token, token);
+  }
+
+  static Future<String> getToken() async {
+    return await AppSharedPrefs.get().getValue(PreferenceKeys.token) ?? '';
+  }
+
   Future<void> setFirstname(String baseurl) async {
     await AppSharedPrefs.get().addValue(PreferenceKeys.firstname, baseurl);
   }
@@ -478,5 +486,15 @@ class AppSharedPrefs {
   static Future<String> getEmployeeID() async {
     return await AppSharedPrefs.get().getValue(PreferenceKeys.client_token) ?? '';
   }
+
+  Future<void> setClientToken(String token) async {
+    await AppSharedPrefs.get().addValue(PreferenceKeys.client_token, token);
+  }
+
+  static Future<String> getClientToken() async {
+    return await AppSharedPrefs.get().getValue(PreferenceKeys.client_token) ?? '';
+  }
+
+
 
 }

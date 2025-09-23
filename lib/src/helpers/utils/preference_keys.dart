@@ -64,6 +64,7 @@ class PreferenceKeys {
   static const PreferenceKeys cmid  = PreferenceKeys._("CMID");
   static const PreferenceKeys ppmid = PreferenceKeys._("PPMID");
   static const PreferenceKeys client_token = PreferenceKeys._("CLIENT_TOKEN");
+  static const PreferenceKeys token = PreferenceKeys._("TOKEN");
 
   final String text;
   const PreferenceKeys._(this.text);

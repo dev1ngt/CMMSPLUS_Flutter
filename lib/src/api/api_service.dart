@@ -84,6 +84,8 @@ import '../fm/features/cm_beforeimage/model/image_delete/preimage_deleteresponse
 import '../fm/features/cm_submit/model/tech_sign_response_model.dart';
 import '../fm/features/cm_summary/model/cm_submit_request_model.dart' show CMSubmitRequestModel;
 import '../fm/features/common/photosupload/model/uploadfile_after_response_model.dart';
+import '../fm/features/contract/model/contractcode_response_model.dart';
+import '../fm/features/login/model/login_model.dart';
 import '../fm/features/ppm/ppm_list/model/ppm_list_response_model.dart';
 import '../fm/features/ppm/ppm_postimage/model/image_upload/ppm_post_uploadfile_response_model.dart';
 import '../fm/features/ppm/ppm_preimage/model/image_upload/ppm_uploadfile_response_model.dart';
@@ -120,11 +122,24 @@ class ApiService {
   }
 
 
+  // Future<Map<String, String>> getHeader() async {
+  //   return {
+  //     'Content-type': 'application/json',
+  //     'X-Project-Code': await getContractCode(),
+  //   };
+  // }
+
   Future<Map<String, String>> getHeader() async {
     return {
       'Content-type': 'application/json',
-      'X-Project-Code': await getContractCode(),
+      'x-auth-client': await getClientToken(),
+      'x-auth-token': await getToken(),
+      'x-api-client': 'ngtmobile',
     };
+  }
+
+  Future<String> getClientToken() async {
+    return await AppSharedPrefs.getClientToken();
   }
 
   Future<ContractCodeResponseModel> getEndpoint(
@@ -141,6 +156,25 @@ class ApiService {
     if (response.statusCode == 200) {
       print("api called ");
       return ContractCodeResponseModel.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception(response.reasonPhrase);
+    }
+  }
+
+  Future<Contract> getEndpointFM({required String  contractCode}) async {
+    String method = ServerUrl.ENDPOINT;
+    String endpoint = '${await getStaticBaseURL()}$method'
+        '?Contract_Code=' + contractCode;
+    // Map<String, String> headers = await getHeader();
+
+    Response response = await get(
+      Uri.parse(endpoint),
+      // headers: headers,
+    );
+    print("After api call" + response.body.toString());
+    if (response.statusCode == 200) {
+      print("api called ");
+      return Contract.fromJson(jsonDecode(response.body));
     } else {
       throw Exception(response.reasonPhrase);
     }
@@ -1427,6 +1461,27 @@ class ApiService {
     print(response.body);
 
     return LoginResponseModel.fromJson(jsonDecode(response.body));
+  }
+
+  Future<LoginResponseModelFM> postUserLoginFM(
+      {required LoginInputFM loginInput}) async {
+    // set up Post request arguments
+    String method = ServerUrl.USER_LOGIN;
+    String url = '${await getBaseURL()}$method';
+
+    Map<String, String> headers = await getHeader();
+    var jsonConverted = jsonEncode(loginInput.toJson());
+    print(jsonConverted);
+    print(url);
+
+    Response response =
+    await post(Uri.parse(url), headers: headers, body: jsonConverted);
+    // check the status code for the result
+    // displayAPICallDetails(response, jsonConverted, headers);
+
+    print(response.body);
+
+    return LoginResponseModelFM.fromJson(jsonDecode(response.body));
   }
 
   Future<LoggerModelResponse> postLogger({required LoggerInput logger}) async {

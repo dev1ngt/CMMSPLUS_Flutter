@@ -300,7 +300,7 @@ class _DashBoardState extends State<DashBoard> {
                                         SizedBox(width: 16.0),
                                         ElevatedButton(
                                           onPressed: () async {
-                                            Navigator.of(context).pop();
+                                            //Navigator.of(context).pop();
                                             dashboardBloc.add(LogoutEvent());
                                           },
                                           child: Text('Yes'),

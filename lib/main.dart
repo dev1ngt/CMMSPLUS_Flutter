@@ -47,6 +47,8 @@ import 'package:cmms/src/features/request/list/view/request_list.dart';
 import 'package:cmms/src/features/request/search/view/search_cases.dart';
 import 'package:cmms/src/features/request/view/view/request_list_view.dart';
 import 'package:cmms/src/features/resetpassword/view/resetpassword.dart';
+import 'package:cmms/src/fm/features/contract/view/contractcode.dart';
+import 'package:cmms/src/fm/features/login/view/login.dart';
 import 'package:cmms/src/helpers/utils/app_shared_preference.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -68,6 +70,7 @@ import 'src/fm/features/cm_submit/view/cm_final_submit.dart';
 import 'src/fm/features/cm_workstatus/view/cm_workstatus.dart';
 import 'src/fm/features/cmanalysis/view/cmanalysis_details.dart';
 import 'src/fm/features/cmdetails/view/cmdetailsview.dart';
+import 'src/fm/features/dashboard/view/dashboard.dart';
 import 'src/fm/features/ppm/ppm_additional_emp/view/ppm_additional_employee.dart';
 import 'src/fm/features/ppm/ppm_barcode/view/ppm_barcode_view.dart';
 import 'src/fm/features/ppm/ppm_checkpoint/view/ppm_checklist_view.dart';
@@ -187,7 +190,10 @@ class MyApp extends StatelessWidget {
           '/myFaultReportView': (context) => MyFaultView(),
           // Add more routes for other screens here
 
-          // FM Project
+          '/contractcodefm': (context) => ContractCodeScreenFM(),
+          '/loginfm': (context) => LoginScreenFM(),
+          '/dashboardfm': (context) => DashboardScreen(),
+          // FM Project:
           '/cmview': (context) => CMView(),
           '/cmdetailsview': (context) => CMDetailsView(),
           '/cmbeforeimage': (context) => CMBeforeImageView(),
@@ -269,17 +275,17 @@ class _SplashScreenState extends State<SplashScreen> {
     if (baseUrl.isEmpty) {
       Timer(
         const Duration(seconds: 5),
-            () => Navigator.pushNamed(context, '/contractCode'),
+            () => Navigator.pushNamed(context, '/contractcodefm'),
       );
     } else if (username.isEmpty) {
       Timer(
         const Duration(seconds: 5),
-            () => Navigator.pushNamed(context, '/login'),
+            () => Navigator.pushNamed(context, '/loginfm'),
       );
     } else {
       Timer(
         const Duration(seconds: 5),
-            () => Navigator.pushNamed(context, '/dashboard'),
+            () => Navigator.pushNamed(context, '/dashboardfm'),
       );
     }
   }
