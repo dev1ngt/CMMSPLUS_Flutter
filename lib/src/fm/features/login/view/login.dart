@@ -299,7 +299,7 @@ class _LoginScreenState extends State<Login> {
       // Update data in shared preference
       await AppSharedPrefs.get().setUserID(userId!);
       await AppSharedPrefs.get().setUsername(username!);
-      await AppSharedPrefs.get().setToken(token!);
+      await AppSharedPrefs.get().setLoginToken(token!);
       await AppSharedPrefs.get().setClientToken(clientToken!);
       await AppSharedPrefs.get().setEmployeeID(employeeid!);
 

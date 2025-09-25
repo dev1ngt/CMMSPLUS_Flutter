@@ -2,9 +2,9 @@ String baseURLBasedOnBuildFlavor = 'https://democw.e-ifms.biz/api/';
 
 class ServerUrl {
   static String BASE_URL = baseURLBasedOnBuildFlavor;
-  //
-  //
+
   static const String USER_LOGIN = 'login';
+ // static const String USER_LOGIN = 'auth/authenticate';
   static const String PENDING_LIST = "pending_response_list";
   static const String DASHBOARD_MENU = "mobile_menu_visible";
   static const String LOGOUT = "logout";
@@ -42,8 +42,9 @@ class ServerUrl {
   static const String GET_NOTIFICATION = "getfaultnotification";
   static const String CLEAR_NOTIFICATION = "clearRequestByType";
   static const String UPDATE_NOTIFICATION = "updatenotification";
-  //static const String ENDPOINT  = "get_endpoint";
-  static const String ENDPOINT = "getCMMSContract";
+ // static const String ENDPOINT = "getCMMSContract";
+ // static const String ENDPOINT  = "getFacilityManagementContract";
+  static const String ENDPOINT  = "getCMMSPlusContract";
   static const String USER_PROPERTY = "user_property_list";
   static const String LOGGER = "mobile_api_logs";
   static const String ADHOC_LIST = "get_adhoc_inpsection_list";

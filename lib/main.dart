@@ -275,17 +275,20 @@ class _SplashScreenState extends State<SplashScreen> {
     if (baseUrl.isEmpty) {
       Timer(
         const Duration(seconds: 5),
-            () => Navigator.pushNamed(context, '/contractcodefm'),
+           // () => Navigator.pushNamed(context, '/contractcodefm'),
+            () => Navigator.pushNamed(context, '/contractCode'),
       );
     } else if (username.isEmpty) {
       Timer(
         const Duration(seconds: 5),
-            () => Navigator.pushNamed(context, '/loginfm'),
+           // () => Navigator.pushNamed(context, '/loginfm'),
+            () => Navigator.pushNamed(context, '/login'),
       );
     } else {
       Timer(
         const Duration(seconds: 5),
-            () => Navigator.pushNamed(context, '/dashboardfm'),
+            //() => Navigator.pushNamed(context, '/dashboardfm'),
+            () => Navigator.pushNamed(context, '/dashboard'),
       );
     }
   }

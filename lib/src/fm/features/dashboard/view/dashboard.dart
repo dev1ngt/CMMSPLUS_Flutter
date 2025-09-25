@@ -281,7 +281,7 @@ class _DashboardState extends State<Dashboard> {
                     TextButton(
                       onPressed: () async {
                         Navigator.of(context).pop(); // Close the dialog
-                        Navigator.pushNamed(context, '/login');
+                        Navigator.pushNamed(context, '/loginfm');
                         await AppSharedPrefs.get().setUsername("");
                       },
                       child: Text(

@@ -122,21 +122,21 @@ class ApiService {
   }
 
 
-  // Future<Map<String, String>> getHeader() async {
-  //   return {
-  //     'Content-type': 'application/json',
-  //     'X-Project-Code': await getContractCode(),
-  //   };
-  // }
-
   Future<Map<String, String>> getHeader() async {
+    return {
+      'Content-type': 'application/json',
+      'X-Project-Code': await getContractCode(),
+    };
+  }
+
+/*  Future<Map<String, String>> getHeader() async {
     return {
       'Content-type': 'application/json',
       'x-auth-client': await getClientToken(),
       'x-auth-token': await getToken(),
       'x-api-client': 'ngtmobile',
     };
-  }
+  }*/
 
   Future<String> getClientToken() async {
     return await AppSharedPrefs.getClientToken();
@@ -2128,7 +2128,11 @@ class ApiService {
     print(body);
     Response response =
     await put(Uri.parse(url), headers: headers , body: body);
-    return  StartTimeResponseModel.fromJson(jsonDecode(response.body));;
+    if (response.statusCode == 200) {
+    return  StartTimeResponseModel.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception(response.reasonPhrase);
+    }
   }
 
   Future<CMDetailsResponseModel> getCMDetails({required String cmid}) async {
@@ -2400,10 +2404,15 @@ class ApiService {
     String body = jsonEncode(complaintData);
     // Prepare headers
     Map<String, String> headers = await getHeader();
+    print(url);
     print(body);
     Response response =
     await put(Uri.parse(url), headers: headers , body: body);
-    return  PPMStartTimeResponseModel.fromJson(jsonDecode(response.body));;
+    if (response.statusCode == 200) {
+    return  PPMStartTimeResponseModel.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception(response.reasonPhrase);
+    }
   }
 
 
