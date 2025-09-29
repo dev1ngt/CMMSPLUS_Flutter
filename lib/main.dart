@@ -58,6 +58,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:cmms/src/features/pendingresponse/view/pendinglist.dart';
 import 'package:flutter_foreground_task/flutter_foreground_task.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'src/fm/features/cm/view/cmview.dart';
@@ -314,15 +315,31 @@ class _SplashScreenState extends State<SplashScreen> {
         }
 
         return Scaffold(
-          body: Center(
-            child: Image.asset(
-              'assets/images/ecms_logo.png',
-              width: 200.0,
-              height: 200.0,
-              fit: BoxFit.contain,
-            ),
+          body: Stack(
+            children: [
+              // Background Image
+              SizedBox.expand(
+                child: Image.asset(
+                  'assets/images/splash_screen.png',
+                  fit: BoxFit.cover,
+                ),
+              ),
+
+              // Loader at Bottom
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 40.0), // adjust spacing
+                  child: LoadingAnimationWidget.newtonCradle(
+                    color: Colors.white,
+                    size: 100,
+                  ),
+                ),
+              ),
+            ],
           ),
         );
+
       },
     );
   }

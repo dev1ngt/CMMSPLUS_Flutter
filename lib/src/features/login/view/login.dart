@@ -32,12 +32,11 @@ class Login extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<Login> {
-  bool _isInvalidLoginToastShown = false; // Add this flag
+  bool _isInvalidLoginToastShown = false;
   bool _isLoading = false;
   var logger = Logger();
   LoginInput loginData = LoginInput();
 
-  //final LoginBloc loginBloc = LoginBloc();
   late LoginBloc loginBloc;
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
@@ -45,14 +44,12 @@ class _LoginScreenState extends State<Login> {
 
   late ConnectivityResult _connectivityResult;
 
-  // Replace with your custom color
-  bool _obscureText = true; // Initially obscure text
+  bool _obscureText = true;
   String FCMToken = "";
 
   @override
   void initState() {
     super.initState();
-    //loginBloc = BlocProvider.of<LoginBloc>(context);
     if (context != null) {
       loginBloc = LoginBloc(RepositoryProvider.of<ApiService>(context))
         ..add(LoginFetchEvent());
@@ -65,7 +62,7 @@ class _LoginScreenState extends State<Login> {
 
   Future<void> fetchContractCode() async {
     ContractCode = await AppSharedPrefs.getContractCode();
-    setState(() {}); // Trigger a rebuild after fetching the data
+    setState(() {});
   }
 
   Future<void> getAccessToken() async {
@@ -97,30 +94,13 @@ class _LoginScreenState extends State<Login> {
             return true;
           },
           child: Scaffold(
-            appBar: AppBar(
-              automaticallyImplyLeading: false,
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    'assets/images/ecms_logo.png',
-                    width: 100,
-                    height: 20,
-                  ),
-                ],
-              ),
-              backgroundColor: Colors.transparent,
-              flexibleSpace: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      AppColors.customColor1,
-                      AppColors.customColor2,
-                    ],
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                  ),
-                ),
+            backgroundColor: Colors.white,
+            appBar: PreferredSize(
+              preferredSize: Size.fromHeight(20.00),
+              child: AppBar(
+                backgroundColor: Colors.white,
+                elevation: 0,
+                automaticallyImplyLeading: false,
               ),
             ),
             body: BlocListener<LoginBloc, LoginState>(
@@ -157,195 +137,250 @@ class _LoginScreenState extends State<Login> {
                 }
               },
               child:
-                  BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
-                return SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/images/client_logo.png',
-                          // Make sure to replace this with your image path
-                          width: MediaQuery.of(context).size.width,
-                        ),
-                        gapH20,
-                        Card(
-                          elevation: 6,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
+              BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
+                return SafeArea(
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 40.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          // Logo and Title Section
+                          Image.asset(
+                            'assets/images/cmms_plus_logo.png',
+                            width: 200,
+                            height: 80,
                           ),
-                          color: Colors.white,
-                          // Set the background color to white
-                          child: Padding(
-                            padding: const EdgeInsets.all(10.0),
+                          gapH10,
+                          Text(
+                            'Computerized Maintenance',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.grey[600],
+                            ),
+                          ),
+                          Text(
+                            'Management System',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.grey[600],
+                            ),
+                          ),
+                          gapH32,
+                          // Login Card
+                          Container(
+                            padding: EdgeInsets.all(24.0),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(16),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.05),
+                                  blurRadius: 10,
+                                  offset: Offset(0, 2),
+                                ),
+                              ],
+                            ),
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                gapH10,
-                                Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: [
-                                    Text(
-                                      'Name',
-                                      style: TextStyle(fontSize: 16),
-                                    ),
-                                    gapH5,
-                                    Container(
-                                      height: 50,
-                                      child: TextFormField(
-                                        textAlign: TextAlign.start,
-                                        controller: _usernameController,
-                                        decoration: InputDecoration(
-                                          border: OutlineInputBorder(),
-                                          contentPadding:
-                                              EdgeInsets.only(left: 10.0),
-                                        ),
+                                Text(
+                                  'Welcome Back',
+                                  style: TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                gapH5,
+                                Text(
+                                  'Sign in to your account',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.grey[600],
+                                  ),
+                                ),
+                                gapH32,
+                                // Username Field
+                                Text(
+                                  'Username',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black87,
+                                  ),
+                                ),
+                                gapH8,
+                                Container(
+                                  height: 50,
+                                  child: TextFormField(
+                                    textAlign: TextAlign.start,
+                                    controller: _usernameController,
+                                    decoration: InputDecoration(
+                                      hintText: 'Enter your username',
+                                      hintStyle: TextStyle(color: Colors.grey[400]),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                        borderSide: BorderSide(color: Colors.grey[300]!),
                                       ),
-                                    ),
-                                    gapH10,
-                                    Text(
-                                      'Password',
-                                      style: TextStyle(fontSize: 16),
-                                    ),
-                                    gapH5,
-                                    TextFormField(
-                                      controller: _passwordController,
-                                      obscureText: _obscureText,
-                                      decoration: InputDecoration(
-                                        border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(
-                                              8.0), // Adjust border radius as needed
-                                        ),
-                                        contentPadding: EdgeInsets.symmetric(
-                                            horizontal: 12.0),
-                                        // Adjust padding as needed
-                                        suffixIcon: IconButton(
-                                          icon: Icon(
-                                            _obscureText
-                                                ? Icons.visibility
-                                                : Icons.visibility_off,
-                                          ),
-                                          onPressed: () {
-                                            setState(() {
-                                              _obscureText = !_obscureText;
-                                            });
-                                          },
-                                        ),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                        borderSide: BorderSide(color: Colors.grey[300]!),
                                       ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                        borderSide: BorderSide(color: AppColors.customColor1),
+                                      ),
+                                      contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 14.0),
                                     ),
-                                  ],
+                                  ),
                                 ),
                                 gapH20,
-                                _isLoading
-                                    ? CircularProgressIndicator()
-                                    : ElevatedButton(
-                                        onPressed: () {
-                                          if (_connectivityResult ==
-                                              ConnectivityResult.none) {
-                                            Utils.showInSnackBar(
-                                                context,
-                                                "No internet connection.",
-                                                ToastType.Error);
-                                          } else {
-                                            String username =
-                                                _usernameController.text;
-                                            String password =
-                                                _passwordController.text;
-
-                                            // Validate or process the data as needed
-                                            if (username.isNotEmpty &&
-                                                password.isNotEmpty) {
-                                              setState(() {
-                                                _isLoading = true;
-                                                _isInvalidLoginToastShown =
-                                                    false;
-                                              });
-
-                                              loginData.username = username;
-                                              loginData.password = password;
-                                              loginData.token = FCMToken;
-                                              loginData.isAndriod =
-                                                  Platform.isAndroid
-                                                      ? "1"
-                                                      : "2";
-                                              loginData.contractCode =
-                                                  ContractCode;
-
-                                              loginBloc.add(
-                                                  LoginClickEvent(loginData));
-                                            } else {
-                                              setState(() {
-                                                _isLoading = false;
-                                              });
-                                              Utils.showInSnackBar(
-                                                  context,
-                                                  "Please enter both username and password.",
-                                                  ToastType.Error);
-                                            }
-                                          }
-                                        },
-                                        style: ElevatedButton.styleFrom(
-                                          padding: EdgeInsets.zero,
-                                          // Remove padding to allow the Container to take the entire button space
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10.0),
-                                          ),
-                                        ),
-                                        child: Ink(
-                                          decoration: BoxDecoration(
-                                            gradient: LinearGradient(
-                                              colors: [
-                                                AppColors.customColor2,
-                                                AppColors.customColor1,
-                                              ], // Replace with your gradient colors
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(10.0),
-                                          ),
-                                          child: Container(
-                                            constraints: BoxConstraints(
-                                                maxWidth: 150.0,
-                                                minHeight: 45.0),
-                                            alignment: Alignment.center,
-                                            child: Text(
-                                              'Login',
-                                              style: TextStyle(
-                                                  fontSize: 14.0,
-                                                  color: Colors.black),
-                                            ),
-                                          ),
-                                        ),
+                                // Password Field
+                                Text(
+                                  'Password',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black87,
+                                  ),
+                                ),
+                                gapH8,
+                                Container(
+                                  height: 50,
+                                  child: TextFormField(
+                                    controller: _passwordController,
+                                    obscureText: _obscureText,
+                                    decoration: InputDecoration(
+                                      hintText: '••••••••',
+                                      hintStyle: TextStyle(color: Colors.grey[400]),
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                        borderSide: BorderSide(color: Colors.grey[300]!),
                                       ),
-                                gapH10,
-                                GestureDetector(
-                                  onTap: () {
-                                    print("Forgot Password ");
-                                    _showDialog(context);
-                                  },
-                                  child: Text(
-                                    'Forgot Password',
-                                    style: TextStyle(
-                                      color: Colors.blue,
-                                      fontWeight: FontWeight.bold,
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                        borderSide: BorderSide(color: Colors.grey[300]!),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                        borderSide: BorderSide(color: AppColors.customColor1),
+                                      ),
+                                      contentPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 14.0),
+                                      suffixIcon: IconButton(
+                                        icon: Icon(
+                                          _obscureText
+                                              ? Icons.visibility_outlined
+                                              : Icons.visibility_off_outlined,
+                                          color: Colors.grey[600],
+                                        ),
+                                        onPressed: () {
+                                          setState(() {
+                                            _obscureText = !_obscureText;
+                                          });
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                gapH12,
+                                // Forgot Password
+                                Align(
+                                  alignment: Alignment.centerRight,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      print("Forgot Password ");
+                                      _showDialog(context);
+                                    },
+                                    child: Text(
+                                      'Forget Password ?',
+                                      style: TextStyle(
+                                        color: Colors.black87,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                gapH32,
+                                // Submit Button
+                                _isLoading
+                                    ? Center(child: CircularProgressIndicator())
+                                    : SizedBox(
+                                  width: double.infinity,
+                                  height: 50,
+                                  child: ElevatedButton(
+                                    onPressed: () {
+                                      if (_connectivityResult ==
+                                          ConnectivityResult.none) {
+                                        Utils.showInSnackBar(
+                                            context,
+                                            "No internet connection.",
+                                            ToastType.Error);
+                                      } else {
+                                        String username =
+                                            _usernameController.text;
+                                        String password =
+                                            _passwordController.text;
+
+                                        if (username.isNotEmpty &&
+                                            password.isNotEmpty) {
+                                          setState(() {
+                                            _isLoading = true;
+                                            _isInvalidLoginToastShown =
+                                            false;
+                                          });
+
+                                          loginData.username = username;
+                                          loginData.password = password;
+                                          loginData.token = FCMToken;
+                                          loginData.isAndriod =
+                                          Platform.isAndroid
+                                              ? "1"
+                                              : "2";
+                                          loginData.contractCode =
+                                              ContractCode;
+
+                                          loginBloc.add(
+                                              LoginClickEvent(loginData));
+                                        } else {
+                                          setState(() {
+                                            _isLoading = false;
+                                          });
+                                          Utils.showInSnackBar(
+                                              context,
+                                              "Please enter both username and password.",
+                                              ToastType.Error);
+                                        }
+                                      }
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Color(0xFF0A2647),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                        BorderRadius.circular(8.0),
+                                      ),
+                                      elevation: 0,
+                                    ),
+                                    child: Text(
+                                      'SUBMIT',
+                                      style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.white,
+                                        letterSpacing: 0.5,
+                                      ),
                                     ),
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 );
               }),
-            ),
-            bottomNavigationBar: Image.asset(
-              'assets/images/bottom_building.png',
-              // Replace with your image path
-              width: MediaQuery.of(context).size.width,
             ),
           ),
         ));
@@ -371,15 +406,11 @@ class _LoginScreenState extends State<Login> {
           actions: <Widget>[
             TextButton(
               onPressed: () {
-                // Reset password logic here
                 String email = _emailController.text;
                 if (email.isNotEmpty) {
-                  // Check if the email is not empty
                   Navigator.of(context).pop();
-                  loginBloc.add(ForgotPasswordClickEvent(
-                      email: email)); // Pass the email to your Bloc
+                  loginBloc.add(ForgotPasswordClickEvent(email: email));
                 } else {
-                  // Show an error message or handle the case where the email is empty
                   Utils.showInSnackBar(
                       context, "Enter the mail address", ToastType.Error);
                 }
@@ -400,7 +431,6 @@ class _LoginScreenState extends State<Login> {
 
   Future<void> handleLoginState(LoginState state) async {
     if (state is LoginSuccessState) {
-     // logger.e("Login2>>>", error: state.loginResponse.userinfo?.id);
       String? token = state.loginResponse.token;
       String? userId = state.loginResponse.userinfo?.id;
       String? username = state.loginResponse.userinfo?.username;
@@ -412,7 +442,6 @@ class _LoginScreenState extends State<Login> {
       int? resetPassword = state.loginResponse.resetPassword;
       String? uniqueId = state.loginResponse.userinfo?.uniqueId;
 
-      // Update data in shared preference
       await AppSharedPrefs.get().setUserID(userId!);
       await AppSharedPrefs.get().setUsername(username!);
       await AppSharedPrefs.get().setEmail(email!);
@@ -424,7 +453,7 @@ class _LoginScreenState extends State<Login> {
       await AppSharedPrefs.get().setLoginToken(token!);
 
       _isLoading = false;
-      _handleNavigation(resetPassword!); // Use the navigation function
+      _handleNavigation(resetPassword!);
     }
   }
 }
