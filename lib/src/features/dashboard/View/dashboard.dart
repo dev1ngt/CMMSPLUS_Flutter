@@ -31,7 +31,6 @@ class DashBoardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      // Use MultiBlocProvider to provide multiple BLoCs
       providers: [
         BlocProvider<DashboardBloc>(
           create: (context) =>
@@ -95,7 +94,7 @@ class _DashBoardState extends State<DashBoard> {
   Future<void> fetchUsername() async {
     contractCode = await AppSharedPrefs.getContractCode();
     username = await AppSharedPrefs.getUsername();
-    setState(() {}); // Trigger a rebuild after fetching the username
+    setState(() {});
   }
 
   Future<void> fetchUserID() async {
@@ -103,12 +102,10 @@ class _DashBoardState extends State<DashBoard> {
 
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     if (Platform.isAndroid) {
-      // Code specific to Android
       AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
       print("This is Android");
       loggerData.model_name = androidInfo.model + " - " + androidInfo.brand;
     } else if (Platform.isIOS) {
-      // Code specific to iOS
       IosDeviceInfo iosInfo = await deviceInfo.iosInfo;
       loggerData.model_name = iosInfo.model + " - " + iosInfo.name;
       print("This is iOS");
@@ -133,221 +130,33 @@ class _DashBoardState extends State<DashBoard> {
   Future<void> _loadDashboardData() async {
     print("Refreshing dashboard...");
     dashboardBloc.add(LoadDashboardEvent());
-    await Future.delayed(Duration(seconds: 1)); // simulate network delay
+    await Future.delayed(Duration(seconds: 1));
   }
 
   @override
   Widget build(BuildContext context) {
-
     return BlocProvider(
       create: (context) => dashboardBloc,
       child: WillPopScope(
         onWillPop: () async {
-          // Handle back button press
           print("back");
           return false;
         },
         child: Scaffold(
+          backgroundColor: Color(0xFFF5F5F5),
           appBar: AppBar(
             automaticallyImplyLeading: false,
-            title: Row(
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    // Handle the click event for the notification button
-                    print("Notification");
-                    Navigator.pushNamed(
-                      context, "/notificationList",
-                      // Add more parameters as needed
-                    );
-                  },
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Icon(
-                        Icons.notifications,
-                        size: 40,
-                        color: Colors.black,
-                      ),
-                      Positioned(
-                        top:
-                        -1, // Adjust the top position to center the circle vertically
-                        right:
-                        -1, // Adjust the right position to center the circle horizontally
-                        child: Container(
-                          width:
-                          23, // Increase the width to provide enough space for the circle
-                          height:
-                          23, // Increase the height to provide enough space for the circle
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.red,
-                          ),
-                          child: Center(
-                            child: BlocBuilder<DashboardBloc, DashboardState>(
-                              builder: (context, state) {
-                                if (state is DashboardLoadedState) {
-                                  if (state.screenMappingMobile.resetPassword ==
-                                      1) {
-                                    WidgetsBinding.instance
-                                        .addPostFrameCallback((_) {
-                                      Navigator.pushNamed(
-                                          context, '/resetPassword');
-                                    });
-                                  }
-                                  if (state.screenMappingMobile.forcedLogin ==
-                                      1) {
-                                    WidgetsBinding.instance
-                                        .addPostFrameCallback((_) {
-                                      AppSharedPrefs.get().setUsername("");
-                                      Navigator.pushNamed(context, '/login');
-                                    });
-                                  }
-                                  if (state.screenMappingMobile.fromWebLogout ==
-                                      1) {
-                                    webCheckout();
-                                  }
-
-                                  notificationCount = state
-                                      .screenMappingMobile.notificationCount;
-                                }
-                                return Text(
-                                  notificationCount.toString(),
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize:
-                                    12, // Adjust the font size for better visibility
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                gapW48,
-                Expanded(
-                  child: Center(
-                    child: Image.asset(
-                      'assets/images/ecms_logo.png',
-                      // replace with your image path
-                      width: 100,
-                      height: 40,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            backgroundColor: Colors.transparent,
-            flexibleSpace: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    AppColors.customColor1,
-                    AppColors.customColor2,
-                  ],
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                ),
+            backgroundColor: Colors.white,
+            elevation: 0,
+            centerTitle: true,
+            title: Text(
+              'Dashboard',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
               ),
             ),
-            actions: [
-              Row(
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            content: Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              elevation: 4.0,
-                              child: Container(
-                                padding: EdgeInsets.all(16.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text(
-                                      'Confirmation',
-                                      style: TextStyle(
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(height: 8.0),
-                                    Text(
-                                      'Do you want to exit?',
-                                      style: TextStyle(fontSize: 16.0),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                    SizedBox(height: 16.0),
-                                    Row(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.center,
-                                      children: [
-                                        ElevatedButton(
-                                          onPressed: () {
-                                            Navigator.of(context).pop();
-                                          },
-                                          child: Text('No'),
-                                        ),
-                                        SizedBox(width: 16.0),
-                                        ElevatedButton(
-                                          onPressed: () async {
-                                            //Navigator.of(context).pop();
-                                            dashboardBloc.add(LogoutEvent());
-                                          },
-                                          child: Text('Yes'),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      );
-                    },
-                    child: Text(
-                      username,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 12,
-                      ),
-                    ),
-                  ),
-                  gapW12,
-                  PopupMenuButton<String>(
-                    key: _popupMenuKey,
-                    onSelected: (String choice) {
-                      if (choice == 'ChangePassword') {
-                        print("change password");
-                        Navigator.pushNamed(
-                          context, "/forgotPassword",
-                          // Add more parameters as needed
-                        );
-                      }
-                    },
-                    itemBuilder: (BuildContext context) {
-                      return [
-                        PopupMenuItem<String>(
-                          value: 'ChangePassword',
-                          child: Text('Change Password'),
-                        ),
-                      ];
-                    },
-                  ),
-                  gapW12,
-                ],
-              ),
-            ],
           ),
           body: BlocListener<DashboardBloc, DashboardState>(
             listener: (context, state) {
@@ -357,23 +166,18 @@ class _DashBoardState extends State<DashBoard> {
                 }
                 notificationCount = state.screenMappingMobile.notificationCount;
               } else if (state is LogoutSuccessState) {
-
-                if(state.logoutResponseModel.status == 'success'){
-                  Utils.showInSnackBar(
-                      context,
-                      state.logoutResponseModel.message,
-                      ToastType.Success);
+                if (state.logoutResponseModel.status == 'success') {
+                  Utils.showInSnackBar(context,
+                      state.logoutResponseModel.message, ToastType.Success);
 
                   AppSharedPrefs.get().setUsername("");
 
-                  Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
+                  Navigator.of(context)
+                      .pushNamedAndRemoveUntil('/login', (route) => false);
                 }
-
               } else if (state is LogoutErrorState) {
                 Utils.showInSnackBar(
-                    context,
-                    state.errorMessage,
-                    ToastType.Warning);
+                    context, state.errorMessage, ToastType.Warning);
               }
             },
             child: Stack(
@@ -383,72 +187,264 @@ class _DashBoardState extends State<DashBoard> {
                     if (state is DashboardLoadingState) {
                       return Center(child: CircularProgressIndicator());
                     } else if (state is DashboardLoadedState) {
-                      loggerData.action_data = state.screenMappingMobile.toString();
+                      loggerData.action_data =
+                          state.screenMappingMobile.toString();
 
                       return Stack(
                         children: [
-                          FutureBuilder<bool>(
-                            future: isPushNotificationEnabled(),
-                            builder: (context, snapshot) {
-                              bool permissionGranted = snapshot.data ?? false;
+                          RefreshIndicator(
+                            onRefresh: () async {
+                              _loadDashboardData();
+                            },
+                            child: SingleChildScrollView(
+                              physics: AlwaysScrollableScrollPhysics(),
+                              child: Column(
+                                children: [
+                                  // Welcome Section
+                                  Container(
+                                    width: double.infinity,
+                                    padding: EdgeInsets.all(20),
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFF0A2647),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'Welcome back,',
+                                              style: TextStyle(
+                                                color: Colors.white70,
+                                                fontSize: 14,
+                                              ),
+                                            ),
+                                            SizedBox(height: 4),
+                                            Text(
+                                              username,
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 24,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Stack(
+                                              children: [
+                                                Container(
+                                                  padding: EdgeInsets.all(8),
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.white
+                                                        .withOpacity(0.2),
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                  child: Text(
+                                                    notificationCount.toString(),
+                                                    style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 14,
+                                                    ),
+                                                  ),
+                                                ),
+                                                if (notificationCount > 0)
+                                                  Positioned(
+                                                    right: 0,
+                                                    top: 0,
+                                                    child: Container(
+                                                      width: 8,
+                                                      height: 8,
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.red,
+                                                        shape: BoxShape.circle,
+                                                      ),
+                                                    ),
+                                                  ),
+                                              ],
+                                            ),
+                                            SizedBox(width: 12),
+                                            GestureDetector(
+                                              onTap: () {
+                                                showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (BuildContext context) {
+                                                    return AlertDialog(
+                                                      content: Card(
+                                                        shape:
+                                                        RoundedRectangleBorder(
+                                                          borderRadius:
+                                                          BorderRadius
+                                                              .circular(8.0),
+                                                        ),
+                                                        elevation: 4.0,
+                                                        child: Container(
+                                                          padding:
+                                                          EdgeInsets.all(
+                                                              16.0),
+                                                          child: Column(
+                                                            mainAxisSize:
+                                                            MainAxisSize.min,
+                                                            children: [
+                                                              Text(
+                                                                'Confirmation',
+                                                                style:
+                                                                TextStyle(
+                                                                  fontSize: 18.0,
+                                                                  fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                                ),
+                                                              ),
+                                                              SizedBox(
+                                                                  height: 8.0),
+                                                              Text(
+                                                                'Do you want to exit?',
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                    16.0),
+                                                                textAlign:
+                                                                TextAlign
+                                                                    .center,
+                                                              ),
+                                                              SizedBox(
+                                                                  height: 16.0),
+                                                              Row(
+                                                                mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .center,
+                                                                children: [
+                                                                  ElevatedButton(
+                                                                    onPressed:
+                                                                        () {
+                                                                      Navigator.of(
+                                                                          context)
+                                                                          .pop();
+                                                                    },
+                                                                    child: Text(
+                                                                        'No'),
+                                                                  ),
+                                                                  SizedBox(
+                                                                      width:
+                                                                      16.0),
+                                                                  ElevatedButton(
+                                                                    onPressed:
+                                                                        () async {
+                                                                      dashboardBloc
+                                                                          .add(
+                                                                          LogoutEvent());
+                                                                    },
+                                                                    child: Text(
+                                                                        'Yes'),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                              child: Icon(
+                                                Icons.menu,
+                                                color: Colors.white,
+                                                size: 28,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
 
-                              Widget banner;
-
-                              if (!permissionGranted) {
-                                banner = _buildBanner(
-                                  message: 'Notification permission is disabled. Tap to enable.',
-                                  color: Colors.red[100]!,
-                                  onTap: () {
-                                    openAppSettings();
-                                  },
-                                );
-                              } else {
-                                int notificationStatus = state.screenMappingMobile.notificationStatus;
-                                banner = _buildBanner(
-                                  message: notificationStatus == 1
-                                      ? 'Push notification is active.'
-                                      : 'Push notification is inactive.',
-                                  color: notificationStatus == 1 ? Colors.green[300]! : Colors.red[100]!,
-                                );
-                              }
-
-                              return Container(
-                                color: Colors.white,
-                                padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 0.0),
-                                child: Column(
-                                  children: [
-                                    banner,
-                                    const SizedBox(height: 20),
-                                    Expanded(
-                                      child: RefreshIndicator(
-                                        onRefresh: () async {
-                                          _loadDashboardData();
-                                        },
-                                        child: GridView.builder(
-                                          physics: const AlwaysScrollableScrollPhysics(),
-                                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                                            crossAxisCount: 2,
-                                            crossAxisSpacing: 10.0,
-                                            mainAxisSpacing: 10.0,
+                                  // Statistics Section
+                                  Container(
+                                    padding: EdgeInsets.all(20),
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: _buildStatCard(
+                                            'Active Tasks',
+                                            '24',
+                                            Colors.blue,
                                           ),
-                                          itemCount: state.screenMappingMobile.screenMappingMobile.length,
-                                          itemBuilder: (context, index) {
-                                            return DashboardItem(
-                                              state.screenMappingMobile.screenMappingMobile[index],
-                                              loggerBloc,
-                                              loggerData,
-                                            );
-                                          },
+                                        ),
+                                        SizedBox(width: 12),
+                                        Expanded(
+                                          child: _buildStatCard(
+                                            'Completed Today',
+                                            '8',
+                                            Colors.green,
+                                          ),
+                                        ),
+                                        SizedBox(width: 12),
+                                        Expanded(
+                                          child: _buildStatCard(
+                                            'Overdue',
+                                            '3',
+                                            Colors.orange,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+
+                                  // Quick Actions
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(horizontal: 20),
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        'Quick Actions',
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black,
                                         ),
                                       ),
                                     ),
-                                  ],
-                                ),
-                              );
-                            },
+                                  ),
+                                  SizedBox(height: 16),
+
+                                  // Action Cards Grid
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(horizontal: 20),
+                                    child: GridView.builder(
+                                      shrinkWrap: true,
+                                      physics: NeverScrollableScrollPhysics(),
+                                      gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 2,
+                                        crossAxisSpacing: 12,
+                                        mainAxisSpacing: 12,
+                                        childAspectRatio: 1.5,
+                                      ),
+                                      itemCount: state.screenMappingMobile
+                                          .screenMappingMobile.length,
+                                      itemBuilder: (context, index) {
+                                        return DashboardItem(
+                                          state.screenMappingMobile
+                                              .screenMappingMobile[index],
+                                          loggerBloc,
+                                          loggerData,
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                  SizedBox(height: 20),
+                                ],
+                              ),
+                            ),
                           ),
 
-                          // Show logout loader if needed
                           if (state.isLoggingOut)
                             Container(
                               color: Colors.black.withOpacity(0.4),
@@ -458,16 +454,14 @@ class _DashBoardState extends State<DashBoard> {
                             ),
                         ],
                       );
-                    }
-                    else if (state is DashboardErrorState) {
-                      return Center(child: Text('Error: ${state.errorMessage}'));
+                    } else if (state is DashboardErrorState) {
+                      return Center(
+                          child: Text('Error: ${state.errorMessage}'));
                     } else {
                       return Center(child: Text('Unknown state'));
                     }
                   },
                 ),
-
-                // Show loading overlay during logout
                 BlocBuilder<DashboardBloc, DashboardState>(
                   builder: (context, state) {
                     if (state is LogoutLoadingState) {
@@ -484,45 +478,60 @@ class _DashBoardState extends State<DashBoard> {
               ],
             ),
           ),
-
-
         ),
+      ),
+    );
+  }
+
+  Widget _buildStatCard(String label, String value, Color borderColor) {
+    return Container(
+      padding: EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        border: Border(
+          left: BorderSide(color: borderColor, width: 4),
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 4,
+            offset: Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 11,
+              color: Colors.black,
+            ),
+          ),
+          SizedBox(height: 4),
+          Text(
+            value,
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
+        ],
       ),
     );
   }
 }
 
-
 Future<bool> isPushNotificationEnabled() async {
-  NotificationSettings settings = await FirebaseMessaging.instance.getNotificationSettings();
+  NotificationSettings settings =
+  await FirebaseMessaging.instance.getNotificationSettings();
   return settings.authorizationStatus == AuthorizationStatus.authorized ||
       settings.authorizationStatus == AuthorizationStatus.provisional;
 }
-
-
-Widget _buildBanner({required String message, required Color color, VoidCallback? onTap}) {
-  return InkWell(
-    onTap: onTap,
-    child: Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(12.0),
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Text(
-        message,
-        style: const TextStyle(
-          color: Colors.black87,
-          fontSize: 14,
-          fontWeight: FontWeight.w500,
-        ),
-        textAlign: TextAlign.center,
-      ),
-    ),
-  );
-}
-
 
 class DashboardItem extends StatelessWidget {
   final ScreenMappingMobile item;
@@ -530,36 +539,74 @@ class DashboardItem extends StatelessWidget {
   LoggerInput loggerInput;
   DashboardItem(this.item, this.loggerBloc, this.loggerInput);
 
-  String getIconAssetPath(int menuID) {
+  IconData getIconData(int menuID) {
     switch (menuID) {
       case 3:
-        return 'assets/images/pendingresponse.png';
+        return Icons.pending_actions;
       case 4:
-        return 'assets/images/inprogress.png';
+        return Icons.pending;
       case 8:
-        return 'assets/images/closed.png';
+        return Icons.check_circle_outline;
       case 9:
-        return 'assets/images/qrscan.png';
+        return Icons.qr_code_scanner;
       case 10:
-        return 'assets/images/ppm.png';
+        return Icons.description_outlined;
       case 11:
-        return 'assets/images/qrscan.png';
-    // Add more cases as needed for other menu IDs
+        return Icons.qr_code_scanner;
+      case 15:
+        return Icons.edit_note;
+      case 12:
+        return Icons.assignment;
+      case 17:
+        return Icons.report_problem_outlined;
       default:
-        return 'assets/images/inprogress.png';
+        return Icons.dashboard;
     }
+  }
+
+  Color getIconColor(int menuID) {
+    switch (menuID) {
+      case 3:
+        return Colors.blue;
+      case 4:
+        return Colors.green;
+      case 8:
+        return Colors.grey;
+      case 9:
+        return Colors.purple;
+      case 10:
+        return Colors.pink;
+      case 11:
+        return Colors.red;
+      default:
+        return Colors.blue;
+    }
+  }
+
+  String getSubtitle(int menuID, int count) {
+    if (item.features == "Fault Report") {
+      return "Create Report";
+    } else if (item.features == "Attendance") {
+      return "Quick Access";
+    } else if (item.features.contains("Scan QR")) {
+      return "Quick Access";
+    } else if (item.features.contains("PPM")) {
+      return "Maintenance";
+    }
+    return count.toString();
   }
 
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 2,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+      ),
       color: Colors.white,
       child: InkWell(
         onTap: () async {
-          // Handle item click
-
           try {
-            // Log API call when the card is clicked
             loggerInput.action_field = item.menuID.toString();
             loggerInput.error_field = "no error";
             loggerBloc.add(LoadLoggerEvent(loggerInput));
@@ -591,23 +638,18 @@ class DashboardItem extends StatelessWidget {
               Navigator.pushNamed(context, '/faultReportMenu');
             } else if (item.menuID == 13) {
               print("Request List");
-              /* Label changes as per request - RequestList to Assigned to me */
               Navigator.pushNamed(context, '/requestList');
             } else if (item.menuID == 14) {
               print("Request List");
-              /*New All menu */
               Navigator.pushNamed(context, '/allRequestList');
             } else if (item.menuID == 15) {
               print("Attendance");
-              /*New All menu */
               Navigator.pushNamed(context, '/checkIn');
             } else if (item.menuID == 12) {
               print("Attendance");
-              /*New All menu */
               Navigator.pushNamed(context, '/adhocScreen');
             } else if (item.menuID == 17) {
               print("My fault Report");
-              /*New All menu */
               Navigator.pushNamed(context, '/myfaultreport');
             } else {
               Utils.showInSnackBar(
@@ -624,46 +666,57 @@ class DashboardItem extends StatelessWidget {
             loggerBloc.add(LoadLoggerEvent(loggerInput));
           }
         },
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Stack(
-              alignment: Alignment.topRight,
-              children: [
-                Image.asset(
-                  getIconAssetPath(item.menuID),
-                  width: 67,
-                  height: 67,
-                ),
-                if (item.features != "Fault Report" &&
-                    item.features != "Attendance")
-                  Positioned(
-                    top: -1,
-                    right: 1,
-                    child: Container(
-                      padding: EdgeInsets.all(4),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.transparent,
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 1.3,
-                        ),
-                      ),
-                      child: Text(
-                        "${item.count}",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.normal,
-                        ),
-                      ),
+        borderRadius: BorderRadius.circular(12),
+        child: Padding(
+          padding: EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // Icon and menu name on same line
+              Row(
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(6),
+                    decoration: BoxDecoration(
+                      color: getIconColor(item.menuID).withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: Icon(
+                      getIconData(item.menuID),
+                      color: getIconColor(item.menuID),
+                      size: 20,
                     ),
                   ),
-              ],
-            ),
-            SizedBox(height: 8),
-            Text(item.features),
-          ],
+                  SizedBox(width: 10),
+                  Expanded(
+                    child: Text(
+                      item.features,
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 8),
+              // Count/subtitle below
+              Padding(
+                padding: EdgeInsets.only(left: 40),
+                child: Text(
+                  getSubtitle(item.menuID, item.count),
+                  style: TextStyle(
+                    fontSize: 13,
+                    color: Colors.grey[600],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
