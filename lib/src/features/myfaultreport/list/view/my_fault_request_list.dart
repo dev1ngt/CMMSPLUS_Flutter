@@ -91,6 +91,7 @@ class _MyFaultlistWidgetContentState extends State<MyFaultlistWidgetContent> {
         return true;
       },
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: Row(
@@ -108,12 +109,12 @@ class _MyFaultlistWidgetContentState extends State<MyFaultlistWidgetContent> {
                   ),
                 ),
               ),
-              const Spacer(),
+          /*    const Spacer(),
               Image.asset(
                 'assets/images/ecms_logo.png',
                 width: 100,
                 height: 20,
-              ),
+              ),*/
               const Spacer(),
               GestureDetector(
                 onTap: () => Navigator.pushNamed(context, '/dashboard'),
@@ -126,12 +127,11 @@ class _MyFaultlistWidgetContentState extends State<MyFaultlistWidgetContent> {
               ),
             ],
           ),
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.white,
           flexibleSpace: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [AppColors.customColor1,
-                  AppColors.customColor2,],
+                colors: [AppColors.whiteColor],
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
               ),
@@ -220,7 +220,7 @@ class _MyFaultlistWidgetContentState extends State<MyFaultlistWidgetContent> {
         },
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 12),
-          decoration: BoxDecoration(
+         /* decoration: BoxDecoration(
             color: isSelected ? Colors.white : Colors.transparent,
             borderRadius: BorderRadius.circular(10),
             gradient: isSelected
@@ -232,12 +232,19 @@ class _MyFaultlistWidgetContentState extends State<MyFaultlistWidgetContent> {
             )
                 : null,
             border: Border.all(color: Colors.black12),
+          ),*/
+          decoration: BoxDecoration(
+            color: isSelected
+                ? AppColors.themeColor   // selected tab color
+                : Colors.grey.shade200,    // unselected tab color
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: Colors.black12),
           ),
           alignment: Alignment.center,
           child: Text(
             label,
             style: TextStyle(
-              color: isSelected ? Colors.black : Colors.grey,
+              color: isSelected ? Colors.white : Colors.grey,
               fontWeight: FontWeight.bold,
             ),
           ),

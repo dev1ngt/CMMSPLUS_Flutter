@@ -278,6 +278,7 @@ class _RequestListWidgetContentState extends State<RequestListWidgetContent> {
         return true;
       },
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: Row(
@@ -297,12 +298,7 @@ class _RequestListWidgetContentState extends State<RequestListWidgetContent> {
                   ),
                 ),
               ),
-              Spacer(),
-              Image.asset(
-                'assets/images/ecms_logo.png',
-                width: 100,
-                height: 20,
-              ),
+
               Spacer(),
               GestureDetector(
                 onTap: () {
@@ -317,12 +313,11 @@ class _RequestListWidgetContentState extends State<RequestListWidgetContent> {
               ),
             ],
           ),
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.white,
           flexibleSpace: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [AppColors.customColor1,
-                  AppColors.customColor2,],
+                colors: [AppColors.whiteColor],
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
               ),
@@ -364,6 +359,7 @@ class _RequestListWidgetContentState extends State<RequestListWidgetContent> {
                           state.locationresponse.message,
                           ToastType.Error,
                         );
+
                       }
                     }
                   },
@@ -477,11 +473,14 @@ class _RequestListWidgetContentState extends State<RequestListWidgetContent> {
                               );
                             });
                           },
+                          dropdownColor: Colors.white, // ✅ background color of dropdown menu
                           decoration: InputDecoration(
                             hintText: 'Select Property',
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8.0),
                             ),
+                            fillColor: Colors.white,        // ✅ textfield bg
+                            filled: true,                   // ✅ enable fillColor
                           ),
                         );
                       } else {
@@ -651,6 +650,7 @@ class _RequestListWidgetContentState extends State<RequestListWidgetContent> {
       context: context,
       builder: (context) {
         return AlertDialog(
+          backgroundColor: Colors.white, // ✅ White background
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           content: Column(

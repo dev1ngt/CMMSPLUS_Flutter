@@ -25,7 +25,7 @@ dependencies:
   mobile_scanner: ^6.0.0
   signature: ^5.4.1
   path_provider: ^2.1.2
-
+  flutter_exif_rotation: ^0.5.2
   connectivity_plus: ^5.0.2
   google_fonts: ^6.2.0
   rename: ^2.1.1

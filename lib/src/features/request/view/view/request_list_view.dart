@@ -225,62 +225,6 @@ class _PPMDetailsStateState extends State<PPMDetailsState> {
     }
   }
 
-  // Function to show the PDF in a BottomSheet
- /* Future<void> _showPdfBottomSheet(BuildContext context, String pdfUrl) async {
-    setState(() {
-      _isLoading = true; // Set loading to true while fetching the document
-    });
-
-    // Fetch the PDF document from URL
-    document = await PDFDocument.fromURL(pdfUrl);
-
-    setState(() {
-      _isLoading = false; // Set loading to false once the document is loaded
-    });
-
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.white,
-      builder: (context) {
-        return Container(
-          height: MediaQuery.of(context).size.height * 0.9, // 90% screen height
-          child: Stack(
-            children: [
-              // PDF View for displaying the document
-
-              // PDF View for displaying the document
-              _isLoading
-                  ? Center(child: CircularProgressIndicator())
-                  : PDFViewer(
-                      document: document,
-                      lazyLoad: false,
-                      zoomSteps: 1,
-                      numberPickerConfirmWidget: const Text("Confirm"),
-                    ),
-
-              // Close Icon
-              Positioned(
-                top: 50.0,
-                right: 20.0,
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context); // Close the bottom sheet
-                  },
-                  child: Icon(
-                    Icons.close,
-                    color: Colors.black,
-                    size: 30.0,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }*/
-
   @override
   void initState() {
 
@@ -310,6 +254,7 @@ class _PPMDetailsStateState extends State<PPMDetailsState> {
       context: context,
       builder: (BuildContext context) {
         return Dialog(
+          backgroundColor: AppColors.whiteColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16.0),
           ),
@@ -329,6 +274,14 @@ class _PPMDetailsStateState extends State<PPMDetailsState> {
                 ),
                 SizedBox(height: 10.0),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.themeColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                      BorderRadius.circular(8.0),
+                    ),
+                    elevation: 0,
+                  ),
                   onPressed: () async {
                     // Check camera permission
                     var status = await Permission.camera.status;
@@ -359,10 +312,18 @@ class _PPMDetailsStateState extends State<PPMDetailsState> {
                     }
                     Navigator.of(context).pop(); // Close the dialog
                   },
-                  child: Text('Camera'),
+                  child: Text('Camera',style: TextStyle(fontSize: 16.0, color: Colors.white),),
                 ),
                 SizedBox(height: 10.0),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.themeColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                      BorderRadius.circular(8.0),
+                    ),
+                    elevation: 0,
+                  ),
                   onPressed: () async {
                     // Check camera permission
                     var status = await Permission.camera.status;
@@ -393,22 +354,38 @@ class _PPMDetailsStateState extends State<PPMDetailsState> {
                     }
                     Navigator.of(context).pop(); // Close the dialog
                   },
-                  child: Text('Gallery'),
+                  child: Text('Gallery',style: TextStyle(fontSize: 16.0, color: Colors.white),),
                 ),
                 SizedBox(height: 10.0),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.themeColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                      BorderRadius.circular(8.0),
+                    ),
+                    elevation: 0,
+                  ),
                   onPressed: () {
                     _pickDocument1();
                     Navigator.of(context).pop(); // Close the dialog
                   },
-                  child: Text('Documents'),
+                  child: Text('Documents',style: TextStyle(fontSize: 16.0, color: Colors.white),),
                 ),
                 SizedBox(height: 10.0),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.themeColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                      BorderRadius.circular(8.0),
+                    ),
+                    elevation: 0,
+                  ),
                   onPressed: () {
                     Navigator.of(context).pop(); // Close the dialog
                   },
-                  child: Text('Cancel'),
+                  child: Text('Cancel',style: TextStyle(fontSize: 16.0, color: Colors.white),),
                 ),
               ],
             ),
@@ -492,6 +469,7 @@ class _PPMDetailsStateState extends State<PPMDetailsState> {
             return true;
           },
           child: Scaffold(
+            backgroundColor: Colors.white,
             appBar: AppBar(
               automaticallyImplyLeading: false,
               title: Row(
@@ -511,12 +489,12 @@ class _PPMDetailsStateState extends State<PPMDetailsState> {
                       ),
                     ),
                   ),
-                  Spacer(),
+                 /* Spacer(),
                   Image.asset(
                     'assets/images/ecms_logo.png',
                     width: 100,
                     height: 20,
-                  ),
+                  ),*/
                   Spacer(),
                   GestureDetector(
                     onTap: () {
@@ -539,8 +517,7 @@ class _PPMDetailsStateState extends State<PPMDetailsState> {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      AppColors.customColor1,
-                      AppColors.customColor2,
+                      AppColors.whiteColor
                     ],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
@@ -1153,6 +1130,7 @@ class _PPMDetailsStateState extends State<PPMDetailsState> {
                           );
                         }).toList(),
                       ],
+                      dropdownColor: Colors.white, // ✅ background color of dropdown menu
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.black,
@@ -1205,6 +1183,7 @@ class _PPMDetailsStateState extends State<PPMDetailsState> {
                             ),
                           );
                         }).toList(),
+                        dropdownColor: Colors.white, // ✅ background color of dropdown menu
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.black,
@@ -1595,10 +1574,7 @@ class _PPMDetailsStateState extends State<PPMDetailsState> {
                         ),
                         child: Ink(
                           decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [AppColors.customColor2,
-                                AppColors.customColor1,],
-                            ),
+                            color: AppColors.themeColor, // ✅ use your theme color
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                           child: Container(
@@ -1607,7 +1583,7 @@ class _PPMDetailsStateState extends State<PPMDetailsState> {
                             padding: EdgeInsets.symmetric(horizontal: 12.0),
                             child: Text(
                               'Submit',
-                              style: TextStyle(fontSize: 16.0, color: Colors.black),
+                              style: TextStyle(fontSize: 16.0, color: Colors.white),
                             ),
                           ),
                         ),

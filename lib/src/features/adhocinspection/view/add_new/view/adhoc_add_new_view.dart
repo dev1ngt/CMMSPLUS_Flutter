@@ -128,6 +128,7 @@ class _PurchaseRequestScreen extends State<PurchaseRequestScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Row(
@@ -147,12 +148,12 @@ class _PurchaseRequestScreen extends State<PurchaseRequestScreen> {
                 ),
               ),
             ),
-            Spacer(),
+          /*  Spacer(),
             Image.asset(
               'assets/images/ecms_logo.png',
               width: 100,
               height: 20,
-            ),
+            ),*/
             Spacer(),
             GestureDetector(
               onTap: () {
@@ -172,8 +173,7 @@ class _PurchaseRequestScreen extends State<PurchaseRequestScreen> {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                AppColors.customColor1,
-                AppColors.customColor2,
+                AppColors.whiteColor
               ],
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
@@ -663,12 +663,7 @@ class _PurchaseRequestScreen extends State<PurchaseRequestScreen> {
                     ),
                     child: Ink(
                       decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            AppColors.customColor2,
-                            AppColors.customColor1,
-                          ],
-                        ),
+                        color: AppColors.themeColor, // ✅ use your theme color
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       child: Container(
@@ -680,7 +675,7 @@ class _PurchaseRequestScreen extends State<PurchaseRequestScreen> {
                           'Submit',
                           style: TextStyle(
                               fontSize: 14.0,
-                              color: Colors.black),
+                              color: Colors.white),
                         ),
                       ),
                     ),

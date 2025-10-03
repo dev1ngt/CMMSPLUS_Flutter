@@ -354,7 +354,7 @@ class _LoginScreenState extends State<Login> {
                                       }
                                     },
                                     style: ElevatedButton.styleFrom(
-                                      backgroundColor: Color(0xFF0A2647),
+                                      backgroundColor: AppColors.themeColor,
                                       shape: RoundedRectangleBorder(
                                         borderRadius:
                                         BorderRadius.circular(8.0),

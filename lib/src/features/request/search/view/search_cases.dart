@@ -75,6 +75,7 @@ class _RequestListWidgetContentState extends State<SearchCases> {
     return BlocProvider(
       create: (_) => searchBloc,
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: Row(
@@ -94,12 +95,7 @@ class _RequestListWidgetContentState extends State<SearchCases> {
                   ),
                 ),
               ),
-              Spacer(),
-              Image.asset(
-                'assets/images/ecms_logo.png',
-                width: 100,
-                height: 20,
-              ),
+
               Spacer(),
               GestureDetector(
                 onTap: () {
@@ -118,8 +114,7 @@ class _RequestListWidgetContentState extends State<SearchCases> {
           flexibleSpace: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [AppColors.customColor1,
-                  AppColors.customColor2,],
+                colors: [AppColors.whiteColor],
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
               ),

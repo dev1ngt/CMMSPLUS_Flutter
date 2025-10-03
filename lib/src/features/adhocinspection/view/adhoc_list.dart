@@ -72,6 +72,7 @@ class _AdhocListState extends State<AdhocListState>
           return true;
         },
         child: Scaffold(
+          backgroundColor: Colors.white,
           appBar: AppBar(
             automaticallyImplyLeading: false,
             title: Row(
@@ -91,12 +92,12 @@ class _AdhocListState extends State<AdhocListState>
                     ),
                   ),
                 ),
-                Spacer(),
+               /* Spacer(),
                 Image.asset(
                   'assets/images/ecms_logo.png',
                   width: 100,
                   height: 20,
-                ),
+                ),*/
                 Spacer(),
                 GestureDetector(
                   onTap: () {
@@ -118,8 +119,7 @@ class _AdhocListState extends State<AdhocListState>
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    AppColors.customColor1,
-                    AppColors.customColor2,
+                    AppColors.whiteColor
                   ],
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,

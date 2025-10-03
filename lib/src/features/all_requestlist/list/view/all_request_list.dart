@@ -271,6 +271,7 @@ class _AllRequestListWidgetContentState
         return true;
       },
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: Row(
@@ -290,12 +291,12 @@ class _AllRequestListWidgetContentState
                   ),
                 ),
               ),
-              Spacer(),
+           /*   Spacer(),
               Image.asset(
                 'assets/images/ecms_logo.png',
                 width: 100,
                 height: 20,
-              ),
+              ),*/
               Spacer(),
               GestureDetector(
                 onTap: () {
@@ -314,8 +315,7 @@ class _AllRequestListWidgetContentState
           flexibleSpace: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [AppColors.customColor1,
-                  AppColors.customColor2,],
+                colors: [AppColors.whiteColor],
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
               ),
@@ -456,6 +456,7 @@ class _AllRequestListWidgetContentState
                               .add(RequestListLoadEvent(selectedID, type, '',page));
                         });
                       },
+                      dropdownColor: Colors.white, // ✅ background color of dropdown menu
                       decoration: InputDecoration(
                         hintText: 'Select Property',
                         border: OutlineInputBorder(
@@ -526,12 +527,6 @@ class _AllRequestListWidgetContentState
             propertyID: data.propertyId!,
           ));
         }
-
-        // Navigator.pushNamed(
-        //   context,
-        //   '/allRequestDetailsView',
-        //   arguments: {'RequestID': data.id.toString()},
-        // );
 
 
       },
@@ -622,6 +617,7 @@ class _AllRequestListWidgetContentState
       context: context,
       builder: (context) {
         return AlertDialog(
+          backgroundColor: Colors.white, // ✅ White background
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           content: Column(

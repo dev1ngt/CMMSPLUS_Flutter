@@ -5,8 +5,10 @@ import 'package:cmms/src/helpers/utils/appcolors.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_exif_rotation/flutter_exif_rotation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:open_file_plus/open_file_plus.dart';
 import 'package:path_provider/path_provider.dart';
@@ -23,6 +25,8 @@ import '../bloc/request_view_event_my_fault.dart';
 import '../bloc/request_view_state_my_fault.dart';
 import 'package:path/path.dart' as path;
 import 'package:http/http.dart' as http;
+import 'package:image/image.dart' as img;
+import 'dart:io';
 
 
 class MyFaultView extends StatelessWidget {
@@ -317,6 +321,7 @@ class _MyFaultViewStateState extends State<MyFaultViewState> {
             return true;
           },
           child: Scaffold(
+            backgroundColor: AppColors.whiteColor,
             appBar: AppBar(
               automaticallyImplyLeading: false,
               title: Row(
@@ -336,12 +341,12 @@ class _MyFaultViewStateState extends State<MyFaultViewState> {
                       ),
                     ),
                   ),
-                  Spacer(),
+                /*  Spacer(),
                   Image.asset(
                     'assets/images/ecms_logo.png',
                     width: 100,
                     height: 20,
-                  ),
+                  ),*/
                   Spacer(),
                   GestureDetector(
                     onTap: () {
@@ -364,8 +369,7 @@ class _MyFaultViewStateState extends State<MyFaultViewState> {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      AppColors.customColor1,
-                      AppColors.customColor2,
+                      AppColors.whiteColor
                     ],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
@@ -991,9 +995,7 @@ class _MyFaultViewStateState extends State<MyFaultViewState> {
                         ),
                         child: Ink(
                           decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [AppColors.customColor2, AppColors.customColor1,],
-                            ),
+                            color: AppColors.themeColor, // ✅ use your theme color
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                           child: Container(
@@ -1002,7 +1004,7 @@ class _MyFaultViewStateState extends State<MyFaultViewState> {
                             padding: EdgeInsets.symmetric(horizontal: 12.0),
                             child: Text(
                               'Submit',
-                              style: TextStyle(fontSize: 16.0, color: Colors.black),
+                              style: TextStyle(fontSize: 16.0, color: Colors.white),
                             ),
                           ),
                         ),
@@ -1060,18 +1062,52 @@ class _MyFaultViewStateState extends State<MyFaultViewState> {
 
 
   Future<void> _imageFromCamera1() async {
+    // Lock screen orientation to portrait when opening camera
+    await SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
     final pickedFile = await ImagePicker().pickImage(
       source: ImageSource.camera,
       imageQuality: 50,
     );
 
-    if (pickedFile != null) {
-      final file = File(pickedFile.path);
+    // Restore orientation back to default (auto-rotate) after capture
+    await SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.portraitDown,
+    ]);
 
-      if (_canAddFile(file)) {
-        requestViewBloc.add(MyFaultUploadFileInProgressEvent(file, path.basename(file.path)));
+    if (pickedFile != null) {
+      // Fix photo orientation before upload
+      File rotatedFile = await FlutterExifRotation.rotateImage(
+        path: pickedFile.path,
+      );
+
+      if (_canAddFile(rotatedFile)) {
+        requestViewBloc.add(
+          MyFaultUploadFileInProgressEvent(
+            rotatedFile,
+            path.basename(rotatedFile.path),
+          ),
+        );
       }
     }
+  }
+
+  Future<File> _fixImageOrientation(File file) async {
+    final bytes = await file.readAsBytes();
+    final originalImage = img.decodeImage(bytes);
+
+    if (originalImage == null) return file;
+
+    // Rotate automatically based on EXIF
+    final fixedImage = img.bakeOrientation(originalImage);
+
+    return await file.writeAsBytes(img.encodeJpg(fixedImage));
   }
 
 

@@ -192,257 +192,261 @@ class _DashBoardState extends State<DashBoard> {
 
                       return Stack(
                         children: [
-                          RefreshIndicator(
-                            onRefresh: () async {
-                              _loadDashboardData();
-                            },
-                            child: SingleChildScrollView(
-                              physics: AlwaysScrollableScrollPhysics(),
-                              child: Column(
-                                children: [
-                                  // Welcome Section
-                                  Container(
-                                    width: double.infinity,
-                                    padding: EdgeInsets.all(20),
-                                    decoration: BoxDecoration(
-                                      color: Color(0xFF0A2647),
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                          Column(
+                            children: [
+                              // Fixed Welcome Section
+                              Container(
+                                width: double.infinity,
+                                padding: EdgeInsets.all(20),
+                                decoration: BoxDecoration(
+                                  color: Color(0xFF0A2647),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.start,
                                       children: [
-                                        Column(
-                                          crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Welcome back,',
-                                              style: TextStyle(
-                                                color: Colors.white70,
-                                                fontSize: 14,
-                                              ),
-                                            ),
-                                            SizedBox(height: 4),
-                                            Text(
-                                              username,
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 24,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                          ],
+                                        Text(
+                                          'Welcome back,',
+                                          style: TextStyle(
+                                            color: Colors.white70,
+                                            fontSize: 14,
+                                          ),
                                         ),
-                                        Row(
+                                        SizedBox(height: 4),
+                                        Text(
+                                          username,
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 24,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Stack(
                                           children: [
-                                            Stack(
-                                              children: [
-                                                Container(
-                                                  padding: EdgeInsets.all(8),
+                                            Container(
+                                              padding: EdgeInsets.all(8),
+                                              decoration: BoxDecoration(
+                                                color: Colors.white
+                                                    .withOpacity(0.2),
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: Text(
+                                                notificationCount.toString(),
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                            ),
+                                            if (notificationCount > 0)
+                                              Positioned(
+                                                right: 0,
+                                                top: 0,
+                                                child: Container(
+                                                  width: 8,
+                                                  height: 8,
                                                   decoration: BoxDecoration(
-                                                    color: Colors.white
-                                                        .withOpacity(0.2),
+                                                    color: Colors.red,
                                                     shape: BoxShape.circle,
                                                   ),
-                                                  child: Text(
-                                                    notificationCount.toString(),
-                                                    style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontWeight: FontWeight.bold,
-                                                      fontSize: 14,
-                                                    ),
-                                                  ),
                                                 ),
-                                                if (notificationCount > 0)
-                                                  Positioned(
-                                                    right: 0,
-                                                    top: 0,
-                                                    child: Container(
-                                                      width: 8,
-                                                      height: 8,
-                                                      decoration: BoxDecoration(
-                                                        color: Colors.red,
-                                                        shape: BoxShape.circle,
-                                                      ),
+                                              ),
+                                          ],
+                                        ),
+                                        SizedBox(width: 12),
+                                        GestureDetector(
+                                          onTap: () {
+                                            showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return AlertDialog(
+                                                  content: Card(
+                                                    shape:
+                                                    RoundedRectangleBorder(
+                                                      borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
                                                     ),
-                                                  ),
-                                              ],
-                                            ),
-                                            SizedBox(width: 12),
-                                            GestureDetector(
-                                              onTap: () {
-                                                showDialog(
-                                                  context: context,
-                                                  builder:
-                                                      (BuildContext context) {
-                                                    return AlertDialog(
-                                                      content: Card(
-                                                        shape:
-                                                        RoundedRectangleBorder(
-                                                          borderRadius:
-                                                          BorderRadius
-                                                              .circular(8.0),
-                                                        ),
-                                                        elevation: 4.0,
-                                                        child: Container(
-                                                          padding:
-                                                          EdgeInsets.all(
-                                                              16.0),
-                                                          child: Column(
-                                                            mainAxisSize:
-                                                            MainAxisSize.min,
+                                                    elevation: 4.0,
+                                                    child: Container(
+                                                      padding:
+                                                      EdgeInsets.all(16.0),
+                                                      child: Column(
+                                                        mainAxisSize:
+                                                        MainAxisSize.min,
+                                                        children: [
+                                                          Text(
+                                                            'Confirmation',
+                                                            style: TextStyle(
+                                                              fontSize: 18.0,
+                                                              fontWeight:
+                                                              FontWeight
+                                                                  .bold,
+                                                            ),
+                                                          ),
+                                                          SizedBox(height: 8.0),
+                                                          Text(
+                                                            'Do you want to exit?',
+                                                            style: TextStyle(
+                                                                fontSize: 16.0),
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                          ),
+                                                          SizedBox(
+                                                              height: 16.0),
+                                                          Row(
+                                                            mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
                                                             children: [
-                                                              Text(
-                                                                'Confirmation',
-                                                                style:
-                                                                TextStyle(
-                                                                  fontSize: 18.0,
-                                                                  fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                                ),
+                                                              ElevatedButton(
+                                                                onPressed: () {
+                                                                  Navigator.of(
+                                                                      context)
+                                                                      .pop();
+                                                                },
+                                                                child:
+                                                                Text('No'),
                                                               ),
                                                               SizedBox(
-                                                                  height: 8.0),
-                                                              Text(
-                                                                'Do you want to exit?',
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                    16.0),
-                                                                textAlign:
-                                                                TextAlign
-                                                                    .center,
-                                                              ),
-                                                              SizedBox(
-                                                                  height: 16.0),
-                                                              Row(
-                                                                mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
-                                                                children: [
-                                                                  ElevatedButton(
-                                                                    onPressed:
-                                                                        () {
-                                                                      Navigator.of(
-                                                                          context)
-                                                                          .pop();
-                                                                    },
-                                                                    child: Text(
-                                                                        'No'),
-                                                                  ),
-                                                                  SizedBox(
-                                                                      width:
-                                                                      16.0),
-                                                                  ElevatedButton(
-                                                                    onPressed:
-                                                                        () async {
-                                                                      dashboardBloc
-                                                                          .add(
-                                                                          LogoutEvent());
-                                                                    },
-                                                                    child: Text(
-                                                                        'Yes'),
-                                                                  ),
-                                                                ],
+                                                                  width: 16.0),
+                                                              ElevatedButton(
+                                                                onPressed:
+                                                                    () async {
+                                                                  dashboardBloc.add(
+                                                                      LogoutEvent());
+                                                                },
+                                                                child:
+                                                                Text('Yes'),
                                                               ),
                                                             ],
                                                           ),
-                                                        ),
+                                                        ],
                                                       ),
-                                                    );
-                                                  },
+                                                    ),
+                                                  ),
                                                 );
                                               },
-                                              child: Icon(
-                                                Icons.menu,
-                                                color: Colors.white,
-                                                size: 28,
+                                            );
+                                          },
+                                          child: Icon(
+                                            Icons.menu,
+                                            color: Colors.white,
+                                            size: 28,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+
+                              // Fixed Statistics Section
+                              Container(
+                                padding: EdgeInsets.all(20),
+                                color: Color(0xFFF5F5F5),
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: _buildStatCard(
+                                        'Active Tasks',
+                                        '24',
+                                        Colors.blue,
+                                      ),
+                                    ),
+                                    SizedBox(width: 12),
+                                    Expanded(
+                                      child: _buildStatCard(
+                                        'Completed',
+                                        '8',
+                                        Colors.green,
+                                      ),
+                                    ),
+                                    SizedBox(width: 12),
+                                    Expanded(
+                                      child: _buildStatCard(
+                                        'Overdue',
+                                        '3',
+                                        Colors.orange,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+
+                              // Scrollable Content Section
+                              Expanded(
+                                child: RefreshIndicator(
+                                  onRefresh: () async {
+                                    _loadDashboardData();
+                                  },
+                                  child: SingleChildScrollView(
+                                    physics: AlwaysScrollableScrollPhysics(),
+                                    child: Column(
+                                      children: [
+                                        // Quick Actions Title
+                                        Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              20, 0, 20, 16),
+                                          child: Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Text(
+                                              'Quick Actions',
+                                              style: TextStyle(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.black,
                                               ),
                                             ),
-                                          ],
+                                          ),
                                         ),
+
+                                        // Action Cards Grid
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 20),
+                                          child: GridView.builder(
+                                            shrinkWrap: true,
+                                            physics:
+                                            NeverScrollableScrollPhysics(),
+                                            gridDelegate:
+                                            SliverGridDelegateWithFixedCrossAxisCount(
+                                              crossAxisCount: 2,
+                                              crossAxisSpacing: 12,
+                                              mainAxisSpacing: 12,
+                                              childAspectRatio: 1.5,
+                                            ),
+                                            itemCount: state
+                                                .screenMappingMobile
+                                                .screenMappingMobile
+                                                .length,
+                                            itemBuilder: (context, index) {
+                                              return DashboardItem(
+                                                state.screenMappingMobile
+                                                    .screenMappingMobile[
+                                                index],
+                                                loggerBloc,
+                                                loggerData,
+                                              );
+                                            },
+                                          ),
+                                        ),
+                                        SizedBox(height: 20),
                                       ],
                                     ),
                                   ),
-
-                                  // Statistics Section
-                                  Container(
-                                    padding: EdgeInsets.all(20),
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                          child: _buildStatCard(
-                                            'Active Tasks',
-                                            '24',
-                                            Colors.blue,
-                                          ),
-                                        ),
-                                        SizedBox(width: 12),
-                                        Expanded(
-                                          child: _buildStatCard(
-                                            'Completed Today',
-                                            '8',
-                                            Colors.green,
-                                          ),
-                                        ),
-                                        SizedBox(width: 12),
-                                        Expanded(
-                                          child: _buildStatCard(
-                                            'Overdue',
-                                            '3',
-                                            Colors.orange,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-
-                                  // Quick Actions
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(horizontal: 20),
-                                    child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(
-                                        'Quick Actions',
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(height: 16),
-
-                                  // Action Cards Grid
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(horizontal: 20),
-                                    child: GridView.builder(
-                                      shrinkWrap: true,
-                                      physics: NeverScrollableScrollPhysics(),
-                                      gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 2,
-                                        crossAxisSpacing: 12,
-                                        mainAxisSpacing: 12,
-                                        childAspectRatio: 1.5,
-                                      ),
-                                      itemCount: state.screenMappingMobile
-                                          .screenMappingMobile.length,
-                                      itemBuilder: (context, index) {
-                                        return DashboardItem(
-                                          state.screenMappingMobile
-                                              .screenMappingMobile[index],
-                                          loggerBloc,
-                                          loggerData,
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                  SizedBox(height: 20),
-                                ],
+                                ),
                               ),
-                            ),
+                            ],
                           ),
 
                           if (state.isLoggingOut)
@@ -539,45 +543,76 @@ class DashboardItem extends StatelessWidget {
   LoggerInput loggerInput;
   DashboardItem(this.item, this.loggerBloc, this.loggerInput);
 
-  IconData getIconData(int menuID) {
+  String getIconAsset(int menuID) {
     switch (menuID) {
+      case 2:
+        return "assets/images/log_in_case.png";
       case 3:
-        return Icons.pending_actions;
+        return "assets/images/log_in_case.png";
       case 4:
-        return Icons.pending;
+        return "assets/images/log_in_case.png";
+      case 6:
+        return "assets/images/fm_approval.png";
+      case 7:
+        return "assets/images/acknowledgement.png";
       case 8:
-        return Icons.check_circle_outline;
+        return "assets/images/closed.png";
       case 9:
-        return Icons.qr_code_scanner;
+        return "assets/images/scanned_qr.png";
       case 10:
-        return Icons.description_outlined;
+        return "assets/images/ppm.png";
       case 11:
-        return Icons.qr_code_scanner;
-      case 15:
-        return Icons.edit_note;
+        return "assets/images/fault_report.png";
       case 12:
-        return Icons.assignment;
+        return "assets/images/adhoc_inspection.png";
+      case 13:
+        return "assets/images/my_cases.png";
+      case 14:
+        return "assets/images/all_cases.png";
+      case 15:
+        return "assets/images/attendance.png";
+      case 16:
+        return "assets/images/attendance_log.png";
       case 17:
-        return Icons.report_problem_outlined;
+        return "assets/images/my_fault_report.png";
+
       default:
-        return Icons.dashboard;
+        return "assets/images/dashboard.png";
     }
   }
 
   Color getIconColor(int menuID) {
     switch (menuID) {
+      case 2:
+        return AppColors.logInCaseId;
       case 3:
         return Colors.blue;
       case 4:
         return Colors.green;
+      case 6:
+        return AppColors.fmmApproval;
+      case 7:
+        return AppColors.acknowledgement;
       case 8:
-        return Colors.grey;
+        return AppColors.closed;
       case 9:
-        return Colors.purple;
+        return AppColors.scanQR;
       case 10:
-        return Colors.pink;
+        return AppColors.ppm;
       case 11:
-        return Colors.red;
+        return AppColors.faultReport;
+      case 12:
+        return AppColors.adhocInspection;
+      case 13:
+        return AppColors.myCases;
+      case 14:
+        return AppColors.allCases;
+      case 15:
+        return AppColors.attendance;
+      case 16:
+        return AppColors.attendanceLog;
+      case 17:
+        return AppColors.myFaultReport;
       default:
         return Colors.blue;
     }
@@ -676,18 +711,33 @@ class DashboardItem extends StatelessWidget {
               // Icon and menu name on same line
               Row(
                 children: [
-                  Container(
-                    padding: EdgeInsets.all(6),
-                    decoration: BoxDecoration(
-                      color: getIconColor(item.menuID).withOpacity(0.1),
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: Icon(
-                      getIconData(item.menuID),
-                      color: getIconColor(item.menuID),
-                      size: 20,
-                    ),
-                  ),
+          Container(
+          padding: EdgeInsets.all(6),
+          decoration: BoxDecoration(
+            color: getIconColor(item.menuID), // light background
+            borderRadius: BorderRadius.circular(6),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.08),
+                blurRadius: 6,
+                offset: Offset(2, 2),
+              ),
+            ],
+          ),
+          child: Image.asset(
+            getIconAsset(item.menuID),
+            width: 20,
+            height: 20,
+            errorBuilder: (context, error, stackTrace) {
+              return Icon(
+                Icons.dashboard,
+                color: getIconColor(item.menuID),
+                size: 20,
+              );
+            },
+          ),
+        ),
+
                   SizedBox(width: 10),
                   Expanded(
                     child: Text(

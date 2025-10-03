@@ -188,13 +188,6 @@ class _AllRequestView_State extends State<AllRequestView_State> {
           content: "Image format should be jpg/jpeg/bmp.");
       return false;
     }
-    /*if (image.lengthSync() > 1000000) {
-      showAlertDialog(
-          context: context,
-          title: "Error Uploading!",
-          content: "Image Size should be less than 1000KB.");
-      return false;
-    }*/
     return true;
   }
 
@@ -224,64 +217,6 @@ class _AllRequestView_State extends State<AllRequestView_State> {
 
 
 
- /* // Function to show the PDF in a BottomSheet
-  Future<void> _showPdfBottomSheet(BuildContext context, String pdfUrl) async {
-
-    setState(() {
-      _isLoading = true;  // Set loading to true while fetching the document
-    });
-
-    // Fetch the PDF document from URL
-    document = await PDFDocument.fromURL(pdfUrl);
-
-    setState(() {
-      _isLoading = false;  // Set loading to false once the document is loaded
-    });
-
-
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.white,
-      builder: (context) {
-        return Container(
-          height: MediaQuery.of(context).size.height * 0.9,  // 90% screen height
-          child: Stack(
-            children: [
-              // PDF View for displaying the document
-
-              // PDF View for displaying the document
-              _isLoading
-                  ? Center(child: CircularProgressIndicator())
-                  : PDFViewer(
-                document: document,
-                lazyLoad: false,
-                zoomSteps: 1,
-                numberPickerConfirmWidget: const Text("Confirm"),
-              ),
-
-              // Close Icon
-              Positioned(
-                top: 50.0,
-                right: 20.0,
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);  // Close the bottom sheet
-                  },
-                  child: Icon(
-                    Icons.close,
-                    color: Colors.black,
-                    size: 30.0,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }*/
-
   void _showPhotoDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -306,6 +241,14 @@ class _AllRequestView_State extends State<AllRequestView_State> {
                 ),
                 SizedBox(height: 10.0),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.themeColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                      BorderRadius.circular(8.0),
+                    ),
+                    elevation: 0,
+                  ),
                   onPressed: () async {
                     // Check camera permission
                     var status = await Permission.camera.status;
@@ -336,10 +279,18 @@ class _AllRequestView_State extends State<AllRequestView_State> {
                     }
                     Navigator.of(context).pop(); // Close the dialog
                   },
-                  child: Text('Camera'),
+                  child: Text('Camera',style: TextStyle(fontSize: 16.0, color: Colors.white),),
                 ),
                 SizedBox(height: 10.0),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.themeColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                      BorderRadius.circular(8.0),
+                    ),
+                    elevation: 0,
+                  ),
                   onPressed: () async {
                     // Check camera permission
                     var status = await Permission.camera.status;
@@ -370,23 +321,39 @@ class _AllRequestView_State extends State<AllRequestView_State> {
                     }
                     Navigator.of(context).pop(); // Close the dialog
                   },
-                  child: Text('Gallery'),
+                  child: Text('Gallery',style: TextStyle(fontSize: 16.0, color: Colors.white),),
                 ),
                 SizedBox(height: 10.0),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.themeColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                      BorderRadius.circular(8.0),
+                    ),
+                    elevation: 0,
+                  ),
                   onPressed: () {
                     _pickDocument1();
                     Navigator.of(context).pop(); // Close the dialog
                   },
 
-                  child: Text('Documents'),
+                  child: Text('Documents',style: TextStyle(fontSize: 16.0, color: Colors.white),),
                 ),
                 SizedBox(height: 10.0),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.themeColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                      BorderRadius.circular(8.0),
+                    ),
+                    elevation: 0,
+                  ),
                   onPressed: () {
                     Navigator.of(context).pop(); // Close the dialog
                   },
-                  child: Text('Cancel'),
+                  child: Text('Cancel',style: TextStyle(fontSize: 16.0, color: Colors.white),),
                 ),
               ],
             ),
@@ -474,6 +441,7 @@ class _AllRequestView_State extends State<AllRequestView_State> {
             return true;
           },
           child: Scaffold(
+            backgroundColor: Colors.white,
             appBar: AppBar(
               automaticallyImplyLeading: false,
               title: Row(
@@ -493,12 +461,12 @@ class _AllRequestView_State extends State<AllRequestView_State> {
                       ),
                     ),
                   ),
-                  Spacer(),
+               /*   Spacer(),
                   Image.asset(
                     'assets/images/ecms_logo.png',
                     width: 100,
                     height: 20,
-                  ),
+                  ),*/
                   Spacer(),
                   GestureDetector(
                     onTap: () {
@@ -516,13 +484,12 @@ class _AllRequestView_State extends State<AllRequestView_State> {
                   ),
                 ],
               ),
-              backgroundColor: Colors.transparent,
+              backgroundColor: Colors.white,
               flexibleSpace: Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      AppColors.customColor1,
-                      AppColors.customColor2,
+                      AppColors.whiteColor
                     ],
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
@@ -980,7 +947,7 @@ class _AllRequestView_State extends State<AllRequestView_State> {
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         filled: true,
-                        fillColor: Colors.transparent,
+                        fillColor: Colors.white,
                       ),
                       items: [
                         DropdownMenuItem<String>(
@@ -1003,6 +970,7 @@ class _AllRequestView_State extends State<AllRequestView_State> {
                           );
                         }).toList(),
                       ],
+                      dropdownColor: Colors.white, // ✅ background color of dropdown menu
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.black,
@@ -1055,6 +1023,7 @@ class _AllRequestView_State extends State<AllRequestView_State> {
                             ),
                           );
                         }).toList(),
+                        dropdownColor: Colors.white, // ✅ background color of dropdown menu
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.black,
@@ -1252,60 +1221,6 @@ class _AllRequestView_State extends State<AllRequestView_State> {
                         child: _buildFileGrid()),
 
 
-                    /*Visibility(
-                      visible: is_photos_view_visible,
-                      child: Center(
-                        child: Column(
-                          children: [
-                            Stack(
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    _showPhotoDialog(context);
-                                  },
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.0),
-                                    child: Container(
-                                      width: 150.0,
-                                      height: 130.0,
-                                      decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                          image: _getImageBasedOnDocumentType(),
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            // Icon placed outside the stack
-                            if (documentType == 'documents')
-                              Align(
-                                alignment: Alignment.topRight,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(top: 10.0, right: 4.0),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      // Handle icon click event
-                                     print("hai");
-
-                                     _showPdfBottomSheet(context , _selectedImagePath);
-
-                                    },
-                                    child: Icon(
-                                      Icons.visibility,
-                                      color: Colors.red,
-                                      size: 40.0,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            SizedBox(width: 10.0),
-                          ],
-                        ),
-                      ),
-                    ),*/
 
                     BlocListener<RequestViewBloc, RequestViewState>(
                       listener: (context, state) {
@@ -1447,9 +1362,7 @@ class _AllRequestView_State extends State<AllRequestView_State> {
                         ),
                         child: Ink(
                           decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [AppColors.customColor2, AppColors.customColor1,],
-                            ),
+                            color: AppColors.themeColor, // ✅ use your theme color
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                           child: Container(
@@ -1457,7 +1370,7 @@ class _AllRequestView_State extends State<AllRequestView_State> {
                             alignment: Alignment.center,
                             child: Text(
                               'Submit',
-                              style: TextStyle(fontSize: 16.0, color: Colors.black),
+                              style: TextStyle(fontSize: 16.0, color: Colors.white),
                             ),
                           ),
                         ),
