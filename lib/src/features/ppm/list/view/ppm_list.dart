@@ -53,11 +53,7 @@ class _PPMListStateState extends State<PPMListState>
     parentItems_completed = [];
     parentItems_closed = [];
     parentItems_pendinglist = [];
-    // apiService.getPPMList().then((value) => {
-    //
-    //   print(value.parentItems[0].monthName)
-    //
-    // });
+
   }
 
   @override
@@ -70,6 +66,7 @@ class _PPMListStateState extends State<PPMListState>
           return true;
         },
         child: Scaffold(
+          backgroundColor: AppColors.whiteColor,
           appBar: AppBar(
             automaticallyImplyLeading: false,
             title: Row(
@@ -89,12 +86,12 @@ class _PPMListStateState extends State<PPMListState>
                     ),
                   ),
                 ),
-                Spacer(),
+           /*     Spacer(),
                 Image.asset(
                   'assets/images/ecms_logo.png',
                   width: 100,
                   height: 20,
-                ),
+                ),*/
                 Spacer(),
                 GestureDetector(
                   onTap: () {
@@ -111,18 +108,6 @@ class _PPMListStateState extends State<PPMListState>
               ],
             ),
             backgroundColor: Colors.transparent,
-            flexibleSpace: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    AppColors.customColor1,
-                    AppColors.customColor2,
-                  ],
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                ),
-              ),
-            ),
           ),
           body: BlocBuilder<PPMListBloc, PPMListMyState>(
             builder: (context, state) {
@@ -307,6 +292,7 @@ class _PPMListStateState extends State<PPMListState>
         final parentItem = parentItems[index];
 
         return Card(
+          color: AppColors.themeLightColor, // 👈 explicitly set background
           elevation: 2,
           margin: const EdgeInsets.all(8),
           child: ExpansionTile(

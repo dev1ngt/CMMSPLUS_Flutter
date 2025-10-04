@@ -92,6 +92,7 @@ class _ResetPasswordView extends State<ResetPasswordView> {
     return BlocProvider(
         create: (context) => resetPassBloc,
         child: Scaffold(
+          backgroundColor: AppColors.whiteColor,
           appBar: AppBar(
             automaticallyImplyLeading: false,
             title: Row(
@@ -114,13 +115,13 @@ class _ResetPasswordView extends State<ResetPasswordView> {
                     ),
                   ),
                 ),
-                Spacer(),
+              /*  Spacer(),
                 Image.asset(
                   'assets/images/ecms_logo.png',
                   // replace with your image path
                   width: 100,
                   height: 20,
-                ),
+                ),*/
                 Spacer(),
                 GestureDetector(
                   onTap: () {
@@ -139,7 +140,7 @@ class _ResetPasswordView extends State<ResetPasswordView> {
               ],
             ),
             backgroundColor: Colors.transparent,
-            flexibleSpace: Container(
+        /*    flexibleSpace: Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
@@ -150,7 +151,7 @@ class _ResetPasswordView extends State<ResetPasswordView> {
                   end: Alignment.centerRight,
                 ),
               ),
-            ),
+            ),*/
           ),
           body: BlocListener<ResetPassBloc, ResetPassState>(
             listener: (context, state) async {
@@ -382,12 +383,7 @@ class _ResetPasswordView extends State<ResetPasswordView> {
                                       ),
                                       child: Ink(
                                         decoration: BoxDecoration(
-                                          gradient: LinearGradient(
-                                            colors: [
-                                              AppColors.customColor2,
-                                              AppColors.customColor1,
-                                            ], // Replace with your gradient colors
-                                          ),
+                                          color: AppColors.themeColor,
                                           borderRadius:
                                               BorderRadius.circular(10.0),
                                         ),
@@ -400,7 +396,7 @@ class _ResetPasswordView extends State<ResetPasswordView> {
                                             'Submit',
                                             style: TextStyle(
                                                 fontSize: 14.0,
-                                                color: Colors.black),
+                                                color: Colors.white),
                                           ),
                                         ),
                                       ),
@@ -416,11 +412,11 @@ class _ResetPasswordView extends State<ResetPasswordView> {
               );
             }),
           ),
-          bottomNavigationBar: Image.asset(
+       /*   bottomNavigationBar: Image.asset(
             'assets/images/bottom_building.png',
             // Replace with your image path
             width: MediaQuery.of(context).size.width,
-          ),
+          ),*/
         ));
   }
 
@@ -484,30 +480,7 @@ class _ResetPasswordView extends State<ResetPasswordView> {
           confirm_password: _confirmPasswordController.text.toString(),
         ));
       }
-      /*if (!hasUppercase) {
-      Utils.showInSnackBar(
-          context,
-          "Password must contain at least one uppercase letter",
-          ToastType.Error);
-    }
-    if (!hasDigit) {
-      Utils.showInSnackBar(
-          context,
-          "Password must contain at least one digit",
-          ToastType.Error);
-    }
-    if (!hasSpecialChar) {
-      Utils.showInSnackBar(
-          context,
-          "Password must contain at least one special character (!@#\$&*~)",
-          ToastType.Error);
-    }
-    if (!hasMinLength) {
-      Utils.showInSnackBar(
-          context,
-          "Password must be at least 8 characters long",
-          ToastType.Error);
-    }*/
+
     }
   }
 }

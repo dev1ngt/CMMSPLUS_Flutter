@@ -111,7 +111,7 @@ class _RequestListWidgetContentState extends State<SearchCases> {
             ],
           ),
           backgroundColor: Colors.transparent,
-          flexibleSpace: Container(
+        /*  flexibleSpace: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [AppColors.whiteColor],
@@ -119,7 +119,7 @@ class _RequestListWidgetContentState extends State<SearchCases> {
                 end: Alignment.centerRight,
               ),
             ),
-          ),
+          ),*/
         ),
         body: Column(
           children: [

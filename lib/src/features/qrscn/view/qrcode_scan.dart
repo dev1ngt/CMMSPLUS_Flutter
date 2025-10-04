@@ -90,6 +90,7 @@ class _QRViewExampleState extends State<QRViewExample> {
           return true;
         },
         child: Scaffold(
+          backgroundColor: AppColors.whiteColor,
           appBar: AppBar(
             automaticallyImplyLeading: false,
             title: Row(
@@ -107,12 +108,12 @@ class _QRViewExampleState extends State<QRViewExample> {
                     ),
                   ),
                 ),
-                const Spacer(),
+             /*   const Spacer(),
                 Image.asset(
                   'assets/images/ecms_logo.png',
                   width: 100,
                   height: 20,
-                ),
+                ),*/
                 const Spacer(),
                 GestureDetector(
                   onTap: () => Navigator.pushNamed(context, '/dashboard'),
@@ -126,7 +127,7 @@ class _QRViewExampleState extends State<QRViewExample> {
               ],
             ),
             backgroundColor: Colors.transparent,
-            flexibleSpace: Container(
+         /*   flexibleSpace: Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [AppColors.customColor1,
@@ -135,7 +136,7 @@ class _QRViewExampleState extends State<QRViewExample> {
                   end: Alignment.centerRight,
                 ),
               ),
-            ),
+            ),*/
           ),
           body: Center(
             child: _isLoading
@@ -169,7 +170,20 @@ class _QRViewExampleState extends State<QRViewExample> {
                                     isTorchOn = !isTorchOn;  // toggle your local torch state
                                   });
                                 },
-                                child: Text(isTorchOn ? 'Flash: On' : 'Flash: Off'),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: AppColors.themeColor,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                    BorderRadius.circular(8.0),
+                                  ),
+                                  elevation: 0,
+                                ),
+                                child: Text(isTorchOn ? 'Flash: On' : 'Flash: Off', style: TextStyle(
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white,
+                                  letterSpacing: 0.5,
+                                ),),
                               ),
                             ),
                             Container(
@@ -179,7 +193,20 @@ class _QRViewExampleState extends State<QRViewExample> {
                                   await controller.switchCamera();
                                   setState(() {});
                                 },
-                                child: const Text('Flip Camera'),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: AppColors.themeColor,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                    BorderRadius.circular(8.0),
+                                  ),
+                                  elevation: 0,
+                                ),
+                                child: const Text('Flip Camera', style: TextStyle(
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white,
+                                  letterSpacing: 0.5,
+                                ),),
                               ),
                             ),
                           ],
@@ -254,8 +281,21 @@ class _QRViewExampleState extends State<QRViewExample> {
                                     );
                                   }
                                 },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: AppColors.themeColor,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                    BorderRadius.circular(8.0),
+                                  ),
+                                  elevation: 0,
+                                ),
                                 child: const Text('Submit',
-                                    style: TextStyle(fontSize: 20)),
+                                  style: TextStyle(
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white,
+                                    letterSpacing: 0.5,
+                                  ),),
                               ),
                             ),
                             Container(
@@ -267,8 +307,21 @@ class _QRViewExampleState extends State<QRViewExample> {
                                     result = null;
                                   });
                                 },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: AppColors.themeColor,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                    BorderRadius.circular(8.0),
+                                  ),
+                                  elevation: 0,
+                                ),
                                 child: const Text('Re Scan',
-                                    style: TextStyle(fontSize: 20)),
+                                  style: TextStyle(
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white,
+                                    letterSpacing: 0.5,
+                                  ),),
                               ),
                             ),
                           ],

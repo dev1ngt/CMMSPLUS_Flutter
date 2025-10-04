@@ -312,7 +312,7 @@ class _AllRequestListWidgetContentState
             ],
           ),
           backgroundColor: Colors.transparent,
-          flexibleSpace: Container(
+         /* flexibleSpace: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [AppColors.whiteColor],
@@ -320,7 +320,7 @@ class _AllRequestListWidgetContentState
                 end: Alignment.centerRight,
               ),
             ),
-          ),
+          ),*/
         ),
         body: Padding(
           padding: const EdgeInsets.all(10.0),

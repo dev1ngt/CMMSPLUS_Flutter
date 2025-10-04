@@ -7,6 +7,7 @@ class AppColors {
   static const Color textColor = Color(0xFF006BE6);
   static const Color lightblue = Color(0xFF7EB3EE);
   static const Color themeColor = Color(0xFF0A2647);
+  static const Color themeLightColor = Color(0xFFE2E3E6);
 
   static const Color customColor1 = Color(0xFFCBD4F4);
   static const Color customColor2 = Color(0xFFF7D9E3);

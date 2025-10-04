@@ -333,7 +333,20 @@ class _PPMDetailsStateState extends State<PPMDetailsState> {
                     }
                     Navigator.of(context).pop(); // Close the dialog
                   },
-                  child: Text('Camera'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.themeColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                      BorderRadius.circular(8.0),
+                    ),
+                    elevation: 0,
+                  ),
+                  child: Text('Camera', style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                    letterSpacing: 0.5,
+                  ),),
                 ),
                 SizedBox(height: 10.0),
                 ElevatedButton(
@@ -367,7 +380,20 @@ class _PPMDetailsStateState extends State<PPMDetailsState> {
                     }
                     Navigator.of(context).pop(); // Close the dialog
                   },
-                  child: Text('Gallery'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.themeColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                      BorderRadius.circular(8.0),
+                    ),
+                    elevation: 0,
+                  ),
+                  child: Text('Gallery', style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                    letterSpacing: 0.5,
+                  ),),
                 ),
                 SizedBox(height: 10.0),
                 ElevatedButton(
@@ -375,14 +401,40 @@ class _PPMDetailsStateState extends State<PPMDetailsState> {
                     _pickDocument1();
                     Navigator.of(context).pop(); // Close the dialog
                   },
-                  child: Text('Documents'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.themeColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                      BorderRadius.circular(8.0),
+                    ),
+                    elevation: 0,
+                  ),
+                  child: Text('Documents', style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                    letterSpacing: 0.5,
+                  ),),
                 ),
                 SizedBox(height: 10.0),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pop(); // Close the dialog
                   },
-                  child: Text('Cancel'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.themeColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                      BorderRadius.circular(8.0),
+                    ),
+                    elevation: 0,
+                  ),
+                  child: Text('Cancel', style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                    letterSpacing: 0.5,
+                  ),),
                 ),
               ],
             ),
@@ -490,6 +542,7 @@ class _PPMDetailsStateState extends State<PPMDetailsState> {
             return true;
           },
           child: Scaffold(
+            backgroundColor: AppColors.whiteColor,
             appBar: AppBar(
               automaticallyImplyLeading: false,
               title: Row(
@@ -516,12 +569,12 @@ class _PPMDetailsStateState extends State<PPMDetailsState> {
                       ),
                     ),
                   ),
-                  Spacer(),
+                 /* Spacer(),
                   Image.asset(
                     'assets/images/ecms_logo.png',
                     width: 100,
                     height: 20,
-                  ),
+                  ),*/
                   Spacer(),
                   GestureDetector(
                     onTap: () {
@@ -537,19 +590,8 @@ class _PPMDetailsStateState extends State<PPMDetailsState> {
                   ),
                 ],
               ),
-              backgroundColor: Colors.transparent,
-              flexibleSpace: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      AppColors.customColor1,
-                      AppColors.customColor2,
-                    ],
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                  ),
-                ),
-              ),
+              backgroundColor: Colors.white,
+
             ),
             body: SingleChildScrollView(
               child: Padding(
@@ -1795,12 +1837,7 @@ class _PPMDetailsStateState extends State<PPMDetailsState> {
                         ),
                         child: Ink(
                           decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                AppColors.customColor2,
-                                AppColors.customColor1,
-                              ], // Replace with your gradient colors
-                            ),
+                           color: AppColors.themeColor,
                             borderRadius: BorderRadius.circular(10.0),
                           ),
                           child: Container(
@@ -1810,7 +1847,7 @@ class _PPMDetailsStateState extends State<PPMDetailsState> {
                             child: Text(
                               isSubmitting ? 'Submitting...' : 'Submit',
                               style: TextStyle(
-                                  fontSize: 16.0, color: Colors.black),
+                                  fontSize: 16.0, color: Colors.white),
                             ),
                           ),
                         ),

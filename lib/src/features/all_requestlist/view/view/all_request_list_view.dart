@@ -485,7 +485,7 @@ class _AllRequestView_State extends State<AllRequestView_State> {
                 ],
               ),
               backgroundColor: Colors.white,
-              flexibleSpace: Container(
+             /* flexibleSpace: Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
@@ -495,7 +495,7 @@ class _AllRequestView_State extends State<AllRequestView_State> {
                     end: Alignment.centerRight,
                   ),
                 ),
-              ),
+              ),*/
             ),
             body: SingleChildScrollView(
               child: Padding(

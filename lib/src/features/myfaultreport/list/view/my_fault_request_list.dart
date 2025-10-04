@@ -128,15 +128,6 @@ class _MyFaultlistWidgetContentState extends State<MyFaultlistWidgetContent> {
             ],
           ),
           backgroundColor: Colors.white,
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [AppColors.whiteColor],
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-              ),
-            ),
-          ),
         ),
         body: Padding(
           padding: const EdgeInsets.all(10.0),

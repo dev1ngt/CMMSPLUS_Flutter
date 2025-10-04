@@ -365,17 +365,6 @@ class _MyFaultViewStateState extends State<MyFaultViewState> {
                 ],
               ),
               backgroundColor: Colors.transparent,
-              flexibleSpace: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      AppColors.whiteColor
-                    ],
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                  ),
-                ),
-              ),
             ),
             body: SingleChildScrollView(
               child: Padding(
@@ -1063,7 +1052,7 @@ class _MyFaultViewStateState extends State<MyFaultViewState> {
 
   Future<void> _imageFromCamera1() async {
     // Lock screen orientation to portrait when opening camera
-    await SystemChrome.setPreferredOrientations([
+   /* await SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
     ]);
@@ -1086,15 +1075,29 @@ class _MyFaultViewStateState extends State<MyFaultViewState> {
       File rotatedFile = await FlutterExifRotation.rotateImage(
         path: pickedFile.path,
       );
+*/
 
-      if (_canAddFile(rotatedFile)) {
+
+    final pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.camera,
+      imageQuality: 50,
+    );
+
+    if (pickedFile != null) {
+      final file = File(pickedFile.path);
+
+
+
+      if (_canAddFile(file)) {
         requestViewBloc.add(
           MyFaultUploadFileInProgressEvent(
-            rotatedFile,
-            path.basename(rotatedFile.path),
+            file,
+            path.basename(file.path),
           ),
         );
       }
+
+
     }
   }
 

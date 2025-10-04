@@ -254,9 +254,9 @@ class _NotificationListWidgetContentState
                       width: 25, height: 25, color: Colors.black),
                 ),
               ),
-              Spacer(),
+           /*   Spacer(),
               Image.asset('assets/images/ecms_logo.png',
-                  width: 100, height: 20),
+                  width: 100, height: 20),*/
               Spacer(),
               GestureDetector(
                 onTap: () => Navigator.pushNamed(context, '/dashboard'),
@@ -266,16 +266,6 @@ class _NotificationListWidgetContentState
             ],
           ),
           backgroundColor: Colors.transparent,
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [AppColors.customColor1,
-                  AppColors.customColor2,],
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-              ),
-            ),
-          ),
         ),
         body: MultiBlocListener(
           listeners: [
@@ -450,7 +440,7 @@ class _NotificationListWidgetContentState
                                       const EdgeInsets.symmetric(vertical: 10),
                                   decoration: BoxDecoration(
                                     color: selectedTabIndex == 0
-                                        ? const Color(0xFF5F6394)
+                                        ? const Color(0xFF0A2647)
                                         : Colors.grey.shade300,
                                     borderRadius: BorderRadius.circular(6),
                                   ),
@@ -485,7 +475,7 @@ class _NotificationListWidgetContentState
                                       const EdgeInsets.symmetric(vertical: 10),
                                   decoration: BoxDecoration(
                                     color: selectedTabIndex == 1
-                                        ? const Color(0xFF5F6394)
+                                        ? const Color(0xFF0A2647)
                                         : Colors.grey.shade300,
                                     borderRadius: BorderRadius.circular(6),
                                   ),
@@ -534,19 +524,7 @@ class _NotificationListWidgetContentState
                       right: 0,
                       child: Center(
                         child: Container(
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [AppColors.customColor2, AppColors.customColor1,],
-                            ),
-                            borderRadius: BorderRadius.circular(12),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black26,
-                                blurRadius: 4,
-                                offset: Offset(0, 2),
-                              ),
-                            ],
-                          ),
+
                           child: ElevatedButton.icon(
                             onPressed: () {
                               showDialog(
@@ -572,15 +550,19 @@ class _NotificationListWidgetContentState
                               );
                             },
                             icon: const Icon(Icons.clear_all, size: 18),
-                            label: const Text("Clear All"),
+                            label: const Text("Clear All" ,  style: TextStyle(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                              letterSpacing: 0.5,
+                            ),),
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.transparent,
-                              shadowColor: Colors.transparent,
-                              foregroundColor: Colors.black,
-                              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                              backgroundColor: AppColors.themeColor,
                               shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
+                                borderRadius:
+                                BorderRadius.circular(8.0),
                               ),
+                              elevation: 0,
                             ),
                           ),
                         ),

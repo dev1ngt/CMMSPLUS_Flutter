@@ -229,40 +229,50 @@ class _DashBoardState extends State<DashBoard> {
                                     ),
                                     Row(
                                       children: [
-                                        Stack(
-                                          children: [
-                                            Container(
-                                              padding: EdgeInsets.all(8),
-                                              decoration: BoxDecoration(
-                                                color: Colors.white
-                                                    .withOpacity(0.2),
-                                                shape: BoxShape.circle,
-                                              ),
-                                              child: Text(
-                                                notificationCount.toString(),
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 14,
+                                        GestureDetector(
+                                        onTap: () {
+                                        print("Notification icon clicked");
+                                        // Navigate or show a dialog here
+                                        Navigator.pushNamed(
+                                          context, "/notificationList",
+                                          // Add more parameters as needed
+                                        );
+                                        },
+                                          child: Stack(
+                                            children: [
+                                              Container(
+                                                padding: EdgeInsets.all(8),
+                                                decoration: BoxDecoration(
+                                                  color: Colors.white.withOpacity(0.2),
+                                                  shape: BoxShape.circle,
                                                 ),
-                                              ),
-                                            ),
-                                            if (notificationCount > 0)
-                                              Positioned(
-                                                right: 0,
-                                                top: 0,
-                                                child: Container(
-                                                  width: 8,
-                                                  height: 8,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.red,
-                                                    shape: BoxShape.circle,
+                                                child: Text(
+                                                  notificationCount.toString(),
+                                                  style: TextStyle(
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 14,
                                                   ),
                                                 ),
                                               ),
-                                          ],
+                                              if (notificationCount > 0)
+                                                Positioned(
+                                                  right: 0,
+                                                  top: 0,
+                                                  child: Container(
+                                                    width: 8,
+                                                    height: 8,
+                                                    decoration: BoxDecoration(
+                                                      color: Colors.red,
+                                                      shape: BoxShape.circle,
+                                                    ),
+                                                  ),
+                                                ),
+                                            ],
+                                          ),
                                         ),
-                                        SizedBox(width: 12),
+
+                      SizedBox(width: 12),
                                         GestureDetector(
                                           onTap: () {
                                             showDialog(

@@ -513,7 +513,7 @@ class _PPMDetailsStateState extends State<PPMDetailsState> {
                 ],
               ),
               backgroundColor: Colors.transparent,
-              flexibleSpace: Container(
+             /* flexibleSpace: Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
@@ -523,7 +523,7 @@ class _PPMDetailsStateState extends State<PPMDetailsState> {
                     end: Alignment.centerRight,
                   ),
                 ),
-              ),
+              ),*/
             ),
             body: SingleChildScrollView(
               child: Padding(

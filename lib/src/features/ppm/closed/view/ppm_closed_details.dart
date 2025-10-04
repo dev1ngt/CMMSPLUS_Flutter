@@ -293,6 +293,7 @@ class _PPMClosedDetailsState extends State<PPMClosedDetailsState> {
       context: context,
       builder: (BuildContext context) {
         return Dialog(
+          backgroundColor: AppColors.whiteColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16.0),
           ),
@@ -342,7 +343,20 @@ class _PPMClosedDetailsState extends State<PPMClosedDetailsState> {
                     }
                     Navigator.of(context).pop(); // Close the dialog
                   },
-                  child: Text('Camera'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.themeColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                      BorderRadius.circular(8.0),
+                    ),
+                    elevation: 0,
+                  ),
+                  child: Text('Camera', style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                    letterSpacing: 0.5,
+                  ),),
                 ),
                 SizedBox(height: 10.0),
                 ElevatedButton(
@@ -376,7 +390,20 @@ class _PPMClosedDetailsState extends State<PPMClosedDetailsState> {
                     }
                     Navigator.of(context).pop(); // Close the dialog
                   },
-                  child: Text('Gallery'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.themeColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                      BorderRadius.circular(8.0),
+                    ),
+                    elevation: 0,
+                  ),
+                  child: Text('Gallery', style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                    letterSpacing: 0.5,
+                  ),),
                 ),
                 SizedBox(height: 10.0),
                 ElevatedButton(
@@ -384,14 +411,40 @@ class _PPMClosedDetailsState extends State<PPMClosedDetailsState> {
                     _pickDocument1();
                     Navigator.of(context).pop(); // Close the dialog
                   },
-                  child: Text('Documents'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.themeColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                      BorderRadius.circular(8.0),
+                    ),
+                    elevation: 0,
+                  ),
+                  child: Text('Documents', style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                    letterSpacing: 0.5,
+                  ),),
                 ),
                 SizedBox(height: 10.0),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pop(); // Close the dialog
                   },
-                  child: Text('Cancel'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.themeColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                      BorderRadius.circular(8.0),
+                    ),
+                    elevation: 0,
+                  ),
+                  child: Text('Cancel', style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                    letterSpacing: 0.5,
+                  ),),
                 ),
               ],
             ),
@@ -504,6 +557,7 @@ class _PPMClosedDetailsState extends State<PPMClosedDetailsState> {
             return true;
           },
           child: Scaffold(
+            backgroundColor: AppColors.whiteColor,
             appBar: AppBar(
               automaticallyImplyLeading: false,
               title: Row(
@@ -530,12 +584,12 @@ class _PPMClosedDetailsState extends State<PPMClosedDetailsState> {
                       ),
                     ),
                   ),
-                  Spacer(),
-                  Image.asset(
-                    'assets/images/ecms_logo.png',
-                    width: 100,
-                    height: 20,
-                  ),
+                  // Spacer(),
+                  // Image.asset(
+                  //   'assets/images/ecms_logo.png',
+                  //   width: 100,
+                  //   height: 20,
+                  // ),
                   Spacer(),
                   GestureDetector(
                     onTap: () {
@@ -553,7 +607,7 @@ class _PPMClosedDetailsState extends State<PPMClosedDetailsState> {
               ),
               backgroundColor: Colors.transparent,
               flexibleSpace: Container(
-                decoration: BoxDecoration(
+                /*decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
                       AppColors.customColor1,
@@ -562,7 +616,7 @@ class _PPMClosedDetailsState extends State<PPMClosedDetailsState> {
                     begin: Alignment.centerLeft,
                     end: Alignment.centerRight,
                   ),
-                ),
+                ),*/
               ),
             ),
 

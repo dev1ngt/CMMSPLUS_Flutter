@@ -314,7 +314,7 @@ class _RequestListWidgetContentState extends State<RequestListWidgetContent> {
             ],
           ),
           backgroundColor: Colors.white,
-          flexibleSpace: Container(
+          /*flexibleSpace: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [AppColors.whiteColor],
@@ -322,7 +322,7 @@ class _RequestListWidgetContentState extends State<RequestListWidgetContent> {
                 end: Alignment.centerRight,
               ),
             ),
-          ),
+          ),*/
         ),
           body: Padding(
             padding: const EdgeInsets.all(10.0),
