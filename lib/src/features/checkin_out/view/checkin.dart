@@ -47,33 +47,6 @@ class _CheckInViewState extends State<CheckInView> {
     }
   }
 
- /* Future<void> _getLocationPermission() async {
-    PermissionStatus foregroundStatus =
-        await Permission.locationWhenInUse.request();
-
-    if (foregroundStatus.isGranted) {
-      print("Foreground location permission granted.");
-
-      PermissionStatus backgroundStatus =
-          await Permission.locationAlways.request();
-
-      if (backgroundStatus.isGranted) {
-        print("Background location permission granted.");
-      } else if (backgroundStatus.isPermanentlyDenied) {
-        print("Background location permission permanently denied.");
-        // Navigate the user to app settings
-        openAppSettings();
-      } else {
-        print("Background location permission denied.");
-      }
-    } else if (foregroundStatus.isPermanentlyDenied) {
-      print("Foreground location permission permanently denied.");
-      // Navigate the user to app settings
-      openAppSettings();
-    } else {
-      print("Foreground location permission denied.");
-    }
-  }*/
 
   Future<void> _loadCheckInStatus() async {
     final prefs = await SharedPreferences.getInstance();
@@ -93,6 +66,7 @@ class _CheckInViewState extends State<CheckInView> {
         return true;
       },
       child: Scaffold(
+        backgroundColor: AppColors.whiteColor,
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: Row(
@@ -114,12 +88,12 @@ class _CheckInViewState extends State<CheckInView> {
                   ),
                 ),
               ),
-              Spacer(),
+             /* Spacer(),
               Image.asset(
                 'assets/images/ecms_logo.png', // replace with your image path
                 width: 100,
                 height: 20,
-              ),
+              ),*/
               Spacer(),
               GestureDetector(
                 onTap: () {
@@ -135,16 +109,6 @@ class _CheckInViewState extends State<CheckInView> {
             ],
           ),
           backgroundColor: Colors.transparent,
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [AppColors.customColor1,
-                  AppColors.customColor2,],
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-              ),
-            ),
-          ),
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -190,13 +154,8 @@ class _CheckInViewState extends State<CheckInView> {
                             ),
                             child: Ink(
                               decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: [
-                                    AppColors.customColor2,
-                                    AppColors.customColor1,
-                                  ], // Replace with your gradient colors
-                                ),
-                                borderRadius: BorderRadius.circular(10.0),
+                                color: AppColors.themeColor,
+                                borderRadius: BorderRadius.circular(10.0), // ✅ apply here
                               ),
                               child: Container(
                                 constraints: BoxConstraints(
@@ -205,11 +164,16 @@ class _CheckInViewState extends State<CheckInView> {
                                 child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      Icon(Icons.exit_to_app),
+                                      Icon(Icons.exit_to_app, color: AppColors.whiteColor,),
                                       SizedBox(width: 8),
                                       Text(checkInFlag
                                           ? 'Checked In'
-                                          : 'Check In'),
+                                          : 'Check In',   style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.white,
+                                        letterSpacing: 0.5,
+                                      ),),
                                     ]),
                               ),
                             ),
@@ -221,20 +185,14 @@ class _CheckInViewState extends State<CheckInView> {
                             },
                             style: ElevatedButton.styleFrom(
                               padding: EdgeInsets.zero,
-                              // Remove padding to allow the Container to take the entire button space
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10.0),
                               ),
                             ),
                             child: Ink(
                               decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: [
-                                    AppColors.customColor2,
-                                    AppColors.customColor1,
-                                  ], // Replace with your gradient colors
-                                ),
-                                borderRadius: BorderRadius.circular(10.0),
+                                color: AppColors.themeColor,
+                                borderRadius: BorderRadius.circular(10.0), // ✅ apply here
                               ),
                               child: Container(
                                 constraints: BoxConstraints(
@@ -243,50 +201,19 @@ class _CheckInViewState extends State<CheckInView> {
                                 child: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      Icon(Icons.book),
+                                      Icon(Icons.book  , color: AppColors.whiteColor,),
                                       SizedBox(width: 8),
-                                      Text('Reports'),
+                                      Text('Reports',   style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.white,
+                                        letterSpacing: 0.5,
+                                      ),),
                                     ]),
                               ),
                             ),
                           ),
-                          /*gapH20,
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.pushNamed(context, '/latLong');
-                              //Navigator.pushNamed(context, '/displayCheckIn');
-                            },
-                            style: ElevatedButton.styleFrom(
-                              padding: EdgeInsets.zero,
-                              // Remove padding to allow the Container to take the entire button space
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                            ),
-                            child: Ink(
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: [
-                                    customColor2,
-                                    customColor1
-                                  ], // Replace with your gradient colors
-                                ),
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              child: Container(
-                                constraints: BoxConstraints(
-                                    maxWidth: 250.0, minHeight: 45.0),
-                                alignment: Alignment.center,
-                                child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Icon(Icons.exit_to_app),
-                                      SizedBox(width: 8),
-                                      Text('Lat Long'),
-                                    ]),
-                              ),
-                            ),
-                          ),*/
+
                         ],
                       ),
                     ),
@@ -294,35 +221,6 @@ class _CheckInViewState extends State<CheckInView> {
                 ),
               ),
               Spacer(),
-              /*Container(
-                padding: const EdgeInsets.all(8.0),
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade200,
-                  borderRadius: BorderRadius.circular(15),
-                  border: Border.all(color: Colors.red.shade300),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.info,
-                      color: Colors.red.shade300,
-                    ),
-                    gapW8,
-                    Expanded(
-                      child: Text(
-                        'After check-in, location must always be on and battery consumption will '
-                        'be more. So have enough charge before check-in.',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.black87, // Text color
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),*/
             ],
           ),
         ),

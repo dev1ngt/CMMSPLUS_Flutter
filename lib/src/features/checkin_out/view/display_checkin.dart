@@ -85,6 +85,7 @@ class _DisplayCheckinState extends State<DisplayCheckin> {
         return true;
       },
       child: Scaffold(
+        backgroundColor: AppColors.whiteColor,
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: Row(
@@ -107,12 +108,12 @@ class _DisplayCheckinState extends State<DisplayCheckin> {
                 ),
               ),
               Spacer(),
-              Image.asset(
+             /* Image.asset(
                 'assets/images/ecms_logo.png', // replace with your image path
                 width: 100,
                 height: 20,
               ),
-              Spacer(),
+              Spacer(),*/
               GestureDetector(
                 onTap: () {
                   Navigator.pushNamed(context, '/dashboard');
@@ -127,7 +128,7 @@ class _DisplayCheckinState extends State<DisplayCheckin> {
             ],
           ),
           backgroundColor: Colors.transparent,
-          flexibleSpace: Container(
+         /* flexibleSpace: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [AppColors.customColor1,
@@ -137,7 +138,7 @@ class _DisplayCheckinState extends State<DisplayCheckin> {
                 end: Alignment.centerRight,
               ),
             ),
-          ),
+          ),*/
         ),
         body: BlocBuilder<LocationBloc, LocationState>(
           builder: (context, state) {
@@ -216,24 +217,6 @@ class _DisplayCheckinState extends State<DisplayCheckin> {
                               : () async {
                                   _checkInApiCall(context);
                                 },
-                          /* onPressed: state.checkInFlag!
-                              ? null // Disable button if the user has already checked in
-                              : () async {
-                                  if (state is LocationInRadiusState) {
-                                    BlocProvider.of<LocationBloc>(context)
-                                        .add(CheckInEvent());
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                          content: Text("Check In Successful")),
-                                    );
-                                  } else {
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                          content: Text(
-                                              "You are not within the radius.")),
-                                    );
-                                  }
-                                },*/
                           style: ElevatedButton.styleFrom(
                             padding: EdgeInsets.zero,
                             // Remove padding to allow the Container to take the entire button space
@@ -243,13 +226,8 @@ class _DisplayCheckinState extends State<DisplayCheckin> {
                           ),
                           child: Ink(
                             decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  AppColors.customColor2,
-                                  AppColors.customColor1,
-                                ], // Replace with your gradient colors
-                              ),
-                              borderRadius: BorderRadius.circular(10.0),
+                              color: AppColors.themeColor,
+                              borderRadius: BorderRadius.circular(10.0), // ✅ apply here
                             ),
                             child: Container(
                               constraints: BoxConstraints(
@@ -258,11 +236,16 @@ class _DisplayCheckinState extends State<DisplayCheckin> {
                               child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Icon(Icons.exit_to_app),
+                                    Icon(Icons.exit_to_app , color: AppColors.whiteColor,),
                                     SizedBox(width: 8),
                                     Text(checkInFlag
                                         ? 'Checked In'
-                                        : 'Check In'),
+                                        : 'Check In',  style: TextStyle(
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white,
+                                      letterSpacing: 0.5,
+                                    ),),
                                   ]),
                             ),
                           ),

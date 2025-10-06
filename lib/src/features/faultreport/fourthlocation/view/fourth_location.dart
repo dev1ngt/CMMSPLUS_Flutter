@@ -115,6 +115,7 @@ class _FRFourthLocation extends State<FRFourthLocationStf> {
     return BlocProvider(
       create: (context) => frFourthLocationBloc,
       child: Scaffold(
+        backgroundColor: AppColors.whiteColor,
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: Row(
@@ -134,12 +135,12 @@ class _FRFourthLocation extends State<FRFourthLocationStf> {
                   ),
                 ),
               ),
-              Spacer(),
+             /* Spacer(),
               Image.asset(
                 'assets/images/ecms_logo.png',
                 width: 100,
                 height: 20,
-              ),
+              ),*/
               Spacer(),
               GestureDetector(
                 onTap: () {
@@ -157,18 +158,6 @@ class _FRFourthLocation extends State<FRFourthLocationStf> {
             ],
           ),
           backgroundColor: Colors.transparent,
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  AppColors.customColor1,
-                  AppColors.customColor2,
-                ],
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-              ),
-            ),
-          ),
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -411,13 +400,8 @@ class _FRFourthLocation extends State<FRFourthLocationStf> {
                       ),
                       child: Ink(
                         decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              AppColors.customColor2,
-                              AppColors.customColor1,
-                            ], // Replace with your gradient colors
-                          ),
-                          borderRadius: BorderRadius.circular(20.0),
+                          color: AppColors.themeColor,
+                          borderRadius: BorderRadius.circular(20.0), // ✅ apply corner here
                         ),
                         child: Container(
                           constraints:
@@ -426,7 +410,7 @@ class _FRFourthLocation extends State<FRFourthLocationStf> {
                           child: Text(
                             'Back',
                             style:
-                            TextStyle(fontSize: 14.0, color: Colors.black),
+                            TextStyle(fontSize: 14.0, color: Colors.white),
                           ),
                         ),
                       ),

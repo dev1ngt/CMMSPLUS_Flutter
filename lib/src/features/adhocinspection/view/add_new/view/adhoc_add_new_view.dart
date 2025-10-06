@@ -169,17 +169,6 @@ class _PurchaseRequestScreen extends State<PurchaseRequestScreen> {
           ],
         ),
         backgroundColor: Colors.transparent,
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                AppColors.whiteColor
-              ],
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-            ),
-          ),
-        ),
       ),
       body: SingleChildScrollView(
         child: Padding(

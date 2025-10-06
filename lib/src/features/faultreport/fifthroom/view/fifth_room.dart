@@ -135,8 +135,10 @@ class _FRFifthRoom extends State<FRFifthRoomStf> {
     return BlocProvider(
       create: (context) => frFifthRoomBloc,
       child: Scaffold(
+        backgroundColor: AppColors.whiteColor,
         appBar: AppBar(
           automaticallyImplyLeading: false,
+
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -155,12 +157,12 @@ class _FRFifthRoom extends State<FRFifthRoomStf> {
                 ),
               ),
               Spacer(),
-              Image.asset(
+             /* Image.asset(
                 'assets/images/ecms_logo.png',
                 width: 100,
                 height: 20,
               ),
-              Spacer(),
+              Spacer(),*/
               GestureDetector(
                 onTap: () {
                   // Handle your onClick event here
@@ -177,18 +179,6 @@ class _FRFifthRoom extends State<FRFifthRoomStf> {
             ],
           ),
           backgroundColor: Colors.transparent,
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  AppColors.customColor1,
-                  AppColors.customColor2,
-                ],
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-              ),
-            ),
-          ),
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -428,13 +418,8 @@ class _FRFifthRoom extends State<FRFifthRoomStf> {
                       ),
                       child: Ink(
                         decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              AppColors.customColor2,
-                              AppColors.customColor1,
-                            ], // Replace with your gradient colors
-                          ),
-                          borderRadius: BorderRadius.circular(20.0),
+                          color: AppColors.themeColor,
+                          borderRadius: BorderRadius.circular(20.0), // ✅ apply corner here
                         ),
                         child: Container(
                           constraints:
@@ -443,7 +428,7 @@ class _FRFifthRoom extends State<FRFifthRoomStf> {
                           child: Text(
                             'Back',
                             style:
-                            TextStyle(fontSize: 14.0, color: Colors.black),
+                            TextStyle(fontSize: 14.0, color: Colors.white),
                           ),
                         ),
                       ),

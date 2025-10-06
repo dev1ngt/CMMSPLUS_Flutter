@@ -112,6 +112,7 @@ class _FRThirdRemarksStf extends State<FRThirdRemarksStf> {
           return true;
         },
         child: Scaffold(
+          backgroundColor: AppColors.whiteColor,
           appBar: AppBar(
             automaticallyImplyLeading: false,
             title: Row(
@@ -131,12 +132,12 @@ class _FRThirdRemarksStf extends State<FRThirdRemarksStf> {
                     ),
                   ),
                 ),
-                Spacer(),
+             /*   Spacer(),
                 Image.asset(
                   'assets/images/ecms_logo.png',
                   width: 100,
                   height: 20,
-                ),
+                ),*/
                 Spacer(),
                 GestureDetector(
                   onTap: () {
@@ -154,7 +155,7 @@ class _FRThirdRemarksStf extends State<FRThirdRemarksStf> {
               ],
             ),
             backgroundColor: Colors.transparent,
-            flexibleSpace: Container(
+            /*flexibleSpace: Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
@@ -165,7 +166,7 @@ class _FRThirdRemarksStf extends State<FRThirdRemarksStf> {
                   end: Alignment.centerRight,
                 ),
               ),
-            ),
+            ),*/
           ),
           body: BlocListener<RemarksBloc, RemarksState>(
             listener: (context, state) async {
@@ -332,13 +333,8 @@ class _FRThirdRemarksStf extends State<FRThirdRemarksStf> {
                                       ),
                                       child: Ink(
                                         decoration: BoxDecoration(
-                                          gradient: LinearGradient(
-                                            colors: [
-                                              AppColors.customColor2,
-                                              AppColors.customColor1,
-                                            ], // Replace with your gradient colors
-                                          ),
-                                          borderRadius: BorderRadius.circular(20.0),
+                                          color: AppColors.themeColor,
+                                          borderRadius: BorderRadius.circular(20.0), // ✅ apply corner here
                                         ),
                                         child: Container(
                                           constraints: BoxConstraints(
@@ -348,7 +344,7 @@ class _FRThirdRemarksStf extends State<FRThirdRemarksStf> {
                                             'Back',
                                             style: TextStyle(
                                                 fontSize: 14.0,
-                                                color: Colors.black),
+                                                color: Colors.white),
                                           ),
                                         ),
                                       ),
@@ -391,13 +387,8 @@ class _FRThirdRemarksStf extends State<FRThirdRemarksStf> {
                                       ),
                                       child: Ink(
                                         decoration: BoxDecoration(
-                                          gradient: LinearGradient(
-                                            colors: [
-                                              AppColors.customColor2,
-                                              AppColors.customColor1,
-                                            ], // Replace with your gradient colors
-                                          ),
-                                          borderRadius: BorderRadius.circular(20.0),
+                                          color: AppColors.themeColor,
+                                          borderRadius: BorderRadius.circular(20.0), // ✅ apply corner here
                                         ),
                                         child: Container(
                                           constraints: BoxConstraints(
@@ -407,7 +398,7 @@ class _FRThirdRemarksStf extends State<FRThirdRemarksStf> {
                                             'Next',
                                             style: TextStyle(
                                                 fontSize: 14.0,
-                                                color: Colors.black),
+                                                color: Colors.white),
                                           ),
                                         ),
                                       ),

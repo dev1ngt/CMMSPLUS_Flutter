@@ -146,6 +146,7 @@ class _FRFirstMenuStf extends State<FRFirstMenuStf> {
     return BlocProvider(
       create: (context) => firstMenuBloc,
       child: Scaffold(
+        backgroundColor: AppColors.whiteColor,
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: Row(
@@ -168,12 +169,12 @@ class _FRFirstMenuStf extends State<FRFirstMenuStf> {
                   ),
                 ),
               ),
-              Spacer(),
+            /*  Spacer(),
               Image.asset(
                 'assets/images/ecms_logo.png',
                 width: 100,
                 height: 20,
-              ),
+              ),*/
               Spacer(),
               GestureDetector(
                 onTap: () {
@@ -191,7 +192,7 @@ class _FRFirstMenuStf extends State<FRFirstMenuStf> {
             ],
           ),
           backgroundColor: Colors.transparent,
-          flexibleSpace: Container(
+         /* flexibleSpace: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
@@ -202,7 +203,7 @@ class _FRFirstMenuStf extends State<FRFirstMenuStf> {
                 end: Alignment.centerRight,
               ),
             ),
-          ),
+          ),*/
         ),
         body: SingleChildScrollView(
           child: Padding(

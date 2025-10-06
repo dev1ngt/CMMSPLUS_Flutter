@@ -123,6 +123,7 @@ class _ReportScreenState extends State<ReportScreen> {
           return true;
         },
         child: Scaffold(
+          backgroundColor: AppColors.whiteColor,
           appBar: AppBar(
             automaticallyImplyLeading: false,
             title: Row(
@@ -144,12 +145,12 @@ class _ReportScreenState extends State<ReportScreen> {
                     ),
                   ),
                 ),
-                Spacer(),
+                /*Spacer(),
                 Image.asset(
                   'assets/images/ecms_logo.png', // replace with your image path
                   width: 100,
                   height: 20,
-                ),
+                ),*/
                 Spacer(),
                 GestureDetector(
                   onTap: () {
@@ -165,16 +166,7 @@ class _ReportScreenState extends State<ReportScreen> {
               ],
             ),
             backgroundColor: Colors.transparent,
-            flexibleSpace: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [AppColors.customColor1,
-                    AppColors.customColor2,],
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                ),
-              ),
-            ),
+
           ),
           body: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -556,10 +548,8 @@ class _MonthPickerDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color customColor1 = Color(0xFFCBD4F4);
-    Color customColor2 = Color(0xFFF7D9E3);
-
     return Dialog(
+      backgroundColor: AppColors.whiteColor,
       child: Container(
         height: 360,
         padding: EdgeInsets.all(16),
@@ -647,6 +637,7 @@ class _YearPickerDialogState extends State<_YearPickerDialog> {
     Color customColor2 = Color(0xFFF7D9E3);
 
     return Dialog(
+      backgroundColor: AppColors.whiteColor,
       child: Container(
         height: 350,
         padding: EdgeInsets.all(16),

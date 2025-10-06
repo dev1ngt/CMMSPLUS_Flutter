@@ -120,6 +120,7 @@ class _SubtypeViewStf extends State<SubtypeViewStf> {
     return BlocProvider(
       create: (context) => subtypeBloc,
       child: Scaffold(
+        backgroundColor: AppColors.whiteColor,
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: Row(
@@ -139,12 +140,7 @@ class _SubtypeViewStf extends State<SubtypeViewStf> {
                   ),
                 ),
               ),
-              Spacer(),
-              Image.asset(
-                'assets/images/ecms_logo.png',
-                width: 100,
-                height: 20,
-              ),
+
               Spacer(),
               GestureDetector(
                 onTap: () {
@@ -162,18 +158,6 @@ class _SubtypeViewStf extends State<SubtypeViewStf> {
             ],
           ),
           backgroundColor: Colors.transparent,
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  AppColors.customColor1,
-                  AppColors.customColor2,
-                ],
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-              ),
-            ),
-          ),
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -399,14 +383,11 @@ class _SubtypeViewStf extends State<SubtypeViewStf> {
                 ),
 
                 Padding(
-                  padding: EdgeInsets.only(
-                      right: 10.0), // Adjust the right padding as needed
+                  padding: EdgeInsets.only(right: 10.0),
                   child: Align(
                     alignment: Alignment.centerRight,
                     child: ElevatedButton(
                       onPressed: () {
-                        // Add your button's onPressed logic here
-
                         Navigator.pop(context);
                       },
                       style: ElevatedButton.styleFrom(
@@ -417,28 +398,22 @@ class _SubtypeViewStf extends State<SubtypeViewStf> {
                       ),
                       child: Ink(
                         decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              AppColors.customColor2,
-                              AppColors.customColor1,
-                            ], // Replace with your gradient colors
-                          ),
-                          borderRadius: BorderRadius.circular(20.0),
+                          color: AppColors.themeColor,
+                          borderRadius: BorderRadius.circular(20.0), // ✅ apply corner here
                         ),
                         child: Container(
-                          constraints:
-                          BoxConstraints(maxWidth: 150.0, minHeight: 45.0),
+                          constraints: BoxConstraints(maxWidth: 150.0, minHeight: 45.0),
                           alignment: Alignment.center,
                           child: Text(
                             'Back',
-                            style:
-                            TextStyle(fontSize: 14.0, color: Colors.black),
+                            style: TextStyle(fontSize: 14.0, color: Colors.white),
                           ),
                         ),
                       ),
                     ),
                   ),
                 )
+
               ],
             ),
           ),
