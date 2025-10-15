@@ -95,8 +95,8 @@ class DotPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final gradient = RadialGradient(
       colors: [
-        Color(0xFFF7D9E3),
-        Color(0xFFCBD4F4),
+        Color(0xFFE9EDF8),
+        Color(0xFF0A2647),
       ],
     );
     final paint = Paint()..shader = gradient.createShader(Rect.fromCircle(center: Offset(size.width / 2, size.height / 2), radius: size.width / 2));

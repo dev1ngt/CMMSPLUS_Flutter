@@ -388,46 +388,112 @@ class _LoginScreenState extends State<Login> {
 
   void _showDialog(BuildContext context) {
     TextEditingController _emailController = TextEditingController();
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Forgot Password'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text('Please enter your email to reset your password:'),
-              TextField(
-                controller: _emailController,
-                decoration: InputDecoration(labelText: 'Email'),
-              ),
-            ],
+        return Dialog(
+          backgroundColor: Colors.white, // White background for the dialog
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16.0),
           ),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () {
-                String email = _emailController.text;
-                if (email.isNotEmpty) {
-                  Navigator.of(context).pop();
-                  loginBloc.add(ForgotPasswordClickEvent(email: email));
-                } else {
-                  Utils.showInSnackBar(
-                      context, "Enter the mail address", ToastType.Error);
-                }
-              },
-              child: Text('Reset Password'),
+          elevation: 8.0,
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16.0),
             ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('Cancel'),
+            elevation: 4.0,
+            child: Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    Icons.lock_reset,
+                    color: AppColors.themeColor,
+                    size: 48.0,
+                  ),
+                  SizedBox(height: 16.0),
+                  Text(
+                    'Forgot Password',
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 8.0),
+                  Text(
+                    'Enter your email to reset your password:',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      color: Colors.grey[700],
+                    ),
+                  ),
+                  SizedBox(height: 16.0),
+                  TextField(
+                    controller: _emailController,
+                    decoration: InputDecoration(
+                      labelText: 'Email',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      prefixIcon: Icon(Icons.email),
+                    ),
+                    keyboardType: TextInputType.emailAddress,
+                  ),
+                  SizedBox(height: 24.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.themeColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius:
+                            BorderRadius.circular(8.0),
+                          ),
+                          elevation: 0,
+                        ),
+                        child: Text('Cancel' ,   style: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.white),),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          String email = _emailController.text.trim();
+                          if (email.isNotEmpty) {
+                            Navigator.of(context).pop();
+                            loginBloc.add(ForgotPasswordClickEvent(email: email));
+                          } else {
+                            Utils.showInSnackBar(
+                                context, "Enter the email address", ToastType.Error);
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blueAccent,
+                          foregroundColor: Colors.white,
+                          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        ),
+                        child: Text('Reset Password'),
+                      ),
+                    ],
+                  )
+                ],
+              ),
             ),
-          ],
+          ),
         );
       },
     );
   }
+
 
   Future<void> handleLoginState(LoginState state) async {
     if (state is LoginSuccessState) {

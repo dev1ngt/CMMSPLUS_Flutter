@@ -327,6 +327,14 @@ class _FRSubmitStf extends State<FRSubmitStf> {
                 ),
                 SizedBox(height: 10.0),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.themeColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                      BorderRadius.circular(8.0),
+                    ),
+                    elevation: 0,
+                  ),
                   onPressed: () async {
                     // Check camera permission
                     var status = await Permission.camera.status;
@@ -357,10 +365,18 @@ class _FRSubmitStf extends State<FRSubmitStf> {
                     }
                     Navigator.of(context).pop(); // Close the dialog
                   },
-                  child: Text('Camera'),
+                  child: Text('Camera',style: TextStyle(fontSize: 16.0, color: Colors.white),),
                 ),
                 SizedBox(height: 10.0),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.themeColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                      BorderRadius.circular(8.0),
+                    ),
+                    elevation: 0,
+                  ),
                   onPressed: () async {
                     // Check camera permission
                     var status = await Permission.camera.status;
@@ -391,22 +407,38 @@ class _FRSubmitStf extends State<FRSubmitStf> {
                     }
                     Navigator.of(context).pop(); // Close the dialog
                   },
-                  child: Text('Gallery'),
+                  child: Text('Gallery',style: TextStyle(fontSize: 16.0, color: Colors.white),),
                 ),
                 SizedBox(height: 10.0),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.themeColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                      BorderRadius.circular(8.0),
+                    ),
+                    elevation: 0,
+                  ),
                   onPressed: () {
                     _pickDocument1();
                     Navigator.of(context).pop(); // Close the dialog
                   },
-                  child: Text('Documents'),
+                  child: Text('Documents',style: TextStyle(fontSize: 16.0, color: Colors.white),),
                 ),
                 SizedBox(height: 10.0),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.themeColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                      BorderRadius.circular(8.0),
+                    ),
+                    elevation: 0,
+                  ),
                   onPressed: () {
                     Navigator.of(context).pop(); // Close the dialog
                   },
-                  child: Text('Cancel'),
+                  child: Text('Cancel',style: TextStyle(fontSize: 16.0, color: Colors.white),),
                 ),
               ],
             ),
@@ -426,6 +458,7 @@ class _FRSubmitStf extends State<FRSubmitStf> {
           return true;
         },
         child: Scaffold(
+          backgroundColor: AppColors.whiteColor,
           appBar: AppBar(
             automaticallyImplyLeading: false,
             title: Row(
@@ -445,12 +478,12 @@ class _FRSubmitStf extends State<FRSubmitStf> {
                     ),
                   ),
                 ),
-                Spacer(),
+               /* Spacer(),
                 Image.asset(
                   'assets/images/ecms_logo.png',
                   width: 100,
                   height: 20,
-                ),
+                ),*/
                 Spacer(),
                 GestureDetector(
                   onTap: () {
@@ -468,7 +501,7 @@ class _FRSubmitStf extends State<FRSubmitStf> {
               ],
             ),
             backgroundColor: Colors.transparent,
-            flexibleSpace: Container(
+         /*   flexibleSpace: Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
@@ -479,7 +512,7 @@ class _FRSubmitStf extends State<FRSubmitStf> {
                   end: Alignment.centerRight,
                 ),
               ),
-            ),
+            ),*/
           ),
           body: SingleChildScrollView(
             child: Padding(
@@ -957,12 +990,7 @@ class _FRSubmitStf extends State<FRSubmitStf> {
                             ),
                             child: Ink(
                               decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: [
-                                    AppColors.customColor2,
-                                    AppColors.customColor1,
-                                  ],
-                                ),
+                                color: AppColors.themeColor,
                                 borderRadius: BorderRadius.circular(20.0),
                               ),
                               child: Container(
@@ -972,7 +1000,7 @@ class _FRSubmitStf extends State<FRSubmitStf> {
                                 child: Text(
                                   'Back',
                                   style: TextStyle(
-                                      fontSize: 14.0, color: Colors.black),
+                                      fontSize: 14.0, color: Colors.white),
                                 ),
                               ),
                             ),
@@ -1041,15 +1069,7 @@ class _FRSubmitStf extends State<FRSubmitStf> {
                               ),
                               child: Ink(
                                 decoration: BoxDecoration(
-                                  gradient: isSubmitting
-                                      ? null
-                                      : LinearGradient(
-                                    colors: [
-                                    AppColors.customColor2,
-                                    AppColors.customColor1,
-                                    ],
-                                  ),
-                                  color: isSubmitting ? AppColors.customColor1 : null,
+                                  color: AppColors.themeColor,
                                   borderRadius: BorderRadius.circular(20.0),
                                 ),
                                 child: Container(
@@ -1058,7 +1078,7 @@ class _FRSubmitStf extends State<FRSubmitStf> {
                                   padding: EdgeInsets.symmetric(horizontal: 12.0), // Add padding inside
                                   child: Text(
                                     'Submit',
-                                    style: TextStyle(fontSize: 14.0, color: Colors.black),
+                                    style: TextStyle(fontSize: 14.0, color: Colors.white),
                                   ),
                                 ),
                               ),

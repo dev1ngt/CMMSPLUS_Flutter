@@ -278,68 +278,78 @@ class _DashBoardState extends State<DashBoard> {
                                             showDialog(
                                               context: context,
                                               builder: (BuildContext context) {
-                                                return AlertDialog(
-                                                  content: Card(
-                                                    shape:
-                                                    RoundedRectangleBorder(
-                                                      borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.0),
+                                                return Dialog(
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius.circular(16.0),
+                                                  ),
+                                                  elevation: 8.0,
+                                                  backgroundColor: Colors.transparent, // Makes the rounded corners visible
+                                                  child: Card(
+                                                    shape: RoundedRectangleBorder(
+                                                      borderRadius: BorderRadius.circular(16.0),
                                                     ),
                                                     elevation: 4.0,
-                                                    child: Container(
-                                                      padding:
-                                                      EdgeInsets.all(16.0),
+                                                    child: Padding(
+                                                      padding: const EdgeInsets.all(24.0),
                                                       child: Column(
-                                                        mainAxisSize:
-                                                        MainAxisSize.min,
+                                                        mainAxisSize: MainAxisSize.min,
                                                         children: [
+                                                          Icon(
+                                                            Icons.logout,
+                                                            color: AppColors.themeColor,
+                                                            size: 48.0,
+                                                          ),
+                                                          SizedBox(height: 16.0),
                                                           Text(
-                                                            'Confirmation',
+                                                            'Logout',
                                                             style: TextStyle(
-                                                              fontSize: 18.0,
-                                                              fontWeight:
-                                                              FontWeight
-                                                                  .bold,
+                                                              fontSize: 20.0,
+                                                              fontWeight: FontWeight.bold,
                                                             ),
                                                           ),
                                                           SizedBox(height: 8.0),
                                                           Text(
-                                                            'Do you want to exit?',
+                                                            'Are you sure you want to exit?',
+                                                            textAlign: TextAlign.center,
                                                             style: TextStyle(
-                                                                fontSize: 16.0),
-                                                            textAlign: TextAlign
-                                                                .center,
+                                                              fontSize: 16.0,
+                                                              color: Colors.grey[700],
+                                                            ),
                                                           ),
-                                                          SizedBox(
-                                                              height: 16.0),
+                                                          SizedBox(height: 24.0),
                                                           Row(
-                                                            mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
+                                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                             children: [
                                                               ElevatedButton(
                                                                 onPressed: () {
-                                                                  Navigator.of(
-                                                                      context)
-                                                                      .pop();
+                                                                  Navigator.of(context).pop();
                                                                 },
-                                                                child:
-                                                                Text('No'),
+                                                                style: ElevatedButton.styleFrom(
+                                                                  backgroundColor: Colors.grey[300],
+                                                                  foregroundColor: Colors.black,
+                                                                  padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+                                                                  shape: RoundedRectangleBorder(
+                                                                    borderRadius: BorderRadius.circular(8.0),
+                                                                  ),
+                                                                ),
+                                                                child: Text('No'),
                                                               ),
-                                                              SizedBox(
-                                                                  width: 16.0),
                                                               ElevatedButton(
-                                                                onPressed:
-                                                                    () async {
-                                                                  dashboardBloc.add(
-                                                                      LogoutEvent());
+                                                                onPressed: () {
+                                                                  dashboardBloc.add(LogoutEvent());
                                                                 },
-                                                                child:
-                                                                Text('Yes'),
+                                                                style: ElevatedButton.styleFrom(
+                                                                  backgroundColor: AppColors.themeColor,
+                                                                  foregroundColor: Colors.white,
+                                                                  padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+                                                                  shape: RoundedRectangleBorder(
+                                                                    borderRadius: BorderRadius.circular(8.0),
+                                                                  ),
+                                                                ),
+                                                                child: Text('Yes'),
                                                               ),
                                                             ],
-                                                          ),
+                                                          )
                                                         ],
                                                       ),
                                                     ),
@@ -347,6 +357,7 @@ class _DashBoardState extends State<DashBoard> {
                                                 );
                                               },
                                             );
+
                                           },
                                           child: Icon(
                                             Icons.menu,
