@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:math';
 
 import 'package:cmms/src/api/api_service.dart';
 import 'package:cmms/src/api/firebase_api.dart';
@@ -52,6 +53,7 @@ import 'package:cmms/src/fm/features/login/view/login.dart';
 import 'package:cmms/src/helpers/utils/app_shared_preference.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -99,7 +101,19 @@ void main() async {
     print('Skipping notification setup: $e');
   }
 
+  // ✅ Enable full-screen (edge-to-edge) drawing for the whole app
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
 
+  // ✅ Optionally set transparent system bars
+  SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        systemNavigationBarColor: Colors.transparent,
+        systemNavigationBarDividerColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.light,
+        systemNavigationBarIconBrightness: Brightness.light,
+      ),
+   );
 
   // Initialize Foreground Task for location tracking in background
   FlutterForegroundTask.init(
@@ -143,6 +157,18 @@ class MyApp extends StatelessWidget {
       },
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        theme: ThemeData.light(),
+        builder: (context, child) {
+          // ✅ Apply SafeArea padding globally to all screens
+          final systemBottom = MediaQuery.of(context).padding.bottom;
+          const double defaultBottom = 0.0; // Your default bottom padding
+          return Padding(
+            padding: EdgeInsets.only(
+              bottom: 10,
+            ),
+            child: child ?? const SizedBox.shrink(),
+          );
+        },
         navigatorKey: navigatorKey,
         initialRoute: '/',
         routes: {
@@ -315,6 +341,7 @@ class _SplashScreenState extends State<SplashScreen> {
         }
 
         return Scaffold(
+          extendBodyBehindAppBar: true, // ✅ Make sure background covers full screen
           body: Stack(
             children: [
               // Background Image

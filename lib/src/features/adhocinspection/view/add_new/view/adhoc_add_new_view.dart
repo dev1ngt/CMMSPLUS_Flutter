@@ -582,7 +582,10 @@ class _PurchaseRequestScreen extends State<PurchaseRequestScreen> {
                       Utils.showInSnackBar(context,
                           state.adhocInspectionSubmitModel.message, ToastType.Success);
 
-                      Navigator.pushNamed(context, '/adhocScreen');
+                      Navigator.pushNamed(
+                        context,
+                        '/dashboard',
+                      );
                     }
 
 

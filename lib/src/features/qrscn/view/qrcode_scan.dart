@@ -244,7 +244,16 @@ class _QRViewExampleState extends State<QRViewExample> {
                                         'WebView': webviewPath,
                                       },
                                     );
-                                  } else if (navigation ==
+                                  }
+                                  else if (navigation ==
+                                      "MyCases") {
+                                    Navigator.pop(context, {
+                                      'QRResult': result?.rawValue,
+                                      'WebView': webviewPath,
+                                    });
+
+                                  }
+                                  else if (navigation ==
                                       "PPMCompletedDetails") {
                                     Navigator.pop(context, {
                                       'QRResult': result!.rawValue,
