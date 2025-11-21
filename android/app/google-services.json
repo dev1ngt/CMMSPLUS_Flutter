@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "834510859154",
-    "project_id": "cmms-plus",
-    "storage_bucket": "cmms-plus.firebasestorage.app"
+    "project_number": "823803657732",
+    "project_id": "cmms-plus-d1ef4",
+    "storage_bucket": "cmms-plus-d1ef4.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:834510859154:android:764b3a0822e854848f2f4b",
+        "mobilesdk_app_id": "1:823803657732:android:105e1303cf47b8eb307f51",
         "android_client_info": {
           "package_name": "com.newgen.cmmsplus"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDWAC-jGcZbdYMQRHYcR8fF-BSbPVvEDoQ"
+          "current_key": "AIzaSyD7AJnk2wWlLBTkBPknuDwexT4X45LNb-g"
         }
       ],
       "services": {

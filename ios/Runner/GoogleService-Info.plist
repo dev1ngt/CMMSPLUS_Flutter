@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyACR2vb0RU3f_jHAe66m2hcwFwFV0jdAt0</string>
+	<string>AIzaSyABebt3x-47h9lk_7t-38kWFsbgEGGpYZo</string>
 	<key>GCM_SENDER_ID</key>
-	<string>834510859154</string>
+	<string>823803657732</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.newgen.cmmsplus</string>
 	<key>PROJECT_ID</key>
-	<string>cmms-plus</string>
+	<string>cmms-plus-d1ef4</string>
 	<key>STORAGE_BUCKET</key>
-	<string>cmms-plus.firebasestorage.app</string>
+	<string>cmms-plus-d1ef4.firebasestorage.app</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:834510859154:ios:0688ca7e21632d2f8f2f4b</string>
+	<string>1:823803657732:ios:1f1e66bc8743d733307f51</string>
 </dict>
 </plist>

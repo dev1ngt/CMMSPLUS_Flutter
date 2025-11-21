@@ -172,8 +172,16 @@ class _DashBoardState extends State<DashBoard> {
 
                   AppSharedPrefs.get().setUsername("");
 
-                  Navigator.of(context)
-                      .pushNamedAndRemoveUntil('/login', (route) => false);
+                  // Navigator.of(context)
+                  //     .pushNamedAndRemoveUntil('/login', (route) => false);
+
+                  Future.microtask(() {
+                    if (context.mounted) {
+                      Navigator.of(context)
+                          .pushNamedAndRemoveUntil('/login', (route) => false);
+                    }
+                  });
+
                 }
               } else if (state is LogoutErrorState) {
                 Utils.showInSnackBar(

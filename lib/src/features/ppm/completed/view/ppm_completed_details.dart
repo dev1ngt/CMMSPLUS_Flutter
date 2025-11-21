@@ -474,7 +474,7 @@ class _PPMDCompletedetailsStateState extends State<PPMCompletedDetailsState> {
       }*/
 
       if (args.containsKey('WebView')) {
-        webview_path = args['WebView'];
+       // webview_path = args['WebView'];
       }
 
       if (args.containsKey('PPMID') && !_multiassetsApiCalled) {

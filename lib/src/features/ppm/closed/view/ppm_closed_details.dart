@@ -520,7 +520,7 @@ class _PPMClosedDetailsState extends State<PPMClosedDetailsState> {
 
     if(args != null && args.containsKey("WebView")){
       final String webview = args['WebView'] as String;
-      webview_path = webview;
+     // webview_path = webview;
     }
 
     // if (args != null && args.containsKey("Vendor")) {
@@ -641,6 +641,8 @@ class _PPMClosedDetailsState extends State<PPMClosedDetailsState> {
                             uploadedFiles.addAll(state.ppmViewModel.data?.multipleImage ?? []);
                             _maxFiles = state.ppmViewModel.data!.maxFile ?? 0;
                             webview_path = state.ppmViewModel.data!.webViewUrl;
+                            print(webview_path);
+
                           });
                         } else if (state is PPMDetailsErrorState) {
                           Utils.showInSnackBar(
