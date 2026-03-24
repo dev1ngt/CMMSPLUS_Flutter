@@ -1,4 +1,3 @@
-
 import 'dart:math';
 
 import 'package:cmms/src/helpers/utils/appcolors.dart';
@@ -21,13 +20,15 @@ import '../bloc/adhoc_add_new_view_state.dart';
 import '../model/adhoc_add_new_asset_model.dart';
 import '../model/adhoc_add_new_space_floor_model.dart';
 import '../model/adhoc_addnew_view_model.dart';
+
 class AdhocAddNewView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider<AdhocAddNewViewBloc>(
-          create: (context) => AdhocAddNewViewBloc(RepositoryProvider.of<ApiService>(context)),
+          create: (context) =>
+              AdhocAddNewViewBloc(RepositoryProvider.of<ApiService>(context)),
         ),
       ],
       child: PurchaseRequestScreen(),
@@ -41,7 +42,6 @@ class PurchaseRequestScreen extends StatefulWidget {
 }
 
 class _PurchaseRequestScreen extends State<PurchaseRequestScreen> {
-
   late AdhocAddNewViewBloc addNewViewBloc;
   bool isDataLoading = true;
   String? regionName = "";
@@ -54,14 +54,15 @@ class _PurchaseRequestScreen extends State<PurchaseRequestScreen> {
 
   final TextEditingController _inspectorController = TextEditingController();
   final TextEditingController _occupantController = TextEditingController();
-  final TextEditingController _locationBlockController = TextEditingController();
+  final TextEditingController _locationBlockController =
+      TextEditingController();
 
   bool showRegionField = false;
   String? selectedPropertyName = "";
   String? selectedSpaceFloorName = "";
   String? selectedInspectionClassName = "";
   String? selectedAssetName = "";
-  String webUrl = "", myToken = "" ,username = "";
+  String webUrl = "", myToken = "", username = "";
 
   String token = "";
   int? selectedPropertyID = 0;
@@ -70,7 +71,7 @@ class _PurchaseRequestScreen extends State<PurchaseRequestScreen> {
   int? selectedAssetID = 0;
 
   late InAppWebViewController _controller;
-  bool isWebViewVisible = false;
+  bool isWebViewVisible = true;
 
   @override
   void initState() {
@@ -93,7 +94,6 @@ class _PurchaseRequestScreen extends State<PurchaseRequestScreen> {
     token = await AppSharedPrefs.getAccessToken();
     setState(() {
       _inspectorController.text = username;
-
     });
   }
 
@@ -107,18 +107,20 @@ class _PurchaseRequestScreen extends State<PurchaseRequestScreen> {
   }
 
   String generateCode(int length) {
-    const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    const characters =
+        'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     Random random = Random();
     // Generate a random string of the specified length
-    String code = List.generate(length, (index) => characters[random.nextInt(characters.length)]).join();
+    String code = List.generate(
+            length, (index) => characters[random.nextInt(characters.length)])
+        .join();
     return code;
   }
 
   // Method to refresh the WebView when the URL is updated
   void _refreshWebView() {
-    _controller.loadUrl(urlRequest: URLRequest(
-        url: WebUri.uri(Uri.parse(webUrl))));
-
+    _controller.loadUrl(
+        urlRequest: URLRequest(url: WebUri.uri(Uri.parse(webUrl))));
   }
 
   final Set<Factory<OneSequenceGestureRecognizer>> gestureRecognizers = {
@@ -148,7 +150,7 @@ class _PurchaseRequestScreen extends State<PurchaseRequestScreen> {
                 ),
               ),
             ),
-          /*  Spacer(),
+            /*  Spacer(),
             Image.asset(
               'assets/images/ecms_logo.png',
               width: 100,
@@ -200,8 +202,10 @@ class _PurchaseRequestScreen extends State<PurchaseRequestScreen> {
 
                     // Step 3: Do heavy processing
                     propertyList = state.addNewViewResponseModel.propertyList;
-                    spaceFloorList = state.addNewViewResponseModel.spaceFloorList;
-                    insepctionClassList = state.addNewViewResponseModel.inspectionClassList;
+                    spaceFloorList =
+                        state.addNewViewResponseModel.spaceFloorList;
+                    insepctionClassList =
+                        state.addNewViewResponseModel.inspectionClassList;
                     //assetList = state.addNewViewResponseModel.assetList;
 
                     // Step 4: Hide loader after work is done
@@ -209,28 +213,31 @@ class _PurchaseRequestScreen extends State<PurchaseRequestScreen> {
                       isDataLoading = false;
                     });
                   } else if (state is AdhocAddNewViewErrorState) {
-                    Utils.showInSnackBar(context, state.errorMessage, ToastType.Warning);
+                    Utils.showInSnackBar(
+                        context, state.errorMessage, ToastType.Warning);
                   }
                 },
                 child: BlocBuilder<AdhocAddNewViewBloc, AdhocAddNewViewState>(
                     builder: (context, state) {
-                      if (state is AdhocAddNewViewLoadingState || isDataLoading) {
-                        return Center(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              CircularProgressIndicator(),
-                              SizedBox(height: 16), // spacing between loader and text
-                              Text(
-                                "Please wait a moment...",
-                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w300),
-                              ),
-                            ],
+                  if (state is AdhocAddNewViewLoadingState || isDataLoading) {
+                    return Center(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          CircularProgressIndicator(),
+                          SizedBox(
+                              height: 16), // spacing between loader and text
+                          Text(
+                            "Please wait a moment...",
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.w300),
                           ),
-                        );
-                      }
-                      return Container();
-                    }),
+                        ],
+                      ),
+                    );
+                  }
+                  return Container();
+                }),
               ),
               SizedBox(height: 10),
               if (showRegionField) ...[
@@ -261,8 +268,10 @@ class _PurchaseRequestScreen extends State<PurchaseRequestScreen> {
                   onChanged: (property) {
                     selectedPropertyName = property?.propertyName;
                     selectedPropertyID = property?.id;
-                    addNewViewBloc.add(AdhocAddNewSpaceFloorFilterEvent(selectedPropertyID!));
-                    addNewViewBloc.add(AdhocAddNewAssetFilterEvent(selectedPropertyID!));
+                    addNewViewBloc.add(
+                        AdhocAddNewSpaceFloorFilterEvent(selectedPropertyID!));
+                    addNewViewBloc
+                        .add(AdhocAddNewAssetFilterEvent(selectedPropertyID!));
                     showRegionField = property != null;
                   },
                 ),
@@ -283,7 +292,7 @@ class _PurchaseRequestScreen extends State<PurchaseRequestScreen> {
                             state.addNewSpaceFloorModel.levelList;
                         spaceFloorList = spaceFloorFilterlist
                             .map((e) =>
-                            SpaceFloor(id: e.id, levelName: e.levelName))
+                                SpaceFloor(id: e.id, levelName: e.levelName))
                             .toSet()
                             .toList(); // Ensure unique items
 
@@ -300,40 +309,40 @@ class _PurchaseRequestScreen extends State<PurchaseRequestScreen> {
                         selectedSpaceFloorName = null;
                       }
                     });
-                  }  else if (state is AdhocAddNewSpaceFloorErrorState) {
-                    Utils.showInSnackBar(context, state.errorMessage, ToastType.Warning);
+                  } else if (state is AdhocAddNewSpaceFloorErrorState) {
+                    Utils.showInSnackBar(
+                        context, state.errorMessage, ToastType.Warning);
                   }
                 },
                 child: BlocBuilder<AdhocAddNewViewBloc, AdhocAddNewViewState>(
                     builder: (context, state) {
-                      if (state is AdhocAddNewSpaceFloorLoadingState) {
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-                      return Container();
-                    }),
+                  if (state is AdhocAddNewSpaceFloorLoadingState) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  return Container();
+                }),
               ),
 
-
               UniformInputFieldRow(
-                child:  DropdownField<SpaceFloor>(
+                child: DropdownField<SpaceFloor>(
                   icon: Icons.flood_rounded,
                   hint: 'Space / Floor *',
                   items: spaceFloorList,
                   displayValue: (spaceFloor) => spaceFloor.levelName,
                   value: spaceFloorList
-                      .firstWhere(
-                        (item) => item.id == selectedSpaceFloorID,
-                    orElse: () => SpaceFloor(
-                        id: -1, levelName: ''), // Dummy object
-                  )
-                      .id !=
-                      -1
+                              .firstWhere(
+                                (item) => item.id == selectedSpaceFloorID,
+                                orElse: () => SpaceFloor(
+                                    id: -1, levelName: ''), // Dummy object
+                              )
+                              .id !=
+                          -1
                       ? spaceFloorList.firstWhere(
-                        (item) => item.id == selectedSpaceFloorID,
-                    orElse: () => SpaceFloor(id: -1, levelName: ''),
-                  )
+                          (item) => item.id == selectedSpaceFloorID,
+                          orElse: () => SpaceFloor(id: -1, levelName: ''),
+                        )
                       : null,
                   // Ensure null if no valid match
                   onChanged: (spaceFloor) {
@@ -349,25 +358,26 @@ class _PurchaseRequestScreen extends State<PurchaseRequestScreen> {
                 listener: (context, state) async {
                   if (state is AdhocAddNewWebViewLoadedState) {
                     setState(() {
-                      webUrl = state.adhocInspectionWebViewResponseModel.inspectionClassData.webViewUrl;
+                      webUrl = state.adhocInspectionWebViewResponseModel
+                          .inspectionClassData.webViewUrl;
                       print(webUrl);
                     });
 
                     _refreshWebView();
-
                   } else if (state is AdhocAddNewWebViewErrorState) {
-                    Utils.showInSnackBar(context, state.errorMessage, ToastType.Warning);
+                    Utils.showInSnackBar(
+                        context, state.errorMessage, ToastType.Warning);
                   }
                 },
                 child: BlocBuilder<AdhocAddNewViewBloc, AdhocAddNewViewState>(
                     builder: (context, state) {
-                      if (state is AdhocAddNewWebViewLoadingState) {
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-                      return Container();
-                    }),
+                  if (state is AdhocAddNewWebViewLoadingState) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  return Container();
+                }),
               ),
 
               UniformInputFieldRow(
@@ -375,13 +385,15 @@ class _PurchaseRequestScreen extends State<PurchaseRequestScreen> {
                   icon: Icons.work,
                   hint: 'Inspection Class *',
                   items: insepctionClassList,
-                  displayValue: (inspectionClass) => inspectionClass.templateTitle,
+                  displayValue: (inspectionClass) =>
+                      inspectionClass.templateTitle,
                   onChanged: (inspectionClass) {
-                    selectedInspectionClassName = inspectionClass?.templateTitle;
+                    selectedInspectionClassName =
+                        inspectionClass?.templateTitle;
                     selectedInspectionClassID = inspectionClass?.id;
                     myToken = generateCode(20);
-                    addNewViewBloc.add(AdhocAddNewWebViewEvent(selectedInspectionClassID! ,myToken));
-
+                    addNewViewBloc.add(AdhocAddNewWebViewEvent(
+                        selectedInspectionClassID!, myToken));
                   },
                 ),
               ),
@@ -426,8 +438,6 @@ class _PurchaseRequestScreen extends State<PurchaseRequestScreen> {
 
               SizedBox(height: 10),
 
-
-
               UniformInputFieldRow(
                 child: Row(
                   children: [
@@ -446,7 +456,6 @@ class _PurchaseRequestScreen extends State<PurchaseRequestScreen> {
                 ),
               ),
 
-
               // Asset  APIs Response
               BlocListener<AdhocAddNewViewBloc, AdhocAddNewViewState>(
                 listener: (context, state) async {
@@ -459,7 +468,7 @@ class _PurchaseRequestScreen extends State<PurchaseRequestScreen> {
                           List.from(state.addNewAssetModel.assetList);
                       assetList = assetFilterList
                           .map((e) =>
-                          AdhocAsset(id: e.id, assetName: e.assetName))
+                              AdhocAsset(id: e.id, assetName: e.assetName))
                           .toSet()
                           .toList(); // Ensure unique items
 
@@ -476,66 +485,67 @@ class _PurchaseRequestScreen extends State<PurchaseRequestScreen> {
                       }
                     });
                   } else if (state is AdhocAddNewAssetErrorState) {
-                    Utils.showInSnackBar(context, state.errorMessage, ToastType.Warning);
+                    Utils.showInSnackBar(
+                        context, state.errorMessage, ToastType.Warning);
                   }
                 },
                 child: BlocBuilder<AdhocAddNewViewBloc, AdhocAddNewViewState>(
                     builder: (context, state) {
-                      if (state is AdhocAddNewAssetLoadingState) {
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-                      return Container();
-                    }),
+                  if (state is AdhocAddNewAssetLoadingState) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  return Container();
+                }),
               ),
-
-
 
               SizedBox(height: 10),
 
               UniformInputFieldRow(
                 child: DropdownField<AdhocAsset>(
-
                   icon: Icons.web_asset,
                   hint: 'Asset',
                   items: assetList,
                   displayValue: (asset) => asset.assetName,
                   // assuming ContractType has a name property
                   value: assetList
-                      .firstWhere(
-                        (item) => item.id == selectedAssetID,
-                    orElse: () => AdhocAsset(
-                        id: -1, assetName: ''), // Dummy object
-                  )
-                      .id !=
-                      -1
+                              .firstWhere(
+                                (item) => item.id == selectedAssetID,
+                                orElse: () => AdhocAsset(
+                                    id: -1, assetName: ''), // Dummy object
+                              )
+                              .id !=
+                          -1
                       ? assetList.firstWhere(
-                        (item) => item.id == selectedAssetID,
-                    // Fix: Corrected ID reference
-                    orElse: () => AdhocAsset(id: -1, assetName: ''),
-                  )
+                          (item) => item.id == selectedAssetID,
+                          // Fix: Corrected ID reference
+                          orElse: () => AdhocAsset(id: -1, assetName: ''),
+                        )
                       : null,
                   // Ensure null if no valid match
                   onChanged: (asset) {
                     selectedAssetName = asset?.assetName;
                     selectedAssetID = asset?.id;
                     // Handle the selected contract type
-                  },),
+                  },
+                ),
               ),
               SizedBox(height: 10),
-
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Inspection:', style: TextStyle(fontSize: 19, color: Colors.black)),
+                  Text('Inspection:',
+                      style: TextStyle(fontSize: 19, color: Colors.black)),
                   IconButton(
-                    icon: isWebViewVisible ? Icon(Icons.keyboard_arrow_up) : Icon(Icons.keyboard_arrow_down),
+                    icon: isWebViewVisible
+                        ? Icon(Icons.keyboard_arrow_up)
+                        : Icon(Icons.keyboard_arrow_down),
                     onPressed: () {
-
                       setState(() {
-                        isWebViewVisible = !isWebViewVisible; // Toggle visibility
+                        isWebViewVisible =
+                            !isWebViewVisible; // Toggle visibility
                       });
 
                       // Handle inspection expand
@@ -544,9 +554,8 @@ class _PurchaseRequestScreen extends State<PurchaseRequestScreen> {
                 ],
               ),
 
-              Visibility(
-                visible: isWebViewVisible,
-
+              Offstage(
+                offstage: isWebViewVisible,
                 child: Container(
                   width: double.infinity, // Take full width
                   height: 500, // Set a fixed height for the WebView
@@ -563,49 +572,46 @@ class _PurchaseRequestScreen extends State<PurchaseRequestScreen> {
                     },
                     gestureRecognizers: gestureRecognizers,
                   ),
-                ),),
+                ),
+              ),
 
               SizedBox(height: 10),
-
 
               // Submit  APIs Response
               BlocListener<AdhocAddNewViewBloc, AdhocAddNewViewState>(
                 listener: (context, state) async {
                   if (state is AdhocAddNewSubmitLoadedState) {
-
-                    if(state.adhocInspectionSubmitModel.isError){
-                      Utils.showInSnackBar(context,
-                          state.adhocInspectionSubmitModel.message, ToastType.Error);
-
-                    }
-                    else {
-                      Utils.showInSnackBar(context,
-                          state.adhocInspectionSubmitModel.message, ToastType.Success);
+                    if (state.adhocInspectionSubmitModel.isError) {
+                      Utils.showInSnackBar(
+                          context,
+                          state.adhocInspectionSubmitModel.message,
+                          ToastType.Error);
+                    } else {
+                      Utils.showInSnackBar(
+                          context,
+                          state.adhocInspectionSubmitModel.message,
+                          ToastType.Success);
 
                       Navigator.pushNamed(
                         context,
                         '/dashboard',
                       );
                     }
-
-
-
-
                   } else if (state is AdhocAddNewSubmitErrorState) {
-                    Utils.showInSnackBar(context, state.errorMessage, ToastType.Warning);
+                    Utils.showInSnackBar(
+                        context, state.errorMessage, ToastType.Warning);
                   }
                 },
                 child: BlocBuilder<AdhocAddNewViewBloc, AdhocAddNewViewState>(
                     builder: (context, state) {
-                      if (state is AdhocAddNewSubmitLoadingState) {
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      }
-                      return Container();
-                    }),
+                  if (state is AdhocAddNewSubmitLoadingState) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  return Container();
+                }),
               ),
-
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -614,38 +620,32 @@ class _PurchaseRequestScreen extends State<PurchaseRequestScreen> {
                     onPressed: () {
                       print("ok");
 
-                      if(selectedInspectionClassName!.isEmpty){
+                      if (selectedInspectionClassName!.isEmpty) {
                         print("select an inspection class");
                         Utils.showInSnackBar(context,
                             "Select an inspection class", ToastType.Warning);
-
-
-                      }
-                      else if(selectedSpaceFloorName!.isEmpty){
+                      } else if (selectedSpaceFloorName!.isEmpty) {
                         print("select an space/floor class");
-                        Utils.showInSnackBar(context,
-                            "Select an space/floor ", ToastType.Warning);
-
-
-
-                      }
-                      else if(selectedPropertyName!.isEmpty){
+                        Utils.showInSnackBar(context, "Select an space/floor ",
+                            ToastType.Warning);
+                      } else if (selectedPropertyName!.isEmpty) {
                         print("select an property name class");
                         Utils.showInSnackBar(context,
                             "Select an property name ", ToastType.Warning);
-
-                      }
-                      else if(_inspectorController.text.isEmpty){
+                      } else if (_inspectorController.text.isEmpty) {
                         print("Inspector name needed");
-                        Utils.showInSnackBar(context,
-                            "Inspector name needed ", ToastType.Warning);
+                        Utils.showInSnackBar(context, "Inspector name needed ",
+                            ToastType.Warning);
+                      } else {
+                        addNewViewBloc.add(AdhocAddNewSubmitEvent(
+                            selectedInspectionClassID!,
+                            myToken,
+                            selectedPropertyID!,
+                            selectedSpaceFloorID!,
+                            selectedAssetID!,
+                            _occupantController.text,
+                            _locationBlockController.text));
                       }
-                      else {
-
-                        addNewViewBloc.add(AdhocAddNewSubmitEvent(selectedInspectionClassID! , myToken , selectedPropertyID!, selectedSpaceFloorID!, selectedAssetID! , _occupantController.text , _locationBlockController.text ));
-
-                      }
-
                     },
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets.zero,
@@ -659,23 +659,18 @@ class _PurchaseRequestScreen extends State<PurchaseRequestScreen> {
                         borderRadius: BorderRadius.circular(10.0),
                       ),
                       child: Container(
-                        constraints: BoxConstraints(
-                            maxWidth: 150.0,
-                            minHeight: 45.0),
+                        constraints:
+                            BoxConstraints(maxWidth: 150.0, minHeight: 45.0),
                         alignment: Alignment.center,
                         child: Text(
                           'Submit',
-                          style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.white),
+                          style: TextStyle(fontSize: 14.0, color: Colors.white),
                         ),
                       ),
                     ),
                   ),
                 ],
               )
-
-
             ],
           ),
         ),
@@ -700,6 +695,7 @@ class UniformInputFieldRow extends StatelessWidget {
     );
   }
 }
+
 class DropdownField<T> extends StatelessWidget {
   final IconData icon;
   final List<T> items;
@@ -736,12 +732,12 @@ class DropdownField<T> extends StatelessWidget {
             ),
             items: items
                 .map((item) => DropdownMenuItem<T>(
-              value: item,
-              child: Text(
-                displayValue(item),
-                overflow: TextOverflow.ellipsis,
-              ),
-            ))
+                      value: item,
+                      child: Text(
+                        displayValue(item),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ))
                 .toList(),
             onChanged: onChanged,
           ),
@@ -750,6 +746,3 @@ class DropdownField<T> extends StatelessWidget {
     );
   }
 }
-
-
-
