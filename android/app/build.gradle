@@ -15,12 +15,12 @@ if (localPropertiesFile.exists()) {
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    flutterVersionCode = '25'
+    flutterVersionCode = '1'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
-    flutterVersionName = '1.1'
+    flutterVersionName = '1.0.1'
 }
 
 def keystoreProperties = new Properties()
@@ -32,11 +32,15 @@ if (keystorePropertiesFile.exists()) {
 android {
     // namespace "com.elegant.test.cmms"
     namespace "com.newgen.cmmsplus"
-    compileSdkVersion flutter.compileSdkVersion
-    ndkVersion flutter.ndkVersion
-    compileSdkVersion 35
+    compileSdkVersion 36
+    ndkVersion "27.1.12297006"
+    compileSdkVersion 36
 
     compileOptions {
+
+        // ✅ Add this line
+        coreLibraryDesugaringEnabled true
+
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -56,11 +60,21 @@ android {
 
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion 23
+        minSdkVersion 24
         targetSdkVersion 35
         multiDexEnabled true
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+
+        // ✅ Add this for native builds (safe even if unused)
+        ndk {
+            debugSymbolLevel = "FULL"
+            //noinspection ChromeOsAbiSupport
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
+        }
+
+        // ✅ Optional BuildConfig flag
+        buildConfigField "boolean", "SUPPORT_16KB_PAGE", "true"
     }
     signingConfigs {
         release {
@@ -78,6 +92,23 @@ android {
             signingConfig signingConfigs.release
         }
     }
+
+    // ✅ Remve arguments usage (not supported in AGP 8+)
+    // ✅ Keep this only if your project actually has native C/C++ code and a CMakeLists.txt
+    externalNativeBuild {
+        cmake {
+            // Don’t use arguments here; handled automatically by NDK 29+
+            // If you need to enable flexible page sizes, set it in CMakeLists.txt:
+            // set(ANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES ON)
+        }
+    }
+    lint {
+        abortOnError false
+    }
+
+    buildFeatures {
+        buildConfig true
+    }
 }
 
 flutter {
@@ -87,7 +118,8 @@ flutter {
 dependencies {
     // Import the Firebase BoM
     implementation platform('com.google.firebase:firebase-bom:32.8.1')
-
+    // ✅ Add this line
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.2'
     // TODO: Add the dependencies for Firebase products you want to use
     // When using the BoM, don't specify versions in Firebase dependencies
     implementation 'com.google.firebase:firebase-analytics'

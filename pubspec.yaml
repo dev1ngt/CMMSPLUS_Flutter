@@ -1,7 +1,7 @@
 name: cmms
 description: "A new cmms flutter app."
 publish_to: "none"
-version: 1.0.27
+version: 1.0.1
 
 environment:
   sdk: ">=3.2.6 <4.0.0"
@@ -20,9 +20,9 @@ dependencies:
   geolocator: ^11.0.0
   permission_handler: ^11.3.0
   intl: ^0.17.0
-  camera: ^0.10.5+8
+  camera: ^0.11.0
   image_picker: ^1.0.7
-  mobile_scanner: ^6.0.0
+  mobile_scanner: ^6.0.10
   signature: ^5.4.1
   path_provider: ^2.1.2
   flutter_exif_rotation: ^0.5.2
@@ -56,6 +56,7 @@ flutter_icons:
   android: true
   ios: true
   image_path: "assets/images/launcher.png"
+  remove_alpha_ios: true
   min_sdk_android: 21 # android min sdk min:16, default 21
   web:
     generate: true
