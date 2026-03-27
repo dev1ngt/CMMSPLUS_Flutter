@@ -101,19 +101,6 @@ void main() async {
     print('Skipping notification setup: $e');
   }
 
-  // ✅ Enable full-screen (edge-to-edge) drawing for the whole app
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-
-  // ✅ Optionally set transparent system bars
-  SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-        systemNavigationBarColor: Colors.transparent,
-        systemNavigationBarDividerColor: Colors.transparent,
-        statusBarIconBrightness: Brightness.light,
-        systemNavigationBarIconBrightness: Brightness.light,
-      ),
-   );
 
   // Initialize Foreground Task for location tracking in background
   FlutterForegroundTask.init(
